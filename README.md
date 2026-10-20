@@ -1,5 +1,12 @@
 # Smart Bark — Elly Animation (Motion Canvas proof of concept)
 
+> ## 👀 Just want to watch the animation?
+>
+> Open the video file **`output/preview.mp4`** (also saved as
+> **`output/Elly-SmartBark-animation.mp4`**). It is a normal 10-second video —
+> press play like any video. Everything below is technical documentation for
+> developers; you do not need it to watch the animation.
+
 A small 2D character-animation proof of concept for the **Smart Bark** YouTube
 channel, built with [Motion Canvas](https://motioncanvas.io/) (TypeScript).
 
