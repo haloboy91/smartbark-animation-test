@@ -2,10 +2,16 @@
 
 > ## 👀 Just want to watch the animation?
 >
-> Open the video file **`output/preview.mp4`** (also saved as
-> **`output/Elly-SmartBark-animation.mp4`**). It is a normal 10-second video —
-> press play like any video. Everything below is technical documentation for
-> developers; you do not need it to watch the animation.
+> - **Articulated rig + 12-second coin story:** open
+>   **[`preview/Elly-rig-coin-scene.mp4`](preview/Elly-rig-coin-scene.mp4)** —
+>   Elly walks in, finds and picks up a gold coin, reacts with surprise, then
+>   notices it has vanished and looks straight at the camera.
+> - **Original 10-second proof of concept:** open the video file
+>   **`output/preview.mp4`** (also saved as
+>   **`output/Elly-SmartBark-animation.mp4`**).
+>
+> Both are normal videos — press play like any video. Everything below is
+> technical documentation for developers; you do not need it to watch them.
 
 A small 2D character-animation proof of concept for the **Smart Bark** YouTube
 channel, built with [Motion Canvas](https://motioncanvas.io/) (TypeScript).
@@ -87,6 +93,22 @@ Export panel, then run (with a [system FFmpeg](https://ffmpeg.org/) installed):
 ```bash
 ffmpeg -framerate 30 -i output/project/%06d.png -c:v libx264 -pix_fmt yuv420p output/elly.mp4
 ```
+
+## The articulated rig and the coin scene
+
+The second scene uses a reusable hierarchical 2D rig built from the supplied
+flat artwork, not a flat image: the illustration was cut into nine pivoted
+body layers (head, torso, two arms, two legs, two ears, tail) with a measured
+joint hierarchy, plus a procedural facial rig (gaze, blinks, brows, five mouth
+shapes). The full story — walk in, stop and look down, bend and pick up the
+coin, examine it, surprised reaction, coin vanishes, look at the camera — is
+driven by one pure 12-second timeline (`src/rig/animation.ts`).
+
+- Scene source: [`src/scenes/coin.scene.tsx`](src/scenes/coin.scene.tsx)
+- Rig component: [`src/rig/ellyRig.tsx`](src/rig/ellyRig.tsx)
+- Layer cutter and headless renderer: [`scripts/rig/`](scripts/rig)
+- Architecture, validation results and the honest list of approximations and
+  needed artwork: [`docs/RIG_NOTES.md`](docs/RIG_NOTES.md)
 
 ## Project structure
 
