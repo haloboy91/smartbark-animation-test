@@ -13,7 +13,7 @@ export const SHOTS = [
   {
     id: "S01", cue: "October 1929.",
     scene: "skyline",
-    plate: "assets/scenes/s01_skyline.png", caption: "OCTOBER 1929",
+    plate: "assets/scenes/s01_skyline.jpg", caption: "OCTOBER 1929",
     camera: { type: "snapZoom", from: 1.22, settle: 0.34, then: 1.08 },
     elly: [
       { t: 0.00, pose: "think",   x: 1460, y: 1020, h: 500 },
@@ -24,7 +24,7 @@ export const SHOTS = [
   {
     id: "S02", cue: "Wall Street is collapsing.",
     scene: "exchange",
-    plate: "assets/scenes/s02_exchange.png", caption: "WALL STREET COLLAPSES",
+    plate: "assets/scenes/s02_exchange.jpg", caption: "WALL STREET COLLAPSES",
     camera: { type: "pushIn", to: 1.2 },
     shake: { amp: 16, from: 0.52, to: 0.78 },
     elly: [
@@ -36,7 +36,7 @@ export const SHOTS = [
   {
     id: "S03", cue: "Investors are panicking.",
     scene: "coins",
-    plate: "assets/scenes/s03_coins.png", caption: "FORTUNES DISAPPEAR",
+    plate: "assets/scenes/s03_coins.jpg", caption: "FORTUNES DISAPPEAR",
     camera: { type: "pan", dx: -240, then: 0.94 },
     elly: [
       { t: 0.00, pose: "worried",   x: 1500, y: 1020, h: 500 },
@@ -47,7 +47,7 @@ export const SHOTS = [
   {
     id: "S04", cue: "Imagine waking up,",
     scene: "breakfast",
-    plate: "assets/scenes/s04_breakfast.png", caption: "A VERY EXPENSIVE PIECE OF PAPER",
+    plate: "assets/scenes/s04_breakfast.jpg", caption: "A VERY EXPENSIVE PIECE OF PAPER",
     camera: { type: "pushIn", to: 1.24 },
     elly: [
       { t: 0.00, pose: "point_side", x: 1520, y: 1020, h: 480 },
@@ -58,7 +58,7 @@ export const SHOTS = [
   {
     id: "S05", cue: "For millions of Americans,",
     scene: "breadline",
-    plate: "assets/scenes/s05_breadline.png", caption: "THE NIGHTMARE BEGINS",
+    plate: "assets/scenes/s05_breadline.jpg", caption: "THE NIGHTMARE BEGINS",
     camera: { type: "pan", dx: -300 },
     elly: [
       { t: 0.00, pose: "empathetic",    x: 1480, y: 1030, h: 560 },
@@ -69,7 +69,7 @@ export const SHOTS = [
   {
     id: "S06", cue: "But while the stock market was collapsing,",
     scene: "split",
-    plate: "assets/scenes/s06_split.png", caption: "ONE MAN WAS MAKING MONEY",
+    plate: "assets/scenes/s06_split.jpg", caption: "ONE MAN WAS MAKING MONEY",
     camera: { type: "pullOut", from: 1.18, to: 0.98, then: 1.1 },
     elly: [
       { t: 0.00, pose: "point_side", x: 1470, y: 1020, h: 500, flip: true },
@@ -80,7 +80,7 @@ export const SHOTS = [
   {
     id: "S07", cue: "His name was Jesse Livermore.",
     scene: "hero",
-    plate: "assets/scenes/s07_hero.png", caption: "JESSE LIVERMORE",
+    plate: "assets/scenes/s07_hero.jpg", caption: "JESSE LIVERMORE",
     camera: { type: "pushIn", to: 1.16 },
     elly: [
       { t: 0.00, pose: "open_arms", x: 1500, y: 1020, h: 520 },
@@ -91,7 +91,7 @@ export const SHOTS = [
   {
     id: "S08", cue: "And unlike everyone desperately",
     scene: "crowd",
-    plate: "assets/scenes/s08_crowd.png", caption: "HE BET ON THE FALL",
+    plate: "assets/scenes/s08_crowd.jpg", caption: "HE BET ON THE FALL",
     camera: { type: "pan", dx: -330, zoom: 1.14 },
     elly: [
       { t: 0.00, pose: "confused", x: 1500, y: 1020, h: 500 },
@@ -102,7 +102,7 @@ export const SHOTS = [
   {
     id: "S09", cue: "The worse the market performed,",
     scene: "chips",
-    plate: "assets/scenes/s09_chips.png", caption: "MARKET DOWN / HIS TRADE UP",
+    plate: "assets/scenes/s09_chips.jpg", caption: "MARKET DOWN / HIS TRADE UP",
     camera: { type: "pulse", n: 2, amount: 0.1 },
     elly: [
       { t: 0.00, pose: "count_paws", x: 1490, y: 1020, h: 500 },
@@ -113,7 +113,7 @@ export const SHOTS = [
   {
     id: "S10", cue: "And he wasn't alone.",
     scene: "doorway",
-    plate: "assets/scenes/s10_doorway.png", caption: "JOSEPH P. KENNEDY",
+    plate: "assets/scenes/s10_doorway.jpg", caption: "JOSEPH P. KENNEDY",
     camera: { type: "pullOut", from: 1.22, to: 1.0 },
     elly: [
       { t: 0.00, pose: "point_side", x: 1460, y: 1020, h: 500 },
