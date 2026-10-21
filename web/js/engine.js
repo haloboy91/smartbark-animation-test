@@ -14,6 +14,7 @@ const ellyEl = $("elly");
 const captionEl = $("caption");
 const cardEl = $("card");
 const subEl = $("subtitle");
+const usePlates = $("usePlates");
 
 const part = PARTS[0];
 const words = buildWords(part);
@@ -158,11 +159,30 @@ function drawElly(shot, p, cam, time) {
 }
 
 // ------------------------------------------------------------------ drawing
+// Generated plates are preferred; the procedural painter is the fallback for
+// shots whose art has not been made yet. The toggle lets you A/B them.
+const plateCache = new Map();
+function getPlate(src) {
+  if (!plateCache.has(src)) {
+    const im = new Image();
+    im.src = src;
+    plateCache.set(src, im);
+  }
+  return plateCache.get(src);
+}
+
 function drawScene(shot, p, time) {
+  ctx.clearRect(0, 0, W, H);
+  if (usePlates.checked && shot.plate) {
+    const im = getPlate(shot.plate);
+    if (im.complete && im.naturalWidth) {
+      ctx.drawImage(im, 0, 0, W, H);
+      return;
+    }
+  }
   const fn = SCENES[shot.scene];
   if (!fn) { ctx.fillStyle = "#222"; ctx.fillRect(0, 0, W, H); return; }
   ctx.save();
-  ctx.clearRect(0, 0, W, H);
   fn(ctx, p, time);
   ctx.restore();
 }
