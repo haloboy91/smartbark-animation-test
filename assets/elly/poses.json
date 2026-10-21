@@ -21,8 +21,8 @@
     ],
     "counts": {
       "total_poses": 33,
-      "available": 28,
-      "planned": 5,
+      "available": 33,
+      "planned": 0,
       "storyboard_beats": 217,
       "unresolved_beats": 0
     }
@@ -528,7 +528,7 @@
     {
       "id": "sitting_quiet",
       "file": "elly_sitting_quiet",
-      "source": "planned",
+      "source": "generated",
       "tags": [
         "sitting",
         "quiet",
@@ -538,7 +538,7 @@
         "contemplative"
       ],
       "note": "Quiet connective beats and the slow blink on the memorial card.",
-      "available": false
+      "available": true
     },
     {
       "id": "sad",
@@ -560,7 +560,7 @@
     {
       "id": "angry",
       "file": "elly_angry",
-      "source": "planned",
+      "source": "generated",
       "tags": [
         "angry",
         "mad",
@@ -571,12 +571,12 @@
         "insistent"
       ],
       "note": "Bank failures, margin calls.",
-      "available": false
+      "available": true
     },
     {
       "id": "confused",
       "file": "elly_confused",
-      "source": "planned",
+      "source": "generated",
       "tags": [
         "confused",
         "perplexed",
@@ -586,7 +586,7 @@
         "does not understand"
       ],
       "note": "Margin/shorting explainer beats.",
-      "available": false
+      "available": true
     },
     {
       "id": "empathetic",
@@ -609,7 +609,7 @@
     {
       "id": "newspaper",
       "file": "elly_newspaper",
-      "source": "planned",
+      "source": "generated",
       "tags": [
         "newspaper",
         "headline",
@@ -619,8 +619,8 @@
         "press",
         "front page"
       ],
-      "note": "Ch2. No legible text in the art - headlines are edit overlays. First attempt REJECTED by validate_poses.py: the paper covered her whole body (navy 0.2%, pink 0.0%), so Elly and her outfit were hidden. Regenerate with the paper small and held to one side.",
-      "available": false
+      "note": "Ch2. No legible text in the art - headlines are edit overlays. Attempt 1 rejected by validate_poses.py (paper covered her body, navy 0.2%/pink 0.0% - no character visible). Attempt 2 passed but with a vignetted plate (ring sd 11.3), handled by key_elly.py's local plate field; green leak inside the body measured at 0.63%.",
+      "available": true
     },
     {
       "id": "coin",
@@ -671,7 +671,7 @@
     {
       "id": "ledger",
       "file": "elly_ledger",
-      "source": "planned",
+      "source": "generated",
       "tags": [
         "ledger",
         "notebook",
@@ -682,7 +682,7 @@
         "balance sheet"
       ],
       "note": "Quotation-office / bookkeeping beats.",
-      "available": false
+      "available": true
     }
   ],
   "demand": {

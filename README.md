@@ -31,7 +31,7 @@ signature always stays.
 
 ## Pose status
 
-`28 / 33` poses cut out. **217** storyboard "ELLY ACTIVENESS" beats are routed to
+`33 / 33` poses cut out - library complete. **217** storyboard "ELLY ACTIVENESS" beats are routed to
 canonical poses, **0 unresolved**. Run for the current state:
 
 ```bash
@@ -103,8 +103,13 @@ gradient rather than flat (which leaves a halo), if the navy sweater / pink
 scarf / white fur signature has drifted, or if the character is too small or
 cropped by the frame.
 
-It has already earned its keep: the first `elly_newspaper` attempt passed a
-visual once-over but failed the gate with navy 0.2% / pink 0.0% - the newspaper
-was covering Elly's whole body, hiding both her and her outfit. The plate is
-quarantined in `greenscreen/rejected/` and will be regenerated with the paper
-small and held to one side.
+It has already earned its keep: the first `elly_newspaper` attempt looked fine
+but failed the gate with navy 0.2% / pink 0.0% - the newspaper was covering
+Elly's whole body, hiding both her and her outfit. Rejected plates are kept in
+`greenscreen/rejected/` with the reason recorded in the manifest.
+
+The retry then came back with a **vignetted** plate (ring sd 11.3) rather than a
+flat one, which a single global key value would have turned into a halo around
+her. `key_elly.py` therefore estimates the plate as a smooth *field* - the local
+average greenness of confidently-background pixels - so varying plates key
+cleanly. Measured green leak inside the opaque body: max 0.63% across all 33.

@@ -94,7 +94,13 @@ def alpha_green(a: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
         raise RuntimeError("no green plate detected (median greenness "
                            f"{plate:.1f}) - try --bg black")
 
-    s = gd / plate                       # 1.0 on the plate, near 0 on the subject
+    # Some renders come back with a vignette rather than a flat plate (sd of the
+    # border ring > 8). Dividing by a single global value then leaves a halo, so
+    # estimate the plate as a smooth FIELD: average greenness of the
+    # confidently-background pixels near each point.
+    field = plate_field(gd, plate)
+
+    s = gd / np.maximum(field, 1.0)      # 1.0 on the plate, near 0 on the subject
     alpha = np.clip((HI_S - s) / (HI_S - LO_S), 0, 1)
     alpha = cv2.GaussianBlur(alpha, (3, 3), 0)
 
@@ -103,6 +109,21 @@ def alpha_green(a: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     a = a.copy()
     a[..., 1] = np.where(spill, np.minimum(g, np.maximum(r, b) + 10), g)
     return alpha, a
+
+
+def plate_field(gd: np.ndarray, plate: float, k: int = 151) -> np.ndarray:
+    """Smooth estimate of the plate's greenness at every pixel.
+
+    Handles vignetted renders, where a single global plate value leaves a halo
+    around the subject. Averaging only the confidently-green pixels over a large
+    window gives the local background level; where the subject covers the whole
+    window we fall back to the global value.
+    """
+    m = (gd > 0.6 * plate).astype(np.float32)
+    num = cv2.boxFilter(gd * m, -1, (k, k), normalize=True)
+    den = cv2.boxFilter(m, -1, (k, k), normalize=True)
+    field = np.where(den > 0.05, num / np.maximum(den, 1e-6), plate)
+    return cv2.GaussianBlur(field, (0, 0), 15)
 
 
 def floor_shadow(a: np.ndarray, alpha: np.ndarray) -> np.ndarray:

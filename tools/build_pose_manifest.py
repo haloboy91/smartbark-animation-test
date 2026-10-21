@@ -148,17 +148,17 @@ POSES = [
          tags=["excited", "energetic", "enthusiastic", "bouncing", "booming", "obsessed",
                "big smile", "exaggerated smile"],
          note="Roaring Twenties mania (Ch1)."),
-    dict(id="sitting_quiet", file="elly_sitting_quiet", source="planned",
+    dict(id="sitting_quiet", file="elly_sitting_quiet", source="generated",
          tags=["sitting", "quiet", "still", "listening", "resting", "contemplative"],
          note="Quiet connective beats and the slow blink on the memorial card."),
     dict(id="sad", file="elly_sad", source="generated",
          tags=["sad", "crying", "sorrow", "head tilt", "sad head tilt", "tiny exhale",
                "grief", "downcast"],
          note="Ch6 Livermore. Handled as solemn, never comic."),
-    dict(id="angry", file="elly_angry", source="planned",
+    dict(id="angry", file="elly_angry", source="generated",
          tags=["angry", "mad", "furious", "indignant", "stern", "emphatic", "insistent"],
          note="Bank failures, margin calls."),
-    dict(id="confused", file="elly_confused", source="planned",
+    dict(id="confused", file="elly_confused", source="generated",
          tags=["confused", "perplexed", "bewildered", "lost", "scratches head",
                "does not understand"],
          note="Margin/shorting explainer beats."),
@@ -166,13 +166,14 @@ POSES = [
          tags=["empathetic", "sympathetic", "kind", "soft", "breadline", "hardship",
                "unemployment", "pity", "compassion"],
          note="Breadline / unemployment. Must not read as comic."),
-    dict(id="newspaper", file="elly_newspaper", source="planned",
+    dict(id="newspaper", file="elly_newspaper", source="generated",
          tags=["newspaper", "headline", "black thursday", "black tuesday", "ticker",
                "press", "front page"],
          note="Ch2. No legible text in the art - headlines are edit overlays. "
-              "First attempt REJECTED by validate_poses.py: the paper covered her whole "
-              "body (navy 0.2%, pink 0.0%), so Elly and her outfit were hidden. "
-              "Regenerate with the paper small and held to one side."),
+              "Attempt 1 rejected by validate_poses.py (paper covered her body, navy "
+              "0.2%/pink 0.0% - no character visible). Attempt 2 passed but with a "
+              "vignetted plate (ring sd 11.3), handled by key_elly.py's local plate "
+              "field; green leak inside the body measured at 0.63%."),
     dict(id="coin", file="elly_coin", source="generated",
          tags=["coin", "cash", "money", "liquid", "savings", "pile", "coins"],
          note="Ch5 'When Cash Becomes Power' hero prop."),
@@ -182,7 +183,7 @@ POSES = [
     dict(id="newsboy_hat", file="elly_newsboy_hat", source="generated",
          tags=["hat", "1920s", "era", "period", "newsboy cap", "flat cap"],
          note="Client-approved era flourish: signature outfit + a 1920s cap."),
-    dict(id="ledger", file="elly_ledger", source="planned",
+    dict(id="ledger", file="elly_ledger", source="generated",
          tags=["ledger", "notebook", "records", "books", "balances", "accounts",
                "balance sheet"],
          note="Quotation-office / bookkeeping beats."),
