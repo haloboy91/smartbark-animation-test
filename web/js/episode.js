@@ -54,7 +54,12 @@ export function buildEpisode({ onWarning = () => {} } = {}) {
   shots.forEach((s, i) => {
     const nxt = shots[i + 1];
     s.t1 = nxt ? nxt.t0 : TOTAL;
-    if (s.t1 <= s.t0) s.t1 = s.t0 + 1;
+    // A shot must not run past its own part, or the last shot of part N bleeds
+    // ~0.3s of part N's imagery over part N+1's opening words and chapter card.
+    // Cuts land on the chapter boundary instead.
+    const partEnd = parts[s.pi].offset + parts[s.pi].dur;
+    if (s.t1 > partEnd) s.t1 = partEnd;
+    if (s.t1 <= s.t0) s.t1 = Math.max(s.t0 + 1, Math.min(partEnd, s.t0 + 1));
   });
 
   const activeShot = (t) => {

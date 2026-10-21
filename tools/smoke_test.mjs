@@ -106,42 +106,16 @@ global.URL.createObjectURL = global.URL.createObjectURL || ((b) => `blob:stub/${
     await import(path.join(JS, "script.js"));
   const { SHOTS } = await import(path.join(JS, "timeline.js"));
   const { POSES } = await import(path.join(JS, "poses.js"));
-  const { findPhrase } = await import(path.join(JS, "cues.js"));
+  const { buildEpisode } = await import(path.join(JS, "episode.js"));
 
   console.log("module loaded OK");
   console.log(`timing source: ${TIMING_SOURCE}`);
 
-  // Rebuild the same timing model engine.js uses, so a failure here is real.
-  const parts = PARTS.map((p, i) => {
-    const w = buildWords(p, i);
-    return { ...p, index: i, words: w,
-             dur: partDuration(i, w[w.length - 1].t1 + 0.9) };
-  });
-  let acc = 0;
-  for (const p of parts) { p.offset = acc; acc += p.dur; }
-  const TOTAL = acc;
-
-  const words = parts.flatMap((p) =>
-    p.words.map((w) => ({ ...w, t0: w.t0 + p.offset, t1: w.t1 + p.offset })));
-
-  // Use the production matcher, not a lookalike.
-  let unmatched = 0;
-  const shots = SHOTS.map((s) => {
-    // engine.js derives pi this way; part-0 shots carry no `part` key at all.
-    const pi = s.part == null ? 0 : s.part;
-    if (!s.cue) return { ...s, pi };
-    const wi = findPhrase(parts[pi].words, s.cue);
-    if (wi < 0) {
-      unmatched++;
-      console.log(`cue not found for p${pi}/${s.id}: "${s.cue}"`);
-      return { ...s, pi };
-    }
-    return { ...s, pi, t0: parts[pi].offset + parts[pi].words[wi].t0, cueMatched: true };
-  });
-  for (let i = 0; i < shots.length - 1; i++) {
-    if (shots[i].pi === shots[i + 1].pi) shots[i].t1 = shots[i + 1].t0;
-  }
-  shots.forEach((s) => { if (s.t1 == null) s.t1 = s.t0 + 6; });
+  // Use the production timing model, not a lookalike. Duplicating it here is
+  // what let the renderer and preview diverge in the first place.
+  const ep = buildEpisode({ onWarning: (m) => console.log(m) });
+  const { shots, parts, words, TOTAL, activeShot, unmatched: un } = ep;
+  let unmatched = un.length;
 
   const plates = new Map();
   const poses = new Map();

@@ -15,6 +15,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "docs", "script.txt")
 BRIEF = os.path.join(ROOT, "docs", "EP015_storyboard_brief.txt")
 VO_MANIFEST = os.path.join(ROOT, "docs", "vo_manifest.json")
+WORDS_JSON = os.path.join(ROOT, "web", "js", "words.json")
 OUT = os.path.join(ROOT, "web", "js", "script.js")
 
 FALLBACK_CARDS = [
@@ -57,6 +58,13 @@ def real_durations() -> list[float]:
     return [round(float(r["seconds"]), 3) for r in rows]
 
 
+def real_words() -> dict:
+    """Word timings from tools/align_audio.py, or {} if not generated yet."""
+    if not os.path.exists(WORDS_JSON):
+        return {}
+    return json.load(open(WORDS_JSON, encoding="utf-8"))
+
+
 def main() -> None:
     raw = open(SRC, encoding="utf-8").read()
     blocks = [b.strip() for b in raw.split("###")]
@@ -64,6 +72,7 @@ def main() -> None:
     parts = [b for b in blocks[1:] if b]
     cards = cards_from_brief()
     durs = real_durations()
+    words = real_words()
 
     if len(parts) != 8:
         raise SystemExit(f"expected 8 parts in script.txt, found {len(parts)}")
@@ -83,20 +92,27 @@ def main() -> None:
         "// themselves are outside the repo; the byte sizes are recorded in",
         "// docs/vo_manifest.json.",
         "//",
-        "// WORD TIMINGS INSIDE A PART ARE NOT REAL YET. They are synthetic and",
-        "// proportional: the part's words are spread across its true duration.",
-        "// That gets every cut into the right part and roughly the right place,",
-        "// but not word-accurate. Real timing needs ASR (kit v2 asr.py ->",
-        "// align.py -> words.json), which replaces buildWords wholesale with no",
-        "// change to timeline.js.",
+        "// WORD TIMINGS ARE REAL, derived from the actual VO by",
+        "// tools/align_audio.py: it thresholds an RMS envelope against the noise",
+        "// floor to find the narrator's pauses, partitions the speech runs across",
+        "// the script's sentences, and spreads words inside each sentence by",
+        "// syllable weight. Sentence boundaries therefore sit on real pauses.",
+        "//",
+        "// They are forced alignment, not recognition - the kit's asr.py needs a",
+        "// Vosk model that cannot be fetched here. Word start times within a",
+        "// sentence are modelled, not measured. Dropping in ASR output replaces",
+        "// REAL_WORDS with no other change.",
+        "" if words else
+        "// REAL_WORDS absent - run: python tools/align_audio.py",
         "",
-        "// tuned so synthetic word spread is plausible within a part",
+        "// only used when REAL_WORDS is absent",
         "export const WPM = 155;",
         "",
         f"export const REAL_DURATIONS = {json.dumps(durs)};",
+        f"export const REAL_WORDS = {json.dumps(words)};",
         "export const TIMING_SOURCE = "
         + json.dumps(
-            "real-part-durations" if durs else "synthetic-estimate"
+            "real-aligned" if words else ("real-part-durations" if durs else "synthetic")
         )
         + ";",
         "",
@@ -123,6 +139,16 @@ def main() -> None:
 // narrator actually paused. That still needs ASR.
 export function buildWords(part, partIndex = 0, wpm = WPM) {
   const tokens = part.text.trim().split(/\\s+/);
+
+  // Real alignment wins outright. If the word stream and the script disagree in
+  // length we fall through to the model rather than silently mis-timing.
+  const aligned = REAL_WORDS[String(partIndex)];
+  if (aligned && aligned.length === tokens.length) {
+    return aligned.map((a, i) => ({
+      w: tokens[i], t0: a.t0, t1: a.t1,
+    }));
+  }
+
   const secPerWord = 60 / wpm;
   const gap = secPerWord * 0.12;
   const raw = tokens.map((w) => {

@@ -13,7 +13,7 @@
  * Requires: npm install   (pulls @napi-rs/canvas)
  *           ffmpeg        (imageio-ffmpeg, or on PATH)
  */
-import { createCanvas, loadImage } from "@napi-rs/canvas";
+import { createCanvas, loadImage, GlobalFonts } from "@napi-rs/canvas";
 import { spawn, spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
@@ -37,6 +37,8 @@ const FPS = parseInt(arg("fps", "30"), 10);
 const CRF = parseInt(arg("crf", "25"), 10);
 const SEGMENT = arg("segment", null) ? parseFloat(arg("segment")) : null;
 const SCALE = parseFloat(arg("scale", "1"));
+const VO = arg("vo", "assets/audio/vo_full.wav");
+const MUTE = has("mute");
 
 // ------------------------------------------------------------------ ffmpeg
 function ffmpegBin() {
@@ -53,6 +55,21 @@ function ffmpegBin() {
     if (b) return path.join(d, b);
   }
   return null;
+}
+
+// ------------------------------------------------------------------- fonts
+// The kit ships Luckiest Guy (chapter cards / pop captions) and Lato
+// (subtitles). Without these the compositor falls back to a generic sans and
+// the type no longer matches the Smart Bark look.
+const FONT_DIR = path.join(ROOT, "kit", "Smart_Bark_Kit_v2", "fonts");
+let fontsLoaded = 0;
+for (const [file, family] of [
+  ["LuckiestGuy.ttf", "Luckiest Guy"],
+  ["Lato-Bold.ttf", "Lato"],
+  ["Lato-Black.ttf", "Lato"],
+]) {
+  const p = path.join(FONT_DIR, file);
+  if (fs.existsSync(p) && GlobalFonts.registerFromPath(p, family)) fontsLoaded++;
 }
 
 // ------------------------------------------------------------------- load
@@ -128,6 +145,7 @@ function encode(rangeFrom, rangeTo, outFile) {
     });
 
     const nFrames = Math.max(1, Math.round((rangeTo - rangeFrom) * FPS));
+    void rangeFrom;
     (async () => {
       for (let i = 0; i < nFrames; i++) {
         const t = rangeFrom + i / FPS;
@@ -167,11 +185,48 @@ if (bare.length) {
 }
 warnings.forEach((w) => console.log(`  ${w}`));
 
+/**
+ * Mux the real VO onto a video-only file.
+ *
+ * The narration is one concatenated track (assets/audio/vo_full.wav) built from
+ * v00..v07 in order, so a range is just a -ss/-t window into it. Audio is never
+ * resampled or stretched: the brief requires each part's exact WAV runtime.
+ */
+function mux(videoOnly, outFile, rangeFrom, rangeTo) {
+  const dur = rangeTo - rangeFrom;
+  if (MUTE || !fs.existsSync(path.join(ROOT, VO))) {
+    if (!MUTE) console.warn(`  (no VO at ${VO} - exporting silent)`);
+    const r = spawnSync(FFMPEG, ["-y", "-i", videoOnly, "-c", "copy", outFile],
+                        { stdio: "ignore" });
+    fs.rmSync(videoOnly, { force: true });
+    return r.status === 0;
+  }
+  const r = spawnSync(FFMPEG, [
+    "-y",
+    "-i", videoOnly,
+    "-ss", String(rangeFrom), "-t", String(dur),
+    "-i", path.join(ROOT, VO),
+    "-map", "0:v:0", "-map", "1:a:0",
+    "-c:v", "copy",
+    "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
+    "-shortest",
+    "-movflags", "+faststart",
+    outFile,
+  ], { stdio: ["ignore", "ignore", "pipe"] });
+  fs.rmSync(videoOnly, { force: true });
+  if (r.status !== 0) {
+    console.error(r.stderr?.toString().slice(-1200) || "mux failed");
+  }
+  return r.status === 0;
+}
+
 const t0 = Date.now();
 const absOut = path.join(ROOT, OUT);
 
 if (!SEGMENT) {
-  await encode(from, to, absOut);
+  const tmp = absOut.replace(/\.mp4$/, ".video.mp4");
+  await encode(from, to, tmp);
+  if (!mux(tmp, absOut, from, to)) process.exit(1);
 } else {
   // Chunked: keeps peak memory flat and survives long episodes.
   const segs = [];
@@ -186,11 +241,13 @@ if (!SEGMENT) {
   }
   const list = path.join(path.dirname(absOut), "segs.txt");
   fs.writeFileSync(list, segs.map((f) => `file '${path.basename(f)}'`).join("\n"));
+  const joined = absOut.replace(/\.mp4$/, ".video.mp4");
   const r = spawnSync(FFMPEG, ["-y", "-f", "concat", "-safe", "0", "-i", list,
-                               "-c", "copy", absOut], { stdio: "inherit" });
+                               "-c", "copy", joined], { stdio: "inherit" });
   segs.forEach((f) => fs.rmSync(f, { force: true }));
   fs.rmSync(list, { force: true });
   if (r.status !== 0) process.exit(r.status ?? 1);
+  if (!mux(joined, absOut, from, to)) process.exit(1);
 }
 
 const secs = (Date.now() - t0) / 1000;
