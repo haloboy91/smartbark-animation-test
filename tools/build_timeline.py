@@ -38,6 +38,13 @@ PART_RE = re.compile(r'^(?:PART 0|CHAPTER [1-7]):\s*"(.+)"')
 # Elly's default placement: right third, 35-50% of frame height.
 DEFAULT_X, DEFAULT_Y, DEFAULT_H = 1470, 1020, 510
 
+# Per-shot Elly placement overrides, keyed by (part, id). Elly normally sits in
+# the right third; these are the shots the brief explicitly places elsewhere.
+# s34 is the branded end frame and the brief calls for Elly large and centre.
+ELLY_OVERRIDE = {
+    ("7", "S34"): (960, 1000, 540),  # centre; 540px = 50% of 1080, top of band
+}
+
 
 def route_pose(beat: str, poses: list[dict]) -> str:
     """Same routing rules as build_pose_manifest.py, kept in sync by hand."""
@@ -191,8 +198,10 @@ def main() -> None:
         lines.append(f"    camera: {json.dumps(cam)},")
         if shake:
             lines.append(f"    shake: {json.dumps(shake)},")
+        ox, oy, oh = ELLY_OVERRIDE.get(
+            (str(s["part"]), s["id"]), (DEFAULT_X, DEFAULT_Y, DEFAULT_H))
         lines.append(f"    elly: [{{ t: 0, pose: {json.dumps(pose)}, "
-                     f"x: {DEFAULT_X}, y: {DEFAULT_Y}, h: {DEFAULT_H} }}],")
+                     f"x: {ox}, y: {oy}, h: {oh} }}],")
         if s.get("caption"):
             lines.append(f"    caption: {json.dumps(s['caption'])},")
         lines.append(f"    beat: {json.dumps(s.get('elly', ''))},")
