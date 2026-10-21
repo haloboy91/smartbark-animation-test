@@ -35,11 +35,8 @@ BRIEF = os.path.join(ROOT, "docs", "EP015_storyboard_brief.txt")
 #   tags     semantic tags used for auto-routing storyboard beats
 #   note     why it exists / caveats
 #
-# The 11 original "Elly Behavior" Family Guy masters on Drive are NOT in this
-# table. They are generation anchors only (see ANCHORS): their black plate sits
-# at the same luminance as Elly's thick black outlines, so keying them makes the
-# outline semi-transparent and the character falls apart. Every pose shipped to
-# the renderer is generated on a flat green plate instead.
+# Every pose here is AI-generated on a flat green plate. No image from Drive is
+# used anywhere in this project - see tools/check_no_drive_assets.py.
 # --------------------------------------------------------------------------
 POSES = [
     dict(id="think", file="elly_think", source="generated",
@@ -188,16 +185,6 @@ POSES = [
          note="Quotation-office / bookkeeping beats."),
 ]
 
-# Original Drive masters - identity anchors for generation, NEVER keyed into the
-# library. Kept in assets/elly/references/ for that purpose only.
-ANCHORS = [
-    "01_Elly_Shocked_FamilyGuy.jpg", "03_Elly_Proud_PiggyBank_FamilyGuy.jpg",
-    "04_Elly_Worried_LoLang_FamilyGuy.jpg", "05_Elly_Calculator_Confused_FamilyGuy.jpg",
-    "06_Elly_Excited_HaoHung_FamilyGuy.jpg", "07_Elly_Sitting_Quiet_TinhLang_FamilyGuy.jpg",
-    "08_Elly_Welcome_Waving_FamilyGuy.jpg", "09_Elly_Thinking_SuyNghi_FamilyGuy.jpg",
-    "10_Elly_Crying_Buon_FamilyGuy.jpg", "11_Elly_Angry_Mad_FamilyGuy.jpg",
-    "12_Elly_Sleepy_Sleep_FamilyGuy.jpg",
-]
 
 # Fallback used when a storyboard beat matches nothing: neutral, always safe.
 DEFAULT_POSE = "think"

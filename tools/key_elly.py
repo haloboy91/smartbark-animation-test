@@ -4,9 +4,10 @@ Key Elly pose plates into transparent RGBA cutouts.
 
 The v2 kit ships `scripts/key_elly.py`, but that one is hard-wired to the
 green-screen knight plates (chroma key on greenness + grey floor-shadow
-detection). The original "Elly Behavior" Family Guy references - and any new
-pose we generate for EP015 - sit on a flat *black* plate instead, so the green
-keyer would treat them as fully opaque foreground.
+detection). The legacy Drive references sat on a flat *black* plate, which the
+green keyer would treat as fully opaque foreground. EP015 no longer uses any
+Drive art (see check_no_drive_assets.py) - every pose is generated on green - but
+the black path is kept for completeness and for the reasons below.
 
 This keyer handles both:
 

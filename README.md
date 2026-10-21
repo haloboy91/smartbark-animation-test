@@ -7,14 +7,13 @@ Got Rich During the Great Depression (1929)"**.
 
 ```
 assets/elly/
-  references/   11 original Family Guy Elly masters (Drive "Elly Behavior")
-                GENERATION ANCHORS ONLY - never keyed, see "Why not the Drive photos"
   cutouts/      transparent PNG poses  <-- what the renderer loads
   greenscreen/  raw generator output (gitignored, intermediate)
   poses.json    the contract: pose table + storyboard beat routing
 tools/
   key_elly.py            plate -> transparent cutout (black AND green plates)
   validate_poses.py      quality gate for generated plates, run before keying
+  check_no_drive_assets.py  guard: no Drive-sourced Elly may enter the project
   contact_sheet.py       contact sheet for visual review
   build_pose_manifest.py builds assets/elly/poses.json, fails on missing art
   fetch_kit.sh           how to re-fetch Kit v2 from Drive
@@ -62,7 +61,21 @@ plate colour: Kit v2's own keyer hard-codes `greenness > 80`, which is correct
 for its pure `(0,255,0)` knight plates but keys out almost nothing on the muted
 sage green (≈ RGB 90,160,105, greenness 55) that the image generator returns.
 
-## Why not the Drive "Elly Behavior" photos?
+## No Elly from Google Drive
+
+Nothing from Drive is used. The "Elly Behavior" masters and Kit v2's knight-Elly
+set are excluded by policy, and `tools/check_no_drive_assets.py` enforces it with
+an md5 blocklist of the originals (captured before deletion), filename patterns,
+and a scan of the git index. Run it after any asset update:
+
+```bash
+python3 tools/check_no_drive_assets.py   # exit 1 if Drive art reappears
+```
+
+Every pose in `cutouts/` is AI-generated from a text prompt on a flat chroma-green
+plate, anchored on our own generated art rather than on any Drive image.
+
+### Why those photos can't be used at all
 
 The 11 original masters are kept **only as identity anchors for image
 generation** - never as cutouts. Their plate is pure black, and Elly's signature
