@@ -1,0 +1,202 @@
+{
+  "source": "src/assets/elly.png",
+  "image_size": [
+    1306,
+    1476
+  ],
+  "neck_pivot": [
+    650,
+    830
+  ],
+  "parts": {
+    "earL": {
+      "box": [
+        15,
+        180,
+        330,
+        770
+      ],
+      "pivot_native": [
+        300,
+        330
+      ],
+      "pivot_local": [
+        285,
+        150
+      ]
+    },
+    "earR": {
+      "box": [
+        930,
+        150,
+        1100,
+        620
+      ],
+      "pivot_native": [
+        980,
+        300
+      ],
+      "pivot_local": [
+        50,
+        150
+      ]
+    },
+    "head": {
+      "box": [
+        40,
+        10,
+        1230,
+        895
+      ],
+      "pivot_native": [
+        650,
+        830
+      ],
+      "pivot_local": [
+        610,
+        820
+      ]
+    },
+    "torso": {
+      "box": [
+        120,
+        770,
+        1120,
+        1345
+      ],
+      "pivot_native": [
+        650,
+        830
+      ],
+      "pivot_local": [
+        530,
+        60
+      ]
+    },
+    "armL": {
+      "box": [
+        55,
+        920,
+        360,
+        1320
+      ],
+      "pivot_native": [
+        300,
+        960
+      ],
+      "pivot_local": [
+        245,
+        40
+      ]
+    },
+    "armR": {
+      "box": [
+        853,
+        691,
+        1291,
+        1022
+      ],
+      "pivot_native": [
+        960,
+        930
+      ],
+      "pivot_local": [
+        107,
+        239
+      ]
+    },
+    "legL": {
+      "box": [
+        250,
+        1285,
+        645,
+        1472
+      ],
+      "pivot_native": [
+        430,
+        1300
+      ],
+      "pivot_local": [
+        180,
+        15
+      ]
+    },
+    "legR": {
+      "box": [
+        635,
+        1285,
+        1000,
+        1472
+      ],
+      "pivot_native": [
+        820,
+        1300
+      ],
+      "pivot_local": [
+        185,
+        15
+      ]
+    },
+    "tail": {
+      "box": [
+        945,
+        1220,
+        1130,
+        1390
+      ],
+      "pivot_native": [
+        975,
+        1300
+      ],
+      "pivot_local": [
+        30,
+        80
+      ]
+    }
+  },
+  "features": {
+    "eyeL_white": {
+      "center": [
+        441,
+        434
+      ],
+      "rx": 101,
+      "ry": 92
+    },
+    "eyeR_white": {
+      "center": [
+        772,
+        405
+      ],
+      "rx": 95,
+      "ry": 87
+    },
+    "pupilL_rest": [
+      488,
+      447
+    ],
+    "pupilR_rest": [
+      843,
+      400
+    ],
+    "pupil_radius": 17,
+    "nose_box": [
+      620,
+      462,
+      780,
+      588
+    ],
+    "mouth": {
+      "center": [
+        608,
+        717
+      ],
+      "box": [
+        520,
+        630,
+        745,
+        778
+      ]
+    }
+  }
+}
