@@ -1,0 +1,22 @@
+# --- downloaded dependencies (re-fetch with tools/fetch_kit.sh) -------------
+kit/
+google_drive/
+
+# --- intermediates ---------------------------------------------------------
+# Green-screen plates are the raw generator output; cutouts/ is the deliverable
+# and the generation prompt for each is recorded in assets/elly/poses.json.
+assets/elly/greenscreen/
+__pycache__/
+*.pyc
+
+# --- render output ---------------------------------------------------------
+render_tmp/
+scenes/
+sfx/
+final_audio.wav
+*.mp4
+
+# --- env -------------------------------------------------------------------
+.venv/
+.env
+.DS_Store

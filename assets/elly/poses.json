@@ -1,0 +1,926 @@
+{
+  "meta": {
+    "episode": "EP015 - How Some People Got Rich During the Great Depression (1929)",
+    "canvas": [
+      1920,
+      1080
+    ],
+    "fps": 30,
+    "identity": {
+      "species": "white fluffy bichon",
+      "glasses": "round, black rimmed",
+      "sweater": "navy blue with white stars and crescent moons",
+      "scarf": "pink",
+      "style": "2D cartoon, thick clean outlines, flat colour, soft shadows"
+    },
+    "rules": [
+      "Never stretch, distort or crop a pose to fake a new action.",
+      "Camera-safe: keep the right third clear in generated backgrounds.",
+      "Elly 35-50% of frame height when present.",
+      "No comedy poses on poverty, unemployment or the suicide reference."
+    ],
+    "counts": {
+      "total_poses": 34,
+      "available": 20,
+      "planned": 14,
+      "storyboard_beats": 217,
+      "unresolved_beats": 6
+    }
+  },
+  "poses": [
+    {
+      "id": "shocked",
+      "file": "01_Elly_Shocked_FamilyGuy",
+      "source": "reference",
+      "tags": [
+        "shock",
+        "shocked",
+        "startled",
+        "surprised",
+        "surprise",
+        "eyes widen",
+        "stunned",
+        "recoil",
+        "jaw",
+        "admiration",
+        "startled jump"
+      ],
+      "note": "Original master reference.",
+      "available": true
+    },
+    {
+      "id": "ref03",
+      "file": "03_Elly_Proud_PiggyBank_FamilyGuy",
+      "source": "reference",
+      "tags": [
+        "proud",
+        "worried"
+      ],
+      "note": "LABEL UNVERIFIED - filename says proud/piggybank, kit README says this file is actually 'worried'. Needs visual confirmation.",
+      "available": true
+    },
+    {
+      "id": "ref04",
+      "file": "04_Elly_Worried_LoLang_FamilyGuy",
+      "source": "reference",
+      "tags": [
+        "worried",
+        "proud"
+      ],
+      "note": "LABEL UNVERIFIED - filename says worried, kit README says this file is actually 'proud (piggy bank)'. Needs visual confirmation.",
+      "available": true
+    },
+    {
+      "id": "confused",
+      "file": "05_Elly_Calculator_Confused_FamilyGuy",
+      "source": "reference",
+      "tags": [
+        "confused",
+        "puzzled",
+        "doubtful",
+        "counting",
+        "puzzled",
+        "perplexed"
+      ],
+      "note": "Original master reference with calculator prop.",
+      "available": true
+    },
+    {
+      "id": "ref06",
+      "file": "06_Elly_Excited_HaoHung_FamilyGuy",
+      "source": "reference",
+      "tags": [
+        "excited",
+        "waving",
+        "energetic"
+      ],
+      "note": "LABEL UNVERIFIED - filename says excited, kit README says this file is actually 'waving'.",
+      "available": true
+    },
+    {
+      "id": "ref07",
+      "file": "07_Elly_Sitting_Quiet_TinhLang_FamilyGuy",
+      "source": "reference",
+      "tags": [
+        "sitting",
+        "excited",
+        "listening",
+        "quiet"
+      ],
+      "note": "LABEL UNVERIFIED - filename says sitting/quiet, kit README says this file is actually 'excited'.",
+      "available": true
+    },
+    {
+      "id": "ref08",
+      "file": "08_Elly_Welcome_Waving_FamilyGuy",
+      "source": "reference",
+      "tags": [
+        "welcome",
+        "waving",
+        "sitting",
+        "greeting"
+      ],
+      "note": "LABEL UNVERIFIED - filename says welcome/waving, kit README says this file is actually 'sitting'. 1920x1280 source.",
+      "available": true
+    },
+    {
+      "id": "think",
+      "file": "09_Elly_Thinking_SuyNghi_FamilyGuy",
+      "source": "reference",
+      "tags": [
+        "thinking",
+        "thoughtful",
+        "skeptical",
+        "side-eye",
+        "curious",
+        "puzzled"
+      ],
+      "note": "CONFIRMED - this is the master the client supplied for EP015.",
+      "available": true
+    },
+    {
+      "id": "ref10",
+      "file": "10_Elly_Crying_Buon_FamilyGuy",
+      "source": "reference",
+      "tags": [
+        "crying",
+        "sleepy",
+        "sad"
+      ],
+      "note": "LABEL UNVERIFIED - filename says crying, kit README says this file is actually 'sleepy'.",
+      "available": true
+    },
+    {
+      "id": "angry",
+      "file": "11_Elly_Angry_Mad_FamilyGuy",
+      "source": "reference",
+      "tags": [
+        "angry",
+        "mad",
+        "firm",
+        "precise",
+        "emphatic",
+        "insistent"
+      ],
+      "note": "Original master reference.",
+      "available": true
+    },
+    {
+      "id": "ref12",
+      "file": "12_Elly_Sleepy_Sleep_FamilyGuy",
+      "source": "reference",
+      "tags": [
+        "sleepy",
+        "crying",
+        "sad",
+        "solemn"
+      ],
+      "note": "LABEL UNVERIFIED - filename says sleepy, kit README says this file is actually 'crying'.",
+      "available": true
+    },
+    {
+      "id": "point_side",
+      "file": "elly_point_side",
+      "source": "generated",
+      "tags": [
+        "point",
+        "pointing",
+        "points",
+        "indicate",
+        "present",
+        "tracks",
+        "follows",
+        "traces",
+        "raises",
+        "lowers paw",
+        "paw",
+        "at each",
+        "toward",
+        "direction"
+      ],
+      "note": "Highest-demand gap: 'Elly points at...' occurs ~20x in the storyboard; the original 14 have no clean pointing pose.",
+      "available": true
+    },
+    {
+      "id": "teach_pointer",
+      "file": "elly_teach_pointer",
+      "source": "generated",
+      "tags": [
+        "teacher",
+        "explains",
+        "explanatory",
+        "classroom",
+        "pointer",
+        "lecture",
+        "introducing",
+        "introduces",
+        "mechanism",
+        "steps",
+        "quadrants",
+        "presentation"
+      ],
+      "note": "Explainer chapters 1/3/5/7.",
+      "available": true
+    },
+    {
+      "id": "count_paws",
+      "file": "elly_count_paws",
+      "source": "generated",
+      "tags": [
+        "counting",
+        "counts",
+        "tally",
+        "numbers",
+        "emphasizes",
+        "repeated",
+        "tally"
+      ],
+      "note": "Short-selling worked example, margin math.",
+      "available": true
+    },
+    {
+      "id": "alarmed_pawmouth",
+      "file": "elly_alarmed_pawmouth",
+      "source": "generated",
+      "tags": [
+        "alarmed",
+        "gasps",
+        "shocked",
+        "paw to mouth"
+      ],
+      "note": "Crash beats; distinct from the flat 'shocked' stare.",
+      "available": true
+    },
+    {
+      "id": "wince",
+      "file": "elly_wince",
+      "source": "generated",
+      "tags": [
+        "wince",
+        "winces",
+        "flinch",
+        "flinches",
+        "grimace",
+        "anxious",
+        "distressed",
+        "daydreams",
+        "upward",
+        "looks",
+        "observes",
+        "protective"
+      ],
+      "note": "Crash + Livermore downfall.",
+      "available": true
+    },
+    {
+      "id": "solemn_direct",
+      "file": "elly_solemn_direct",
+      "source": "generated",
+      "tags": [
+        "solemn",
+        "somber",
+        "sober",
+        "serious",
+        "direct-to-viewer",
+        "respectful",
+        "empathy",
+        "sympathetic",
+        "memorial",
+        "concerned",
+        "concern",
+        "frown",
+        "honest",
+        "kind",
+        "sincere",
+        "quiet concern",
+        "composed",
+        "still",
+        "listens"
+      ],
+      "note": "MANDATORY for the suicide reference (Ch6) and all hardship beats - no gag, no comedy stinger.",
+      "available": true
+    },
+    {
+      "id": "skeptical_brow",
+      "file": "elly_skeptical_brow",
+      "source": "generated",
+      "tags": [
+        "skeptical",
+        "raised eyebrow",
+        "side-eye",
+        "doubtful",
+        "intrigued",
+        "wary",
+        "smirk",
+        "amused",
+        "knowing",
+        "half-smile",
+        "incredulous",
+        "recognition",
+        "curious",
+        "questions",
+        "questioningly",
+        "eyebrow",
+        "brow"
+      ],
+      "note": "Shoeshine-tale debunk, 'sounds familiar?' irony beats.",
+      "available": true
+    },
+    {
+      "id": "deadpan",
+      "file": "elly_deadpan",
+      "source": "generated",
+      "tags": [
+        "deadpan",
+        "dry",
+        "eye-roll",
+        "flat",
+        "unimpressed",
+        "matter-of-fact"
+      ],
+      "note": "Comedy irony without a cartoon gag.",
+      "available": true
+    },
+    {
+      "id": "relieved",
+      "file": "elly_relieved",
+      "source": "generated",
+      "tags": [
+        "relieved",
+        "hopeful",
+        "hope",
+        "guarded optimism",
+        "calm",
+        "reassuring",
+        "reassuring nod",
+        "softens",
+        "expression rises",
+        "satisfied",
+        "survive"
+      ],
+      "note": "Chapter 5 liquidity + Chapter 7 recovery.",
+      "available": true
+    },
+    {
+      "id": "magnifier",
+      "file": "elly_magnifier",
+      "source": "planned",
+      "tags": [
+        "investigative",
+        "inspect",
+        "magnifier",
+        "examine",
+        "investigative expression",
+        "insight",
+        "shifts",
+        "distressed",
+        "studies"
+      ],
+      "note": "Ch3/Ch6 investigation beats.",
+      "available": false
+    },
+    {
+      "id": "coin",
+      "file": "elly_coin",
+      "source": "planned",
+      "tags": [
+        "coin",
+        "cash",
+        "money",
+        "liquid",
+        "savings"
+      ],
+      "note": "Ch5 'When Cash Becomes Power' hero prop.",
+      "available": false
+    },
+    {
+      "id": "newspaper",
+      "file": "elly_newspaper",
+      "source": "planned",
+      "tags": [
+        "newspaper",
+        "headline",
+        "black thursday",
+        "ticker"
+      ],
+      "note": "Ch2 Black Thursday / Black Tuesday. No legible text in the art.",
+      "available": false
+    },
+    {
+      "id": "umbrella",
+      "file": "elly_umbrella",
+      "source": "planned",
+      "tags": [
+        "umbrella",
+        "storm",
+        "protect",
+        "shelter",
+        "survive"
+      ],
+      "note": "Ch7 'SURVIVE THE STORM' shot - capital protected under an umbrella.",
+      "available": false
+    },
+    {
+      "id": "newsboy_hat",
+      "file": "elly_newsboy_hat",
+      "source": "planned",
+      "tags": [
+        "hat",
+        "1920s",
+        "era",
+        "flapper",
+        "period"
+      ],
+      "note": "Client-approved era flourish: signature outfit + a 1920s newsboy cap.",
+      "available": false
+    },
+    {
+      "id": "ledger",
+      "file": "elly_ledger",
+      "source": "planned",
+      "tags": [
+        "ledger",
+        "notebook",
+        "records",
+        "books",
+        "balances"
+      ],
+      "note": "Quotation-office / bookkeeping beats.",
+      "available": false
+    },
+    {
+      "id": "firm_headshake",
+      "file": "elly_firm_headshake",
+      "source": "planned",
+      "tags": [
+        "head-shake",
+        "shakes head",
+        "firm",
+        "refuses",
+        "corrects",
+        "correction",
+        "direct-to-camera",
+        "emphasizes unchanged"
+      ],
+      "note": "'A CRISIS IS NOT GOOD NEWS' + 'NOT ABOUT PREDICTION'.",
+      "available": false
+    },
+    {
+      "id": "recoil",
+      "file": "elly_recoil",
+      "source": "planned",
+      "tags": [
+        "recoils",
+        "pulls paw away",
+        "wary",
+        "steps back",
+        "caution",
+        "cautioning",
+        "warns",
+        "warning",
+        "raises caution",
+        "holds warning",
+        "precise",
+        "firm"
+      ],
+      "note": "Margin-call / debt-chain danger beats.",
+      "available": false
+    },
+    {
+      "id": "present_three",
+      "file": "elly_present_three",
+      "source": "planned",
+      "tags": [
+        "three",
+        "three fingers",
+        "three points",
+        "lists"
+      ],
+      "note": "Ch7 'three important differences' recurring motif.",
+      "available": false
+    },
+    {
+      "id": "calm_nod",
+      "file": "elly_calm_nod",
+      "source": "planned",
+      "tags": [
+        "nod",
+        "nods",
+        "acknowledging",
+        "composed",
+        "listening",
+        "approving",
+        "measured",
+        "satisfied",
+        "calm",
+        "presenting both"
+      ],
+      "note": "Low-energy connective beats; keeps pose churn down in long shots.",
+      "available": false
+    },
+    {
+      "id": "point_self",
+      "file": "elly_point_self",
+      "source": "planned",
+      "tags": [
+        "point self",
+        "me",
+        "direct address",
+        "introduces"
+      ],
+      "note": "Chapter-turn direct address.",
+      "available": false
+    },
+    {
+      "id": "open_arms",
+      "file": "elly_open_arms",
+      "source": "planned",
+      "tags": [
+        "open arms",
+        "explains",
+        "presents",
+        "both paws",
+        "gestures",
+        "gesture",
+        "moderating",
+        "compares",
+        "comparing",
+        "contrasts",
+        "sides",
+        "both",
+        "presents both",
+        "across",
+        "left",
+        "right",
+        "switches",
+        "two-paw"
+      ],
+      "note": "Two-sided comparison shots (Investor A vs Investor B).",
+      "available": false
+    },
+    {
+      "id": "empathetic",
+      "file": "elly_empathetic",
+      "source": "planned",
+      "tags": [
+        "empathetic",
+        "sympathetic",
+        "kind",
+        "soft",
+        "breadline",
+        "hardship"
+      ],
+      "note": "Breadline / unemployment. Must not read as comic.",
+      "available": false
+    },
+    {
+      "id": "peek_side",
+      "file": "elly_peek_side",
+      "source": "planned",
+      "tags": [
+        "half-smile",
+        "smiling side-eye",
+        "amused",
+        "knowing",
+        "smirk"
+      ],
+      "note": "Light irony beats where deadpan is too flat.",
+      "available": false
+    }
+  ],
+  "demand": {
+    "solemn_direct": 42,
+    "point_side": 28,
+    "think": 21,
+    "open_arms": 17,
+    "skeptical_brow": 13,
+    "recoil": 12,
+    "relieved": 10,
+    "calm_nod": 10,
+    "teach_pointer": 9,
+    "wince": 8,
+    "shocked": 7,
+    "magnifier": 6,
+    "firm_headshake": 6,
+    "alarmed_pawmouth": 5,
+    "ref03": 5,
+    "deadpan": 4,
+    "confused": 3,
+    "count_paws": 3,
+    "present_three": 2,
+    "angry": 2,
+    "ref06": 1,
+    "ref10": 1,
+    "peek_side": 1,
+    "point_self": 1
+  },
+  "generation_queue": [
+    {
+      "pose": "open_arms",
+      "beats": 17
+    },
+    {
+      "pose": "recoil",
+      "beats": 12
+    },
+    {
+      "pose": "calm_nod",
+      "beats": 10
+    },
+    {
+      "pose": "magnifier",
+      "beats": 6
+    },
+    {
+      "pose": "firm_headshake",
+      "beats": 6
+    },
+    {
+      "pose": "present_three",
+      "beats": 2
+    },
+    {
+      "pose": "peek_side",
+      "beats": 1
+    },
+    {
+      "pose": "point_self",
+      "beats": 1
+    }
+  ],
+  "beat_routing": {
+    "alarmed_pawmouth": [
+      "Elly alarmed at downside.",
+      "Elly alarmed, controlled.",
+      "Elly alarmed, paw to mouth.",
+      "Elly alarmed.",
+      "Elly alarmed."
+    ],
+    "angry": [
+      "Elly firm.",
+      "Elly precise and firm."
+    ],
+    "calm_nod": [
+      "Elly acknowledging timing.",
+      "Elly approving measured.",
+      "Elly approving measured.",
+      "Elly approving nod.",
+      "Elly composed nod.",
+      "Elly measured nod.",
+      "Elly measured nod.",
+      "Elly nods along → listening pose.",
+      "Elly presentation pose → approving nod.",
+      "Elly satisfied yet measured."
+    ],
+    "confused": [
+      "Elly counting factory outputs.",
+      "Elly doubtful.",
+      "Elly puzzled → understanding."
+    ],
+    "count_paws": [
+      "Elly counts first transaction.",
+      "Elly counts two assets.",
+      "Elly playful hand tally."
+    ],
+    "deadpan": [
+      "Elly deadpan shock.",
+      "Elly deadpan.",
+      "Elly deadpan.",
+      "Elly dry eye-roll."
+    ],
+    "firm_headshake": [
+      "Elly daydreams → shakes head.",
+      "Elly direct-to-camera correction.",
+      "Elly emphasizes unchanged debt.",
+      "Elly firm head-shake.",
+      "Elly sad head tilt.",
+      "Elly shakes head lightly."
+    ],
+    "magnifier": [
+      "Elly doubtful expression.",
+      "Elly expression rises then falls.",
+      "Elly investigative expression.",
+      "Elly magnifier pose → insight.",
+      "Elly philosophical expression.",
+      "Elly shifts from distressed → investigative pose."
+    ],
+    "open_arms": [
+      "Elly compares sides.",
+      "Elly compares using both paws.",
+      "Elly comparing both.",
+      "Elly contrasts both directions.",
+      "Elly contrasts sides.",
+      "Elly contrasts small versus large piles.",
+      "Elly explanatory two-paw gesture.",
+      "Elly follows ticker left-right.",
+      "Elly gestures across quadrants.",
+      "Elly gestures left then right.",
+      "Elly gestures one step at a time.",
+      "Elly makes careful qualifier gesture.",
+      "Elly moderating gesture.",
+      "Elly presents both choices.",
+      "Elly switches to comparison gesture.",
+      "Elly teacher gesture.",
+      "Elly turns her head from left to right."
+    ],
+    "peek_side": [
+      "Elly smiling side-eye."
+    ],
+    "point_self": [
+      "Elly direct honest face."
+    ],
+    "point_side": [
+      "Elly energetic greeting → points at city.",
+      "Elly flinches → points at demand.",
+      "Elly lowers paw.",
+      "Elly observes farm and points east.",
+      "Elly pointing to Jesse.",
+      "Elly points across alternatives.",
+      "Elly points at borrowed bag.",
+      "Elly points at each.",
+      "Elly points at repeated arrows.",
+      "Elly points at rising arrow.",
+      "Elly points at spreading rings.",
+      "Elly points between sides.",
+      "Elly points first left then right.",
+      "Elly points mechanism.",
+      "Elly points right, then left.",
+      "Elly points to before/after.",
+      "Elly points to clock.",
+      "Elly points to evidence.",
+      "Elly points to loan.",
+      "Elly points to relationship.",
+      "Elly points toward new arrival.",
+      "Elly switches pointing → thinking.",
+      "Elly teacher pointing each component.",
+      "Elly teacher pointing.",
+      "Elly traces down arrow.",
+      "Elly tracks chart with paw.",
+      "Elly turns toward Jesse.",
+      "Elly winces then points to chaos."
+    ],
+    "present_three": [
+      "Elly presenting three fingers/paws symbolic.",
+      "Elly three quick pointing gestures."
+    ],
+    "recoil": [
+      "Elly caution gesture.",
+      "Elly caution paw.",
+      "Elly holds warning paw.",
+      "Elly matter-of-fact caution gesture.",
+      "Elly precise warning.",
+      "Elly presents with caution.",
+      "Elly raises caution paw.",
+      "Elly recoils lightly.",
+      "Elly warning expression.",
+      "Elly warns directly.",
+      "Elly warns with raised paw.",
+      "Elly wary expression → pulls paw away."
+    ],
+    "ref03": [
+      "Elly worried reaction.",
+      "Elly worried thought pose.",
+      "Elly worried.",
+      "Elly worried.",
+      "Elly worried."
+    ],
+    "ref06": [
+      "Elly excited → cautious."
+    ],
+    "ref10": [
+      "Elly sad, tiny exhale."
+    ],
+    "relieved": [
+      "Elly calm acknowledgement.",
+      "Elly calm nod.",
+      "Elly curious nod.",
+      "Elly expression softens, lowers paw.",
+      "Elly guarded optimism.",
+      "Elly hopeful smile.",
+      "Elly nod.",
+      "Elly reassuring nod.",
+      "Elly reassuring palms out.",
+      "Elly relieved."
+    ],
+    "shocked": [
+      "Elly counting motion → surprised.",
+      "Elly counts on paws → stunned.",
+      "Elly eyes widen.",
+      "Elly pointing → startled eyes.",
+      "Elly startled jump.",
+      "Elly surprised admiration.",
+      "Elly surprised."
+    ],
+    "skeptical_brow": [
+      "Elly amused eyebrow → surprised.",
+      "Elly amused recognition nod.",
+      "Elly cautioning raised eyebrow.",
+      "Elly gestures to paper → incredulous half-smile.",
+      "Elly half-smile.",
+      "Elly intrigued → skeptical.",
+      "Elly pivots questioningly.",
+      "Elly raised eyebrow.",
+      "Elly raised eyebrow.",
+      "Elly raises mysterious eyebrow.",
+      "Elly skeptical raised brow.",
+      "Elly smirk → worry.",
+      "Elly worried → palms raised."
+    ],
+    "solemn_direct": [
+      "Elly composed, serious.",
+      "Elly concerned frown.",
+      "Elly concerned, measured.",
+      "Elly concerned, not comic.",
+      "Elly concerned, not gleeful.",
+      "Elly concerned.",
+      "Elly concerned.",
+      "Elly direct serious address.",
+      "Elly empathetic.",
+      "Elly empathetic.",
+      "Elly empathetic.",
+      "Elly empathetic.",
+      "Elly explanatory and serious.",
+      "Elly kind introduction.",
+      "Elly looks curious → concerned.",
+      "Elly quiet concern.",
+      "Elly quiet concern.",
+      "Elly raises concerned brow.",
+      "Elly respectful concern.",
+      "Elly serious direct gaze.",
+      "Elly serious empathy.",
+      "Elly serious nod.",
+      "Elly serious, points at date.",
+      "Elly sincere, concerned.",
+      "Elly sober caution.",
+      "Elly sober direct-to-viewer.",
+      "Elly sober thoughtful.",
+      "Elly sober, sympathetic.",
+      "Elly sober.",
+      "Elly sober.",
+      "Elly solemn direct-to-viewer.",
+      "Elly solemn, no jokes, minimal slow blink.",
+      "Elly solemn.",
+      "Elly solemn.",
+      "Elly somber direct address.",
+      "Elly somber.",
+      "Elly sympathetic, still.",
+      "Elly sympathetic, thoughtful.",
+      "Elly sympathetic.",
+      "Elly sympathetic.",
+      "Elly sympathetic.",
+      "Elly teacher pose → warm serious."
+    ],
+    "teach_pointer": [
+      "Elly classroom pointer.",
+      "Elly confident teacher.",
+      "Elly explains cautiously.",
+      "Elly explains optimistically.",
+      "Elly explanatory.",
+      "Elly explanatory.",
+      "Elly gives small explanatory nod.",
+      "Elly introducing mechanism.",
+      "Elly proudly introduces."
+    ],
+    "think": [
+      "Elly curious recollection.",
+      "Elly curious, engaging.",
+      "Elly curious, skeptical.",
+      "Elly exaggerated smile.",
+      "Elly eye-roll → thinking.",
+      "Elly impressed but skeptical.",
+      "Elly mild skepticism.",
+      "Elly narrator-style introduction.",
+      "Elly reflective.",
+      "Elly skeptical side-eye.",
+      "Elly skeptical, not celebratory.",
+      "Elly smile fades.",
+      "Elly thinking face.",
+      "Elly thinking → side-eye.",
+      "Elly thoughtful then worried.",
+      "Elly thoughtful, not cheering.",
+      "Elly thoughtful, restrained.",
+      "Elly thoughtful.",
+      "Elly thoughtful.",
+      "Elly welcoming pose → curious smile.",
+      "Elly welcoming sign-off, final wave."
+    ],
+    "wince": [
+      "Elly flinch.",
+      "Elly knowing anxious look.",
+      "Elly looks at falling paper.",
+      "Elly looks upward worried.",
+      "Elly protective → worried.",
+      "Elly winces then regroups.",
+      "Elly winces.",
+      "Elly winces."
+    ]
+  },
+  "unresolved_beats": [
+    "Elly exaggerated smile.",
+    "Elly mild skepticism.",
+    "Elly narrator-style introduction.",
+    "Elly reflective.",
+    "Elly smile fades.",
+    "Elly welcoming sign-off, final wave."
+  ]
+}

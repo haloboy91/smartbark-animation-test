@@ -1,0 +1,1876 @@
+SMART BARK — FULL LONG-FORM PRODUCTION BRIEF / STORYBOARD Format 16:9
+ HOW SOME PEOPLE GOT RICH DURING THE GREAT DEPRESSION (1929)
+
+PRIMARY REFERENCE — SMART BARK V2 KIT
+https://drive.google.com/file/d/1Myc8WX2GFenRmDUm_OUYtbkU8VCsZ57t/view?usp=sharing ( Use this as reference these are video you made in the previous one )
+
+MANDATORY DIRECTIVE TO AI PRODUCTION AGENT
+Download and inspect the official Smart Bark v2 kit above. Read README_KIT_V2.md, scripts/render.py, scripts/align.py, scripts/cues.py, example_templar/timeline.py, example_templar/image_plan.py, example_templar/music_plan.json and master Elly reference poses. Reuse the working technical pipeline and editorial vocabulary (zoom-in, zoom-out, push-ins, pans, cuts, subtitles, labels, SFX cueing). This is your own prior kit, so use it as a reference to stay visually consistent, but DO NOT copy the Templar episode's shot ordering, specific compositions, motions or timings. Build original 1929 finance storytelling scenes using our new storyboard and 8 provided voice-over WAVs. Preserve cuts and captions as agent-edit overlays (not text in generated images).
+
+FORMAT / VISUAL MASTER
+Canvas 1920x1080 16:9, 30 FPS, 2D cartoon, thick clean outlines, warm cream/gold base with chapter color arc, flat color and soft shadows. Historical finance story is performed by SIMPLE STICKMAN figures, not photographs/photoreal humans. Elly is consistent, white fluffy bichon dog, round glasses, navy-blue star/moon sweater, pink scarf, warm mischievous expression. Use official Elly cutouts/reference and green-screen workflow; Elly never distorted/cropped. Kit v2 places her generally in the right third and keeps the right third clear in generated backgrounds. For this episode keep Elly visually prominent when present (usually 35-50% frame height), except purposeful action-only insert shots, without hiding the finance action or captions. Stickmen may carry identifiable wardrobe/props but remain thin-line simple shapes. Jesse: slim dark vest/suspenders, disciplined trader silhouette. Joseph Kennedy: slightly broader stickman in light tailored suit, pocket watch, composed posture. Never let invented costumes imply photographs of real persons. Do not render words, labels, numbers, watermarks into generated image backgrounds.
+Voice over : https://drive.google.com/drive/folders/1Ecc0CTJ0c4ZUAyofuESJZ6564XvwhK4t?usp=sharing
+
+RUNTIME / AUDIO
+8 independent WAV files; each part begins at LOCAL 0:00. Agent concatenates WAVs in precise order with no cutting narration. Use scripts/asr.py and scripts/align.py to produce words.json and scripts/cues.py T(voice,'exact phrase') to time cuts, subtitles and sound effects. ALL TIME WINDOWS IN THIS DOCUMENT ARE EDITING PLACEHOLDERS, NOT MEASURED WORD TIMESTAMPS. When these disagree with actual VO words, the AUDIO WINS. Preserve each part's exact WAV runtime. Do not stretch/slow audio or fabricate spoken phrases. Every storyboard VO label is an anchoring EXCERPT, not a substitute transcript. Use the approved full script and aligned WAV for every word. Don't skip sentences. If cue fails, inspect align coverage and make a manual cue map, without guessing a spoken instant.
+
+SHOT LANGUAGE & ELLY ACTIVENESS
+Aim for 6–12 seconds per visual composition where possible; some script-dense chapters require 4–7 sec insert shots or 12-sec sustained scenes with multiple actions. Within longer shots switch Elly pose/expression every 3–4 seconds when feasible. Use original V2 editing language: natural camera creep, push-in on reveals, pull-out for scale, pans along actions, subtle shake for crashing charts only, comedic snap-zooms at irony points; never constant aggressive zooming. Intro should hook immediately. Subtitles bottom-centre per word-level aligned script; Luckiest Guy chapter labels/pop cards made in compositor. New 1929 scene backgrounds + era-appropriate motifs. Avoid trivial/repetitive scale-in movement on every single shot. Music 6–10 dB below intelligible voice, sidechain ducked; during serious human hardship and suicide mention music very low and absolutely no comedy stingers.
+
+CHARACTER RULES
+Elly: official master species/wardrobe, expressive reaction narrator; local edits and alternate reusable poses, no inconsistent redraw each shot. Secondary actors: minimalist stickmen with accessories only (1920s coats/hats, slim ties, bank counter, ledger) and clear physical acting. Chart explainer may use stickman hands+props. Characters never turn photoreal or 3D. Keep costumes and face identity locked across chapters. Elly default right third, but may move to large center/left for direct address when the background is separately planned around her.
+
+COLOR ARC
+PART 0: charcoal → crash red → muted bronze; CH1 optimistic warm gold → amber warning; CH2 crash red/grey; CH3 sepia → navy/green with controlled red; CH4 calm tan, beige and slate; CH5 cool slate/green → neutral bronze; CH6 desaturated steel/grey, grief; CH7 slow warm gold recovery. Grade transitions should be noticeable but not cinematic photoreal.
+
+MUSIC BRIEF
+One cohesive musical identity across all eight parts, reorchestrated (not eight unrelated tracks). Instrumental only. Core motif: mischievous pizzicato strings + light woodwinds + understated piano, with tick percussion. In crash scenes: dark bowed bass and restrained brass, no triumph over victims. In short-selling explainer: clear rhythmic plucks for clarity. In Kennedy/cash: thoughtful jazz-tinged piano. In Jesse ending: soft sparse minor piano and nearly silent during suicide reference. Last chapter reprises original motif in warm gentle piano + plucked strings, optimistic without pretending Great Depression was good. Duck under VO 6–10 dB or more.
+
+SFX MASTER TABLE — NO RANDOM EXTRA SFX
+SFX references: paper flip / parchment-neighbor paper rustle / market bell / ticker clicks / crowd murmur / cash coin single / coin pile clatter / soft stamp / descending swoosh / soft stock crash impact / narrow camera whoosh / low suspense pulse / clock tick / bank latch / machinery slow-down / shutter / shoe brush / scale creak / tiny comedic pluck / low piano note / restrained brass note / subdued music-only silence pocket / quiet outro chime. Pick only where indicated in storyboard; don't fill every second. All effects must sync to spoken cues and remain subordinate to VO. Scene ambient sounds subtle. This list supersedes any Templar medieval sound plan.
+
+CAPTION / TEXT POLICY
+All captions and dates in this storyboard are EDIT OVERLAYS, never part of generated images. Burn accurate verbatim subtitles from aligned script on bottom; the all-caps caption in each shot is an OPTIONAL emphasized visual label, never a replacement for full verbatim subtitles. Do not cover Elly's face. Chapter cards at first 2–3s of local part, not an inserted extra silent segment. Treat 'Reported ~$100 million' as reported estimate and Kennedy shoeshine tale as UNVERIFIED; avoid confident imagery of speculative events as documentation. Sensitive suicide reference: memorial-style card only, no visual representation, no graphic imagery, no gag or soundtrack sting.
+
+ASSET LIBRARY TO GENERATE
+Backgrounds: Wall Street 1929 interior/exterior, urban 1920s street, price quotation office, farm Massachusetts, home breakfast room, bank counter and failing banks, breadline street, workers/factory, comedy explainer desk/chart whiteboard, Kennedy office, trading desks, 1920s film studio as small icon, distress-sale marketplace, simple 1930s city skyline, calm abstract timeline, final golden logo set. Foreground: Elly cutout variant poses in existing outfit, Jesse character sheet, Joseph character sheet, anonymous stickman investors/brokers/bankers/workers/family, trading papers, coin icons, share tokens, arrows, scales, debt note, vault, time dial, newspapers, charts, camera-safe empty space. Keep right third clean when compositing Elly.
+
+EIGHT PARTS — LOCAL VO STARTS AT 0:00
+
+====================================================================================
+PART 0: "THE CRASH THAT MADE SOME MEN RICH"
+AUDIO FILE DURATION: 01:46.44 (106.44 s), 16 planned shots
+COLOR: cold charcoal, crash red, desaturated bronze → gold glimmer
+MUSIC: sparse ticking piano, tense pizzicato pulses, muted brass reveal
+ON-SCREEN CHAPTER CARD: PART 0: THE CRASH THAT MADE SOME MEN RICH [first 2–3 seconds, overlay only]
+IMPORTANT: These proposed cuts are evenly allocated composition windows. MUST re-time based on word-aligned VO cues.
+====================================================================================
+
+[S01] 00:00.00–00:06.65  (local; ALIGN TO VO)
+VO CUE (excerpt): "October 1929."
+VISUAL: Calendar pages flip to October 1929 over simplified Manhattan skyline; Elly large in the foreground holds a calendar leaf; tiny stickman pedestrians behind.
+CAMERA: Fast calendar snap-zoom then settle into slow push-in.
+ELLY ACTIVENESS: Elly looks curious → concerned.
+SFX: paper flip, single clock tick
+CAPTION / EDIT LABEL: "OCTOBER 1929"
+
+[S02] 00:06.65–00:13.30  (local; ALIGN TO VO)
+VO CUE (excerpt): "Wall Street is collapsing. Stock prices are crashing."
+VISUAL: 1929 exchange floor, stickman traders run toward falling graph tiles; oversized Elly points toward plunging chart.
+CAMERA: Wide establishing → crash push-in; brief impact shake.
+ELLY ACTIVENESS: Elly pointing → startled eyes.
+SFX: market bell, descending swoosh
+CAPTION / EDIT LABEL: "WALL STREET COLLAPSES"
+
+[S03] 00:13.30–00:19.96  (local; ALIGN TO VO)
+VO CUE (excerpt): "Investors are panicking. Fortunes that took decades to build..."
+VISUAL: Stickman business owner watches carefully stacked coins topple domino-style; broken certificates flutter.
+CAMERA: Diagonal pan toward tumbling stacks, then pull-back.
+ELLY ACTIVENESS: Elly worried → palms raised.
+SFX: paper flutter, falling-coin clatter
+CAPTION / EDIT LABEL: "FORTUNES DISAPPEAR"
+
+[S04] 00:19.96–00:26.61  (local; ALIGN TO VO)
+VO CUE (excerpt): "Imagine waking up, checking your investments..."
+VISUAL: Bedside breakfast: stickman flips open newspaper with empty chart; retirement envelope visibly empties into blank scraps.
+CAMERA: Slow zoom-in on envelope, punch-in on stickman eyes.
+ELLY ACTIVENESS: Elly gestures to paper → incredulous half-smile.
+SFX: newsprint rustle, dry comedic pluck
+CAPTION / EDIT LABEL: "A VERY EXPENSIVE PIECE OF PAPER"
+
+[S05] 00:26.61–00:33.26  (local; ALIGN TO VO)
+VO CUE (excerpt): "For millions of Americans, the financial nightmare was only beginning."
+VISUAL: Long breadline of minimal stickmen outside shuttered bank; Elly prominently in foreground, sober.
+CAMERA: Slow dolly left, no shake.
+ELLY ACTIVENESS: Elly expression softens, lowers paw.
+SFX: low street murmur
+CAPTION / EDIT LABEL: "THE NIGHTMARE BEGINS"
+
+[S06] 00:33.26–00:39.91  (local; ALIGN TO VO)
+VO CUE (excerpt): "But while the stock market was collapsing..."
+VISUAL: Split-screen: on left market panics; on right calm trader silhouette and rising coin stack.
+CAMERA: Pull out to establish split, then push toward right side.
+ELLY ACTIVENESS: Elly turns her head from left to right.
+SFX: reversal chime
+CAPTION / EDIT LABEL: "ONE MAN WAS MAKING MONEY"
+
+[S07] 00:39.91–00:46.57  (local; ALIGN TO VO)
+VO CUE (excerpt): "His name was Jesse Livermore."
+VISUAL: Hero stickman Jesse: narrow dark vest and suspenders, slick hair silhouette, custom desk, ticker. Elly large at front introduces him.
+CAMERA: Low-angle modest hero push-in.
+ELLY ACTIVENESS: Elly presentation pose → approving nod.
+SFX: typewriter key, low brass tap
+CAPTION / EDIT LABEL: "JESSE LIVERMORE"
+
+[S08] 00:46.57–00:53.22  (local; ALIGN TO VO)
+VO CUE (excerpt): "Unlike everyone desperately praying for stock prices to recover..."
+VISUAL: Stickman crowd stares upward at broken upward arrow; Jesse calmly points downward at red graph.
+CAMERA: Pan across crowd to Jesse; short sharp zoom on arrow.
+ELLY ACTIVENESS: Elly puzzled → understanding.
+SFX: short descending tone
+CAPTION / EDIT LABEL: "HE BET ON THE FALL"
+
+[S09] 00:53.22–00:59.87  (local; ALIGN TO VO)
+VO CUE (excerpt): "The worse the market performed, the more money he stood to make."
+VISUAL: Red chart line falls stepwise as Jesse receives symbolic coin chips; no literal magical cash-printing.
+CAMERA: Two rhythmic push-ins on linked chart and chips.
+ELLY ACTIVENESS: Elly counting motion → surprised.
+SFX: two coin pings
+CAPTION / EDIT LABEL: "MARKET DOWN / HIS TRADE UP"
+
+[S10] 00:59.87–01:06.53  (local; ALIGN TO VO)
+VO CUE (excerpt): "And he wasn’t alone. Another wealthy businessman named Joseph Kennedy..."
+VISUAL: A second doorway opens: Kennedy stickman with rounder build, tailored light suit, pocket watch; Jesse far left.
+CAMERA: Doorway reveal with graceful pull-out.
+ELLY ACTIVENESS: Elly points toward new arrival.
+SFX: soft reveal whoosh
+CAPTION / EDIT LABEL: "JOSEPH P. KENNEDY"
+
+[S11] 01:06.53–01:13.18  (local; ALIGN TO VO)
+VO CUE (excerpt): "While ordinary investors watched their savings disappear..."
+VISUAL: Triptych: investor clutching debt note, Livermore by short chart, Kennedy closing stock ledger.
+CAMERA: Subtle parallax across three panels.
+ELLY ACTIVENESS: Elly shifts from distressed → investigative pose.
+SFX: paper fold, soft stamp
+CAPTION / EDIT LABEL: "THREE DIFFERENT OUTCOMES"
+
+[S12] 01:13.18–01:19.83  (local; ALIGN TO VO)
+VO CUE (excerpt): "So how exactly did they do it? Was it genius? Luck?"
+VISUAL: Three symbolic icons appear beside large Elly: lightbulb, dice, paper clue; stickmen remain distant.
+CAMERA: Quick cut/zoom per icon.
+ELLY ACTIVENESS: Elly switches pointing → thinking.
+SFX: three tiny plucks
+CAPTION / EDIT LABEL: "GENIUS? LUCK?"
+
+[S13] 01:19.83–01:26.48  (local; ALIGN TO VO)
+VO CUE (excerpt): "Inside information? Or did they simply understand something about money..."
+VISUAL: Shadowy question mark and stock ticker; Elly rejects premature conclusion with a raised paw.
+CAMERA: Slow controlled push-in on question mark.
+ELLY ACTIVENESS: Elly skeptical raised brow.
+SFX: mystery stinger low
+CAPTION / EDIT LABEL: "WHAT DID THEY UNDERSTAND?"
+
+[S14] 01:26.48–01:33.13  (local; ALIGN TO VO)
+VO CUE (excerpt): "And here’s the strangest part. One of these men..."
+VISUAL: Jesse stands behind huge stacked coins which gradually vanish into blank space, his silhouette left alone.
+CAMERA: Slow dolly-in then abrupt pull-out revealing empty ground.
+ELLY ACTIVENESS: Elly concerned, not comic.
+SFX: coins fading, low thud
+CAPTION / EDIT LABEL: "HE LOST NEARLY EVERYTHING"
+
+[S15] 01:33.13–01:39.79  (local; ALIGN TO VO)
+VO CUE (excerpt): "Because making a fortune and keeping a fortune..."
+VISUAL: Balance scale: MAKE and KEEP icons on opposite pans, thin stickman pushing a coin between sides; Elly front center.
+CAMERA: Pan left-right across scale, zoom out to full scale.
+ELLY ACTIVENESS: Elly explanatory two-paw gesture.
+SFX: scale creak
+CAPTION / EDIT LABEL: "MAKING ≠ KEEPING"
+
+[S16] 01:39.79–01:46.44  (local; ALIGN TO VO)
+VO CUE (excerpt): "To understand this story, we need to go back a few years..."
+VISUAL: 1920s America brightens: rising skyline, cars, confetti, optimistic stickmen and Elly, with crash chart receding behind.
+CAMERA: Cinematic pull-back into warm city postcard; crossfade to Ch1.
+ELLY ACTIVENESS: Elly welcoming pose → curious smile.
+SFX: soft upbeat transition
+CAPTION / EDIT LABEL: "BACK TO THE ROARING TWENTIES"
+
+====================================================================================
+CHAPTER 1: "WHEN EVERYONE THOUGHT THEY WERE A GENIUS"
+AUDIO FILE DURATION: 02:20.32 (140.32 s), 28 planned shots
+COLOR: warm gold / cream / emerald optimism turning overheated amber
+MUSIC: upbeat plucked strings and bright clarinet; gradually add nervous ticking
+ON-SCREEN CHAPTER CARD: CHAPTER 1: WHEN EVERYONE THOUGHT THEY WERE A GENIUS [first 2–3 seconds, overlay only]
+IMPORTANT: These proposed cuts are evenly allocated composition windows. MUST re-time based on word-aligned VO cues.
+====================================================================================
+
+[S01] 00:00.00–00:05.01  (local; ALIGN TO VO)
+VO CUE (excerpt): "Welcome to the Roaring Twenties. America was booming."
+VISUAL: 1920s avenue with model T cars, factories, buildings; cheerful stickman crowd, large Elly foreground.
+CAMERA: Wide establishing then gentle push-in.
+ELLY ACTIVENESS: Elly energetic greeting → points at city.
+SFX: car horn muted, city murmur
+CAPTION / EDIT LABEL: "THE ROARING TWENTIES"
+
+[S02] 00:05.01–00:10.02  (local; ALIGN TO VO)
+VO CUE (excerpt): "Factories were producing cars. Cities were expanding."
+VISUAL: Conveyor line icon produces simplified cars; skyline pieces grow behind Elly.
+CAMERA: Lateral tracking pan with slight zoom-out.
+ELLY ACTIVENESS: Elly counting factory outputs.
+SFX: mechanical tap
+CAPTION / EDIT LABEL: "AMERICA WAS BOOMING"
+
+[S03] 00:10.02–00:15.03  (local; ALIGN TO VO)
+VO CUE (excerpt): "Radios were entering homes. Businesses were growing."
+VISUAL: Cross-section of family room with box radio, delivery worker stickman, rising shop sales icons.
+CAMERA: Gentle pan across room; push-in on radio.
+ELLY ACTIVENESS: Elly nods along → listening pose.
+SFX: radio crackle
+CAPTION / EDIT LABEL: "EVERYTHING WAS GROWING"
+
+[S04] 00:15.03–00:20.05  (local; ALIGN TO VO)
+VO CUE (excerpt): "And the stock market? The stock market was practically a national obsession."
+VISUAL: Wall Street ticker board attracts ever-growing stickman queue, large Elly gives incredulous look.
+CAMERA: Fast push-in on ticker; pull-out revealing crowd.
+ELLY ACTIVENESS: Elly amused eyebrow → surprised.
+SFX: stock ticker chatter
+CAPTION / EDIT LABEL: "STOCK MARKET FEVER"
+
+[S05] 00:20.05–00:25.06  (local; ALIGN TO VO)
+VO CUE (excerpt): "People weren’t just buying stocks anymore. They were buying a dream."
+VISUAL: Stock certificate transforms into a dream bubble with mansion and yacht icons (no photoreal figures).
+CAMERA: Zoom into dream bubble; float back to original certificate.
+ELLY ACTIVENESS: Elly daydreams → shakes head.
+SFX: shimmer pluck
+CAPTION / EDIT LABEL: "BUYING A DREAM"
+
+[S06] 00:25.06–00:30.07  (local; ALIGN TO VO)
+VO CUE (excerpt): "The dream that you could put your money into the market..."
+VISUAL: Minimal stickman deposits coins in arrow-shaped slot, watches chart climb.
+CAMERA: Slow upward tracking, slight punch-in at peak.
+ELLY ACTIVENESS: Elly points at rising arrow.
+SFX: light coin clinks
+CAPTION / EDIT LABEL: "MONEY GOES UP?"
+
+[S07] 00:30.07–00:35.08  (local; ALIGN TO VO)
+VO CUE (excerpt): "...and become wealthy without ever building a business yourself. Sounds familiar?"
+VISUAL: Same stickman lounges on beach while coin stack appears; Elly looks at camera deadpan.
+CAMERA: Quick smash zoom on lounging face, then small pull-back.
+ELLY ACTIVENESS: Elly skeptical side-eye.
+SFX: short ironic note
+CAPTION / EDIT LABEL: "SOUNDS FAMILIAR?"
+
+[S08] 00:35.08–00:40.09  (local; ALIGN TO VO)
+VO CUE (excerpt): "Now, there’s nothing inherently wrong with investing."
+VISUAL: Elly at clear explanation desk with ordinary stock icon and simple ownership pie chart.
+CAMERA: Stable slight push-in.
+ELLY ACTIVENESS: Elly reassuring palms out.
+SFX: soft click
+CAPTION / EDIT LABEL: "INVESTING ISN’T THE PROBLEM"
+
+[S09] 00:40.09–00:45.10  (local; ALIGN TO VO)
+VO CUE (excerpt): "The problem starts when people confuse a rising market with personal financial genius."
+VISUAL: Investor stickman places oversized genius crown on head as chart climbs; oversized Elly unimpressed.
+CAMERA: Zoom in on crown; snap zoom out to chart.
+ELLY ACTIVENESS: Elly eye-roll → thinking.
+SFX: comedic crown plink
+CAPTION / EDIT LABEL: "LUCK ≠ GENIUS"
+
+[S10] 00:45.10–00:50.11  (local; ALIGN TO VO)
+VO CUE (excerpt): "Everyone seemed to have a winning investment strategy."
+VISUAL: Three stickmen pose as experts holding identical upward arrows.
+CAMERA: Rhythmic pan across each expert.
+ELLY ACTIVENESS: Elly points at repeated arrows.
+SFX: three card flips
+CAPTION / EDIT LABEL: "EVERYONE’S AN EXPERT"
+
+[S11] 00:50.11–00:55.13  (local; ALIGN TO VO)
+VO CUE (excerpt): "Buy stocks. Wait. Become rich. Repeat."
+VISUAL: Four-step icon storyboard: coin → clock → stack → circular arrow.
+CAMERA: Four quick push-ins timed to words.
+ELLY ACTIVENESS: Elly gestures one step at a time.
+SFX: four soft ticks
+CAPTION / EDIT LABEL: "BUY. WAIT. GET RICH. REPEAT."
+
+[S12] 00:55.13–01:00.14  (local; ALIGN TO VO)
+VO CUE (excerpt): "Wall Street had apparently discovered the secret to unlimited wealth."
+VISUAL: Huge balloon-shaped upward chart floats above crowded exchange; Elly holds its string skeptically.
+CAMERA: Float up with chart, slowly zoom wider.
+ELLY ACTIVENESS: Elly smirk → worry.
+SFX: balloon squeak
+CAPTION / EDIT LABEL: "UNLIMITED WEALTH?"
+
+[S13] 01:00.14–01:05.15  (local; ALIGN TO VO)
+VO CUE (excerpt): "There was just one tiny problem."
+VISUAL: Balloon casts ominous shadow over street while stickmen still celebrate.
+CAMERA: Hard push-in on tiny pin icon entering frame.
+ELLY ACTIVENESS: Elly warns with raised paw.
+SFX: record stop subtle
+CAPTION / EDIT LABEL: "ONE TINY PROBLEM"
+
+[S14] 01:05.15–01:10.16  (local; ALIGN TO VO)
+VO CUE (excerpt): "A lot of people weren’t even investing with their own money."
+VISUAL: Stickman reaches across bank counter for borrowed coin bag; oversized debt chain icon appears as symbol.
+CAMERA: Track bag movement then tilt to debt icon.
+ELLY ACTIVENESS: Elly points at borrowed bag.
+SFX: paper stamp
+CAPTION / EDIT LABEL: "BORROWED MONEY"
+
+[S15] 01:10.16–01:15.17  (local; ALIGN TO VO)
+VO CUE (excerpt): "They were borrowing money to buy more stocks."
+VISUAL: Market trader stickman stacks borrowed coins atop own few coins, creates taller risky tower.
+CAMERA: Progressive upward push, then precarious tilt.
+ELLY ACTIVENESS: Elly wary expression → pulls paw away.
+SFX: stacking click
+CAPTION / EDIT LABEL: "BUYING ON MARGIN"
+
+[S16] 01:15.17–01:20.18  (local; ALIGN TO VO)
+VO CUE (excerpt): "This was called buying on margin. Imagine you have one thousand dollars."
+VISUAL: Elly at demo board; $1,000 added in edit next to one small money pile.
+CAMERA: Slow push-in on board, hold readable label.
+ELLY ACTIVENESS: Elly teacher pointing.
+SFX: single marker click
+CAPTION / EDIT LABEL: "YOUR MONEY: $1,000"
+
+[S17] 01:20.18–01:25.19  (local; ALIGN TO VO)
+VO CUE (excerpt): "Instead of buying one thousand dollars worth of stocks..."
+VISUAL: Stickman broker slides a larger borrowed-money pile toward investor.
+CAMERA: Pan along desk; zoom-out shows total pile.
+ELLY ACTIVENESS: Elly contrasts small versus large piles.
+SFX: coin slide
+CAPTION / EDIT LABEL: "BORROW TO BUY MORE"
+
+[S18] 01:25.19–01:30.21  (local; ALIGN TO VO)
+VO CUE (excerpt): "If the stock rises, your profits can grow much faster."
+VISUAL: Lever icon multiplies percentage gain; stickman celebrates briefly.
+CAMERA: Upward camera follow then quick celebration bounce.
+ELLY ACTIVENESS: Elly excited → cautious.
+SFX: rising chime
+CAPTION / EDIT LABEL: "LEVERAGED GAINS"
+
+[S19] 01:30.21–01:35.22  (local; ALIGN TO VO)
+VO CUE (excerpt): "Unfortunately, the same thing happens in reverse."
+VISUAL: Lever rotates downward; debt pile remains fixed; stickman stumbles.
+CAMERA: Fast reverse zoom paired with falling chart.
+ELLY ACTIVENESS: Elly alarmed.
+SFX: descending boop
+CAPTION / EDIT LABEL: "LEVERAGED LOSSES"
+
+[S20] 01:35.22–01:40.23  (local; ALIGN TO VO)
+VO CUE (excerpt): "If the stock falls, your losses can grow much faster too."
+VISUAL: Red falling graph; coins drain, debt remains; simple exploded bar illustration.
+CAMERA: Pan downward following loss bar.
+ELLY ACTIVENESS: Elly concerned frown.
+SFX: heavy coin slide
+CAPTION / EDIT LABEL: "LOSSES MULTIPLY"
+
+[S21] 01:40.23–01:45.24  (local; ALIGN TO VO)
+VO CUE (excerpt): "And if the price drops far enough, your broker can demand more money..."
+VISUAL: Broker stickman holds empty ledger toward nervous investor; stamped demand icon edited in.
+CAMERA: Quick punch-in on broker gesture.
+ELLY ACTIVENESS: Elly flinches → points at demand.
+SFX: stamp slam
+CAPTION / EDIT LABEL: "MARGIN CALL"
+
+[S22] 01:45.24–01:50.25  (local; ALIGN TO VO)
+VO CUE (excerpt): "...or sell your shares to cover the loan. That is called a margin call."
+VISUAL: Broker pulls stock certificate out of investor hands, leaving debt paper.
+CAMERA: Sideways follow-pan with recoil zoom.
+ELLY ACTIVENESS: Elly winces.
+SFX: paper rip soft
+CAPTION / EDIT LABEL: "FORCED SELLING"
+
+[S23] 01:50.25–01:55.26  (local; ALIGN TO VO)
+VO CUE (excerpt): "The bank is happy to lend you money when everything looks wonderful..."
+VISUAL: Happy bank stickman presents loan bag, sunny facade.
+CAMERA: Gentle push-in on smiling bank.
+ELLY ACTIVENESS: Elly exaggerated smile.
+SFX: friendly cash jingle
+CAPTION / EDIT LABEL: "HERE’S YOUR LOAN!"
+
+[S24] 01:55.26–02:00.27  (local; ALIGN TO VO)
+VO CUE (excerpt): "But when everything goes wrong? Suddenly... yesterday."
+VISUAL: Bank morphs from smile to angry demand hand; investor flees.
+CAMERA: Whip pan with snap zoom on bank.
+ELLY ACTIVENESS: Elly deadpan shock.
+SFX: comic thud
+CAPTION / EDIT LABEL: "PAY IT BACK. NOW."
+
+[S25] 02:00.27–02:05.29  (local; ALIGN TO VO)
+VO CUE (excerpt): "By 1929, stock prices had climbed to extraordinary heights."
+VISUAL: Market tower climbs toward clouds; investors continue cheering below.
+CAMERA: Slow vertical tilt-up.
+ELLY ACTIVENESS: Elly looks upward worried.
+SFX: ascending tense arpeggio
+CAPTION / EDIT LABEL: "PRICES SKYROCKET"
+
+[S26] 02:05.29–02:10.30  (local; ALIGN TO VO)
+VO CUE (excerpt): "Optimism was everywhere. People believed the good times would continue."
+VISUAL: Party lights and confetti over fragile market tower, fine fractures form.
+CAMERA: Smooth zoom-out reveals first cracks.
+ELLY ACTIVENESS: Elly smile fades.
+SFX: party ambience fading
+CAPTION / EDIT LABEL: "NOTHING CAN GO WRONG..."
+
+[S27] 02:10.30–02:15.31  (local; ALIGN TO VO)
+VO CUE (excerpt): "But beneath the excitement, the financial system was becoming increasingly fragile."
+VISUAL: Foundation of towering market is made of thin leveraged blocks, one begins slipping.
+CAMERA: Slow inward creeping zoom.
+ELLY ACTIVENESS: Elly alarmed, paw to mouth.
+SFX: low wooden creak
+CAPTION / EDIT LABEL: "A FRAGILE FOUNDATION"
+
+[S28] 02:15.31–02:20.32  (local; ALIGN TO VO)
+VO CUE (excerpt): "And eventually, reality arrived. Without making an appointment."
+VISUAL: Giant blank reality stamp descends onto market tower in silhouette, cut just before impact.
+CAMERA: Sudden crash zoom then cut to Chapter 2.
+ELLY ACTIVENESS: Elly startled jump.
+SFX: impact whoosh
+CAPTION / EDIT LABEL: "REALITY ARRIVES"
+
+====================================================================================
+CHAPTER 2: "THE PARTY ENDS"
+AUDIO FILE DURATION: 01:45.20 (105.20 s), 21 planned shots
+COLOR: saturated red / soot grey / near monochrome
+MUSIC: tempo drops into percussion pulse, bowed bass, anxious minor piano
+ON-SCREEN CHAPTER CARD: CHAPTER 2: THE PARTY ENDS [first 2–3 seconds, overlay only]
+IMPORTANT: These proposed cuts are evenly allocated composition windows. MUST re-time based on word-aligned VO cues.
+====================================================================================
+
+[S01] 00:00.00–00:05.01  (local; ALIGN TO VO)
+VO CUE (excerpt): "October 24, 1929. Black Thursday."
+VISUAL: Calendar hard-cuts to Black Thursday; stock market exterior, stickman crowd surges.
+CAMERA: Smash zoom date → exchange doors.
+ELLY ACTIVENESS: Elly serious, points at date.
+SFX: calendar slap, distant bell
+CAPTION / EDIT LABEL: "BLACK THURSDAY"
+
+[S02] 00:05.01–00:10.02  (local; ALIGN TO VO)
+VO CUE (excerpt): "The stock market begins a terrifying collapse."
+VISUAL: Stock chart tiles tumble, huge downward diagonal arrow, traders scramble.
+CAMERA: Fast descending track and subtle shake.
+ELLY ACTIVENESS: Elly alarmed.
+SFX: descending gliss
+CAPTION / EDIT LABEL: "THE MARKET FALLS"
+
+[S03] 00:10.02–00:15.03  (local; ALIGN TO VO)
+VO CUE (excerpt): "Investors rush to sell. Fear spreads across Wall Street."
+VISUAL: Three stickman investors frantically hand certificates to broker desk, papers scatter.
+CAMERA: Fast lateral pans; brief punch-in on faces.
+ELLY ACTIVENESS: Elly winces then points to chaos.
+SFX: paper flaps, crowd murmur
+CAPTION / EDIT LABEL: "EVERYONE WANTS OUT"
+
+[S04] 00:15.03–00:20.04  (local; ALIGN TO VO)
+VO CUE (excerpt): "Major bankers attempt to restore confidence..."
+VISUAL: Banker stickman steadies collapsing block tower while crowd retreats.
+CAMERA: Controlled push-in; pull-back shows continued panic.
+ELLY ACTIVENESS: Elly doubtful expression.
+SFX: low stamp, tense string
+CAPTION / EDIT LABEL: "BANKERS STEP IN"
+
+[S05] 00:20.04–00:25.05  (local; ALIGN TO VO)
+VO CUE (excerpt): "Then comes October 28. Black Monday."
+VISUAL: Calendar flips to 28; looming red shadow over Wall Street.
+CAMERA: High-speed paper wipe to solemn push-in.
+ELLY ACTIVENESS: Elly looks at falling paper.
+SFX: clock hit
+CAPTION / EDIT LABEL: "BLACK MONDAY"
+
+[S06] 00:25.05–00:30.06  (local; ALIGN TO VO)
+VO CUE (excerpt): "The Dow Jones Industrial Average falls almost thirteen percent in a single day."
+VISUAL: Simple chart drops 13% (number as edit overlay, not AI image); concerned stickman points.
+CAMERA: Steep falling zoom track; controlled one-time shake.
+ELLY ACTIVENESS: Elly counts on paws → stunned.
+SFX: deep impact
+CAPTION / EDIT LABEL: "NEARLY −13%"
+
+[S07] 00:30.06–00:35.07  (local; ALIGN TO VO)
+VO CUE (excerpt): "The next day, Black Tuesday, it falls nearly another twelve percent."
+VISUAL: Calendar 29 and second cliff-drop chart layer; faint silhouettes of brokers.
+CAMERA: Crossfade to new chart, stronger short push.
+ELLY ACTIVENESS: Elly sad head tilt.
+SFX: second descending impact
+CAPTION / EDIT LABEL: "NEARLY −12% MORE"
+
+[S08] 00:35.07–00:40.08  (local; ALIGN TO VO)
+VO CUE (excerpt): "Years of confidence are being destroyed in a matter of hours."
+VISUAL: Golden tower from Ch1 collapses into blank paper fragments; foreground Elly stays dominant.
+CAMERA: Slow-motion pull-back from toppling structure.
+ELLY ACTIVENESS: Elly lowers paw.
+SFX: soft crumble
+CAPTION / EDIT LABEL: "YEARS OF CONFIDENCE — GONE"
+
+[S09] 00:40.08–00:45.09  (local; ALIGN TO VO)
+VO CUE (excerpt): "People who borrowed money to buy stocks suddenly owe money..."
+VISUAL: Borrowing stickman from Ch1 beside shrinking stock bars and fixed debt bar.
+CAMERA: Push-in on fixed debt bar; graph fades behind.
+ELLY ACTIVENESS: Elly emphasizes unchanged debt.
+SFX: low coin scrape
+CAPTION / EDIT LABEL: "DEBT DOESN’T DISAPPEAR"
+
+[S10] 00:45.09–00:50.10  (local; ALIGN TO VO)
+VO CUE (excerpt): "Some investors lose fortunes. Others find themselves trapped in debt."
+VISUAL: Split-frame investor with vanished coin stack and investor under giant loan paper.
+CAMERA: Slow contrasting pan left to right.
+ELLY ACTIVENESS: Elly sincere, concerned.
+SFX: paper slide
+CAPTION / EDIT LABEL: "LOSSES + DEBT"
+
+[S11] 00:50.10–00:55.10  (local; ALIGN TO VO)
+VO CUE (excerpt): "And the damage doesn’t stop at Wall Street."
+VISUAL: Rippling red circles travel from exchange building to distant factories.
+CAMERA: Zoom-out to stylized map of city.
+ELLY ACTIVENESS: Elly points at spreading rings.
+SFX: low ripple
+CAPTION / EDIT LABEL: "CRASH SPREADS"
+
+[S12] 00:55.10–01:00.11  (local; ALIGN TO VO)
+VO CUE (excerpt): "As the economy contracts, businesses reduce production."
+VISUAL: Factory wheels slow and stop, workers remain idle beside machinery.
+CAMERA: Slow dolly along silent production line.
+ELLY ACTIVENESS: Elly thoughtful then worried.
+SFX: machinery winding down
+CAPTION / EDIT LABEL: "FACTORIES SLOW"
+
+[S13] 01:00.11–01:05.12  (local; ALIGN TO VO)
+VO CUE (excerpt): "Workers lose their jobs. Consumers spend less."
+VISUAL: Stickman worker receives dismissal slip, grocery cart empties.
+CAMERA: Pan from factory gate to empty store.
+ELLY ACTIVENESS: Elly sympathetic.
+SFX: door close, soft empty clink
+CAPTION / EDIT LABEL: "JOBS DISAPPEAR"
+
+[S14] 01:05.12–01:10.13  (local; ALIGN TO VO)
+VO CUE (excerpt): "Then businesses struggle even more."
+VISUAL: Small shop stickman lowers shutter; nearby empty streets.
+CAMERA: Slow reverse dolly emphasizing empty space.
+ELLY ACTIVENESS: Elly sad, tiny exhale.
+SFX: shutter roll
+CAPTION / EDIT LABEL: "THE DOWNWARD SPIRAL"
+
+[S15] 01:10.13–01:15.14  (local; ALIGN TO VO)
+VO CUE (excerpt): "Banks begin failing in waves during the following years."
+VISUAL: Row of simple bank facades darkens one by one; waiting stickman queue.
+CAMERA: Left-to-right pan, individual lights blink off.
+ELLY ACTIVENESS: Elly alarmed, controlled.
+SFX: three low clicks
+CAPTION / EDIT LABEL: "BANK FAILURES"
+
+[S16] 01:15.14–01:20.15  (local; ALIGN TO VO)
+VO CUE (excerpt): "Without modern deposit insurance... a bank failure could destroy savings."
+VISUAL: Savings jar drawn behind bank shutters, cracks symbolically; Elly holds it protectively.
+CAMERA: Slow push-in on jar.
+ELLY ACTIVENESS: Elly protective → worried.
+SFX: glass tink soft
+CAPTION / EDIT LABEL: "SAVINGS AT RISK"
+
+[S17] 01:20.15–01:25.16  (local; ALIGN TO VO)
+VO CUE (excerpt): "By 1933, unemployment reaches roughly twenty-five percent."
+VISUAL: Four work-cap icons, one fades. Elly points at statistic as caption appears separately.
+CAMERA: Medium slow push; pause for stat.
+ELLY ACTIVENESS: Elly sober direct-to-viewer.
+SFX: single grave piano note
+CAPTION / EDIT LABEL: "ABOUT 1 IN 4 WORKERS"
+
+[S18] 01:25.16–01:30.17  (local; ALIGN TO VO)
+VO CUE (excerpt): "This isn’t just an investment problem anymore."
+VISUAL: Wide street with breadline, empty factory, shuttered bank, Wall Street tiny in distance.
+CAMERA: Long slow pull-back.
+ELLY ACTIVENESS: Elly solemn.
+SFX: wind ambience
+CAPTION / EDIT LABEL: "A NATIONAL CATASTROPHE"
+
+[S19] 01:30.17–01:35.18  (local; ALIGN TO VO)
+VO CUE (excerpt): "But remember something important. Not everyone..."
+VISUAL: Dramatic silhouette behind trading desk, red chart fall reflected on glass.
+CAMERA: Rack-style digital zoom into silhouette.
+ELLY ACTIVENESS: Elly investigative expression.
+SFX: suspense sting
+CAPTION / EDIT LABEL: "NOT EVERYONE BET ON UP"
+
+[S20] 01:35.18–01:40.19  (local; ALIGN TO VO)
+VO CUE (excerpt): "Some people were betting on exactly the opposite outcome."
+VISUAL: Two arrows, crowd toward UP, lone trader toward DOWN.
+CAMERA: Pan from crowd arrow to lone opposite arrow.
+ELLY ACTIVENESS: Elly points between sides.
+SFX: arrow reversal whoosh
+CAPTION / EDIT LABEL: "BETTING AGAINST THE CROWD"
+
+[S21] 01:40.19–01:45.20  (local; ALIGN TO VO)
+VO CUE (excerpt): "And one of the most famous was Jesse Livermore."
+VISUAL: Jesse stickman steps into foreground; 1929 chart silhouette behind.
+CAMERA: Tight push-in on Jesse; hard cut into Ch3.
+ELLY ACTIVENESS: Elly narrator-style introduction.
+SFX: brass sting
+CAPTION / EDIT LABEL: "JESSE LIVERMORE"
+
+====================================================================================
+CHAPTER 3: "THE MAN WHO BET AGAINST AMERICA"
+AUDIO FILE DURATION: 03:03.76 (183.76 s), 36 planned shots
+COLOR: sepia earth tones → crisp navy / crash red → austere green highlights
+MUSIC: measured rhythmic strings, ticking snare and tense bass; victory muted, not celebratory
+ON-SCREEN CHAPTER CARD: CHAPTER 3: THE MAN WHO BET AGAINST AMERICA [first 2–3 seconds, overlay only]
+IMPORTANT: These proposed cuts are evenly allocated composition windows. MUST re-time based on word-aligned VO cues.
+====================================================================================
+
+[S01] 00:00.00–00:05.10  (local; ALIGN TO VO)
+VO CUE (excerpt): "Jesse Livermore wasn’t born into a Wall Street dynasty."
+VISUAL: Child stickman Jesse on sparse Massachusetts farm, small house, no glamorous wealth props.
+CAMERA: Gentle push-in from fields toward farm boy.
+ELLY ACTIVENESS: Elly kind introduction.
+SFX: country breeze faint
+CAPTION / EDIT LABEL: "MODEST BEGINNINGS"
+
+[S02] 00:05.10–00:10.21  (local; ALIGN TO VO)
+VO CUE (excerpt): "He came from a farming family in Massachusetts."
+VISUAL: Simplified farmstead, family stick figures and teenage Jesse looking outward.
+CAMERA: Slow lateral pan.
+ELLY ACTIVENESS: Elly observes farm and points east.
+SFX: soft footstep
+CAPTION / EDIT LABEL: "MASSACHUSETTS"
+
+[S03] 00:10.21–00:15.31  (local; ALIGN TO VO)
+VO CUE (excerpt): "As a teenager, he found work recording changing stock prices."
+VISUAL: Young Jesse at quotation board copying prices into chalk notebook, labels digitally added.
+CAMERA: Zoom in on notebook; rack shift to market board.
+ELLY ACTIVENESS: Elly surprised admiration.
+SFX: chalk scratches
+CAPTION / EDIT LABEL: "A TEENAGE PRICE CLERK"
+
+[S04] 00:15.31–00:20.42  (local; ALIGN TO VO)
+VO CUE (excerpt): "Day after day, he watched numbers move."
+VISUAL: Fast-cycle ticker strips rise and fall behind repeating Jesse desk silhouette.
+CAMERA: Subtle continuous horizontal pan.
+ELLY ACTIVENESS: Elly follows ticker left-right.
+SFX: ticker rhythm
+CAPTION / EDIT LABEL: "UP. DOWN. REPEAT."
+
+[S05] 00:20.42–00:25.52  (local; ALIGN TO VO)
+VO CUE (excerpt): "Prices rising. Prices falling. Investors celebrating. Investors panicking."
+VISUAL: Four visual quadrants alternate: up-chart, down-chart, joyful investor, distressed investor.
+CAMERA: Four alternating quick zooms.
+ELLY ACTIVENESS: Elly gestures across quadrants.
+SFX: up ding / down note
+CAPTION / EDIT LABEL: "MARKET BEHAVIOR"
+
+[S06] 00:25.52–00:30.63  (local; ALIGN TO VO)
+VO CUE (excerpt): "Eventually, Livermore developed an obsession with understanding market behavior."
+VISUAL: Jesse pins simple patterns to board; Elly examines same graphic with magnifier.
+CAMERA: Slow investigative push-in.
+ELLY ACTIVENESS: Elly magnifier pose → insight.
+SFX: pencil tapping
+CAPTION / EDIT LABEL: "HE STUDIED THE PATTERNS"
+
+[S07] 00:30.63–00:35.73  (local; ALIGN TO VO)
+VO CUE (excerpt): "He became a trader."
+VISUAL: Jesse now adult in stable signature dark vest, enters trading room.
+CAMERA: Character introduction pan upward.
+ELLY ACTIVENESS: Elly proudly introduces.
+SFX: market bell distant
+CAPTION / EDIT LABEL: "TRADER"
+
+[S08] 00:35.73–00:40.84  (local; ALIGN TO VO)
+VO CUE (excerpt): "Not the kind of investor who buys a company and patiently waits thirty years."
+VISUAL: Long-term investor stickman snoozes under calendar stack while Jesse checks ticker.
+CAMERA: Comedic split-screen and snap zoom on snorer.
+ELLY ACTIVENESS: Elly smiling side-eye.
+SFX: soft snore, page turn
+CAPTION / EDIT LABEL: "NOT THE PATIENT TYPE"
+
+[S09] 00:40.84–00:45.94  (local; ALIGN TO VO)
+VO CUE (excerpt): "Livermore wanted to profit from price movements. Up or down."
+VISUAL: Jesse pivots between two contrasting directional arrows; chart moves on both sides.
+CAMERA: Alternating upward/downward tracking.
+ELLY ACTIVENESS: Elly points right, then left.
+SFX: two swishes
+CAPTION / EDIT LABEL: "UP OR DOWN"
+
+[S10] 00:45.94–00:51.04  (local; ALIGN TO VO)
+VO CUE (excerpt): "He had already made and lost fortunes before 1929."
+VISUAL: Coins mountain → empty desk → mountain, all symbolic, not false photo-real chronology.
+CAMERA: Match cuts between three states.
+ELLY ACTIVENESS: Elly winces then regroups.
+SFX: coins up/down
+CAPTION / EDIT LABEL: "WIN. LOSE. REPEAT."
+
+[S11] 00:51.04–00:56.15  (local; ALIGN TO VO)
+VO CUE (excerpt): "That experience taught him something uncomfortable."
+VISUAL: Jesse stares at a price chart unmoved by his expression.
+CAMERA: Slow camera push toward indifferent chart.
+ELLY ACTIVENESS: Elly holds warning paw.
+SFX: low note
+CAPTION / EDIT LABEL: "THE MARKET DOESN’T CARE"
+
+[S12] 00:56.15–01:01.25  (local; ALIGN TO VO)
+VO CUE (excerpt): "Markets don’t care how confident you feel."
+VISUAL: Confident stickman inflates balloon marked confidence via edit, chart cuts through balloon.
+CAMERA: Small pop zoom then freeze.
+ELLY ACTIVENESS: Elly dry eye-roll.
+SFX: balloon pop subtle
+CAPTION / EDIT LABEL: "CONFIDENCE ISN’T PROTECTION"
+
+[S13] 01:01.25–01:06.36  (local; ALIGN TO VO)
+VO CUE (excerpt): "And they certainly don’t care how much money you borrowed."
+VISUAL: Bank loan bag stays in place as investment value icon deflates.
+CAMERA: Split-object push-in, minimal animation.
+ELLY ACTIVENESS: Elly points to loan.
+SFX: coin scrape
+CAPTION / EDIT LABEL: "DEBT IS STILL DUE"
+
+[S14] 01:06.36–01:11.46  (local; ALIGN TO VO)
+VO CUE (excerpt): "As the great stock market boom approached its peak, Livermore became increasingly bearish."
+VISUAL: Jesse studies peak-shaped chart; bear shadow icon subtly appears behind ticker.
+CAMERA: Creeping push-in toward peak then pan to Jesse.
+ELLY ACTIVENESS: Elly thinking face.
+SFX: low suspense pulse
+CAPTION / EDIT LABEL: "HE TURNED BEARISH"
+
+[S15] 01:11.46–01:16.57  (local; ALIGN TO VO)
+VO CUE (excerpt): "He expected prices to decline."
+VISUAL: Jesse pencil draws clear downward forecast over historical-style blank graph background.
+CAMERA: Follow-line camera move downward.
+ELLY ACTIVENESS: Elly traces down arrow.
+SFX: marker swoosh
+CAPTION / EDIT LABEL: "EXPECTING A DROP"
+
+[S16] 01:16.57–01:21.67  (local; ALIGN TO VO)
+VO CUE (excerpt): "So he began positioning himself to profit from falling stocks."
+VISUAL: Jesse enters short position via broker exchange: share certificate passes then sold; edit adds down arrow.
+CAMERA: Pan along certificate handoff, light zoom.
+ELLY ACTIVENESS: Elly introducing mechanism.
+SFX: paper slide
+CAPTION / EDIT LABEL: "SHORT SELLING"
+
+[S17] 01:21.67–01:26.78  (local; ALIGN TO VO)
+VO CUE (excerpt): "Here’s how it works. Imagine a stock trades at one hundred dollars."
+VISUAL: Clean teaching whiteboard shows one share card and $100 number added during edit.
+CAMERA: Steady teaching shot, subtle push.
+ELLY ACTIVENESS: Elly classroom pointer.
+SFX: soft marker click
+CAPTION / EDIT LABEL: "STOCK PRICE: $100"
+
+[S18] 01:26.78–01:31.88  (local; ALIGN TO VO)
+VO CUE (excerpt): "You borrow one share and sell it immediately."
+VISUAL: Stickman borrower receives share token from lender and sells at market counter.
+CAMERA: Tracking pan through handoff.
+ELLY ACTIVENESS: Elly counts first transaction.
+SFX: two paper flips
+CAPTION / EDIT LABEL: "BORROW → SELL"
+
+[S19] 01:31.88–01:36.98  (local; ALIGN TO VO)
+VO CUE (excerpt): "Now you have one hundred dollars from the sale, but still owe one share."
+VISUAL: Balance scale with $100 cash icon on one pan and IOU-one-share token on other.
+CAMERA: Pull-out to show full balance.
+ELLY ACTIVENESS: Elly cautioning raised eyebrow.
+SFX: scale creak
+CAPTION / EDIT LABEL: "CASH RECEIVED / SHARE OWED"
+
+[S20] 01:36.98–01:42.09  (local; ALIGN TO VO)
+VO CUE (excerpt): "If the stock falls to sixty dollars..."
+VISUAL: Chart drops from $100 to $60, edit labels separated from generated background.
+CAMERA: Downward chart-follow zoom.
+ELLY ACTIVENESS: Elly tracks chart with paw.
+SFX: descending pluck
+CAPTION / EDIT LABEL: "PRICE FALLS TO $60"
+
+[S21] 01:42.09–01:47.19  (local; ALIGN TO VO)
+VO CUE (excerpt): "...you can buy a replacement share for sixty dollars and return it."
+VISUAL: Borrower buys share at new price and returns it to lender; hand movements clear.
+CAMERA: Pan across buy-back and return.
+ELLY ACTIVENESS: Elly gives small explanatory nod.
+SFX: coin tap, paper slide
+CAPTION / EDIT LABEL: "BUY BACK → RETURN"
+
+[S22] 01:47.19–01:52.30  (local; ALIGN TO VO)
+VO CUE (excerpt): "You sold at one hundred. You bought back at sixty."
+VISUAL: Before/after comparison of two piles $100 and $60 beside Elly.
+CAMERA: Gentle zoom alternating piles.
+ELLY ACTIVENESS: Elly points to before/after.
+SFX: two scale clicks
+CAPTION / EDIT LABEL: "SELL $100 / BUY $60"
+
+[S23] 01:52.30–01:57.40  (local; ALIGN TO VO)
+VO CUE (excerpt): "That’s a forty-dollar gross profit, before costs."
+VISUAL: Profit difference highlighted with four coin symbols; costs noted as an editable caption, not magic money.
+CAMERA: Quick push-in on difference.
+ELLY ACTIVENESS: Elly satisfied yet measured.
+SFX: small success chime
+CAPTION / EDIT LABEL: "GROSS PROFIT: $40"
+
+[S24] 01:57.40–02:02.51  (local; ALIGN TO VO)
+VO CUE (excerpt): "The company lost value. But your trade made money."
+VISUAL: Split-screen company red chart vs trader small green result, no implication that all shorts always win.
+CAMERA: Slide-pair reveal.
+ELLY ACTIVENESS: Elly contrasts both directions.
+SFX: contrasting double-tone
+CAPTION / EDIT LABEL: "COMPANY DOWN / SHORT UP"
+
+[S25] 02:02.51–02:07.61  (local; ALIGN TO VO)
+VO CUE (excerpt): "Now imagine applying that strategy on a massive scale."
+VISUAL: Small demo board widens into a hall of many stock tokens and charts.
+CAMERA: Strong zoom-out to reveal scale.
+ELLY ACTIVENESS: Elly eyes widen.
+SFX: expansion whoosh
+CAPTION / EDIT LABEL: "NOW SCALE IT UP"
+
+[S26] 02:07.61–02:12.72  (local; ALIGN TO VO)
+VO CUE (excerpt): "That’s what made Livermore’s position so remarkable."
+VISUAL: Jesse at multi-desk trading office, many down-arrow sell positions illustrated.
+CAMERA: Slow hero push-in.
+ELLY ACTIVENESS: Elly pointing to Jesse.
+SFX: typewriter rapid
+CAPTION / EDIT LABEL: "A MASSIVE BET"
+
+[S27] 02:12.72–02:17.82  (local; ALIGN TO VO)
+VO CUE (excerpt): "While the market was rising, betting against it could be painful."
+VISUAL: Jesse watches chart continue UP; his coin pile loses chunks.
+CAMERA: Chart ascends against Jesse, gentle shake.
+ELLY ACTIVENESS: Elly alarmed at downside.
+SFX: rising tension tick
+CAPTION / EDIT LABEL: "SHORTS CAN LOSE"
+
+[S28] 02:17.82–02:22.92  (local; ALIGN TO VO)
+VO CUE (excerpt): "If prices continued increasing, short sellers could lose enormous sums."
+VISUAL: Shorted stock arrow stretches far beyond small downside limit, red warning icon.
+CAMERA: Camera climbs upward beyond frame, then pull-back.
+ELLY ACTIVENESS: Elly warns directly.
+SFX: tense rise
+CAPTION / EDIT LABEL: "RISK CAN GROW"
+
+[S29] 02:22.92–02:28.03  (local; ALIGN TO VO)
+VO CUE (excerpt): "A stock you buy can fall to zero. A stock you short can rise without limit."
+VISUAL: Clear comparison panel: long loss bounded at zero; short loss arrow unbounded.
+CAMERA: Static legible comparison with two slow pans.
+ELLY ACTIVENESS: Elly points first left then right.
+SFX: muted click, rising drone
+CAPTION / EDIT LABEL: "SHORT RISK IS UNBOUNDED"
+
+[S30] 02:28.03–02:33.13  (local; ALIGN TO VO)
+VO CUE (excerpt): "Livermore knew the risks. He had experienced financial disasters of his own."
+VISUAL: Jesse shadowed by old empty wallet and busted notebook, backs himself to trading desk.
+CAMERA: Subtle reflective zoom in.
+ELLY ACTIVENESS: Elly sympathetic, thoughtful.
+SFX: single low piano note
+CAPTION / EDIT LABEL: "HE KNEW THE DANGER"
+
+[S31] 02:33.13–02:38.24  (local; ALIGN TO VO)
+VO CUE (excerpt): "But in 1929, his bearish position paid off spectacularly."
+VISUAL: Crash board darkens; Jesse holds redeemed trade ledger in foreground, no celebratory suffering image.
+CAMERA: Strong measured push-in, then settle.
+ELLY ACTIVENESS: Elly surprised.
+SFX: deep success chord
+CAPTION / EDIT LABEL: "THE BET PAID OFF"
+
+[S32] 02:38.24–02:43.34  (local; ALIGN TO VO)
+VO CUE (excerpt): "Historical accounts commonly estimate... approximately one hundred million dollars."
+VISUAL: Edit-only $100 MILLION? estimate card over old-style ledger and Jesse silhouette, visible question mark.
+CAMERA: Slow pull-in on tentative figure.
+ELLY ACTIVENESS: Elly presents with caution.
+SFX: typewriter ding
+CAPTION / EDIT LABEL: "REPORTED: ~$100 MILLION"
+
+[S33] 02:43.34–02:48.45  (local; ALIGN TO VO)
+VO CUE (excerpt): "The exact amount is difficult to verify."
+VISUAL: Archival papers overlap estimate card; bottom caption clarifies exact number uncertain.
+CAMERA: Pull-back and gentle desaturation.
+ELLY ACTIVENESS: Elly skeptical, not celebratory.
+SFX: paper shuffle
+CAPTION / EDIT LABEL: "EXACT FIGURE UNCERTAIN"
+
+[S34] 02:48.45–02:53.55  (local; ALIGN TO VO)
+VO CUE (excerpt): "But there is little doubt... one of the era’s most famous market winners."
+VISUAL: Jesse spotlight silhouette against bearish chart, crowd kept subdued in distance.
+CAMERA: Slow lateral orbit-like parallax.
+ELLY ACTIVENESS: Elly measured nod.
+SFX: soft brass swell
+CAPTION / EDIT LABEL: "A FAMOUS CRASH WINNER"
+
+[S35] 02:53.55–02:58.66  (local; ALIGN TO VO)
+VO CUE (excerpt): "Thousands of investors... one man made a fortune by predicting the disaster."
+VISUAL: Wide contrast between devastated market crowd and lone Jesse reviewing profitable trade, no caricatured suffering.
+CAMERA: Slow pull back to ethical contrast.
+ELLY ACTIVENESS: Elly somber direct address.
+SFX: sparse ambient drone
+CAPTION / EDIT LABEL: "ONE MARKET. TWO OUTCOMES."
+
+[S36] 02:58.66–03:03.76  (local; ALIGN TO VO)
+VO CUE (excerpt): "But we’re going to return to him later. Because the ending..."
+VISUAL: Jesse confident silhouette becomes fragile cracked outline with empty chair hint.
+CAMERA: Gradual zoom to empty chair; wipe to next character.
+ELLY ACTIVENESS: Elly raises mysterious eyebrow.
+SFX: low warning note
+CAPTION / EDIT LABEL: "BUT THE STORY ISN’T OVER"
+
+====================================================================================
+CHAPTER 4: "THE MAN WHO LEFT THE PARTY EARLY"
+AUDIO FILE DURATION: 02:17.28 (137.28 s), 25 planned shots
+COLOR: polished tan / forest green → calm slate / cream
+MUSIC: restrained jazz piano, light upright bass, dry woodwinds, subtle cautious motif
+ON-SCREEN CHAPTER CARD: CHAPTER 4: THE MAN WHO LEFT THE PARTY EARLY [first 2–3 seconds, overlay only]
+IMPORTANT: These proposed cuts are evenly allocated composition windows. MUST re-time based on word-aligned VO cues.
+====================================================================================
+
+[S01] 00:00.00–00:05.49  (local; ALIGN TO VO)
+VO CUE (excerpt): "Joseph P. Kennedy. Yes. That Kennedy family."
+VISUAL: Kennedy stickman in signature light tan suit with pocket watch; Elly large center-left.
+CAMERA: Confident introductory push-in.
+ELLY ACTIVENESS: Elly amused recognition nod.
+SFX: short fanfare wink
+CAPTION / EDIT LABEL: "JOSEPH P. KENNEDY"
+
+[S02] 00:05.49–00:10.98  (local; ALIGN TO VO)
+VO CUE (excerpt): "Before his son John F. Kennedy became president..."
+VISUAL: Simple family tree symbols: father businessman and future president silhouette, generic presidential podium (no likeness claim).
+CAMERA: Slide reveal from father to family tree.
+ELLY ACTIVENESS: Elly points to relationship.
+SFX: soft label pop
+CAPTION / EDIT LABEL: "THE KENNEDY FAMILY"
+
+[S03] 00:10.98–00:16.47  (local; ALIGN TO VO)
+VO CUE (excerpt): "Joseph Kennedy was already a wealthy and ambitious businessman."
+VISUAL: Kennedy at bank desk with business ledgers, ship model, film reel as simple props.
+CAMERA: Slow side pan across desk.
+ELLY ACTIVENESS: Elly impressed but skeptical.
+SFX: paper shuffle
+CAPTION / EDIT LABEL: "WEALTHY BEFORE 1929"
+
+[S04] 00:16.47–00:21.96  (local; ALIGN TO VO)
+VO CUE (excerpt): "He had worked in banking, traded stocks..."
+VISUAL: Three vignette backgrounds swap: bank / stock exchange / film studio.
+CAMERA: Three quick scene crossfades, foreground Elly locked.
+ELLY ACTIVENESS: Elly three quick pointing gestures.
+SFX: bank bell, ticker click, projector whir
+CAPTION / EDIT LABEL: "BANKS. STOCKS. HOLLYWOOD."
+
+[S05] 00:21.96–00:27.46  (local; ALIGN TO VO)
+VO CUE (excerpt): "Unlike Livermore, Kennedy wasn’t known primarily as a legendary speculative trader."
+VISUAL: Split comparison Jesse intense trader vs Kennedy weighing asset cards at desk.
+CAMERA: Balanced pan across panels.
+ELLY ACTIVENESS: Elly compares using both paws.
+SFX: soft dual ticks
+CAPTION / EDIT LABEL: "TRADER VS BUSINESSMAN"
+
+[S06] 00:27.46–00:32.95  (local; ALIGN TO VO)
+VO CUE (excerpt): "He was a businessman who understood the value of protecting capital."
+VISUAL: Kennedy places coins into sturdy vault icon while speculative bubble floats beyond.
+CAMERA: Slow push toward protective vault.
+ELLY ACTIVENESS: Elly approving nod.
+SFX: vault latch
+CAPTION / EDIT LABEL: "PROTECTING CAPITAL"
+
+[S07] 00:32.95–00:38.44  (local; ALIGN TO VO)
+VO CUE (excerpt): "During the late 1920s... increasingly concerned about the stock market."
+VISUAL: Kennedy reading price graphs at darkening window; bullish crowd visible outside.
+CAMERA: Push-in on cautious face then pull toward crowd.
+ELLY ACTIVENESS: Elly worried.
+SFX: tick-tock
+CAPTION / EDIT LABEL: "SOMETHING FELT WRONG"
+
+[S08] 00:38.44–00:43.93  (local; ALIGN TO VO)
+VO CUE (excerpt): "Prices had risen dramatically. Speculation was everywhere."
+VISUAL: Sky-high stock graph towers over cocktail party; stickmen cheer under unstable line.
+CAMERA: Tilt upward then micro pull-back.
+ELLY ACTIVENESS: Elly raises caution paw.
+SFX: party sound thinning
+CAPTION / EDIT LABEL: "SPECULATION EVERYWHERE"
+
+[S09] 00:43.93–00:49.42  (local; ALIGN TO VO)
+VO CUE (excerpt): "Investors were acting as though stocks could only move... up."
+VISUAL: Crowd lifts giant upwards arrow; below it thin fragile support bends.
+CAMERA: Smooth push-in and short pause on UP.
+ELLY ACTIVENESS: Elly deadpan.
+SFX: single rising whistle
+CAPTION / EDIT LABEL: "ONLY UP?"
+
+[S10] 00:49.42–00:54.91  (local; ALIGN TO VO)
+VO CUE (excerpt): "There is a famous story... shoeshine boy..."
+VISUAL: Period shoe-polish stand with Kennedy seated and youthful stickman shining shoe, empty speech bubble.
+CAMERA: Slow pan to anecdote, sepia postcard filter.
+ELLY ACTIVENESS: Elly curious, skeptical.
+SFX: brush swish
+CAPTION / EDIT LABEL: "THE SHOESHINE STORY"
+
+[S11] 00:54.91–01:00.40  (local; ALIGN TO VO)
+VO CUE (excerpt): "When absolutely everyone thinks they’re an expert..."
+VISUAL: Shoe-shine boy icon points at tiny stock arrow, with crowd of experts behind.
+CAMERA: Comedic pull-out, not literal quote inside generated scene.
+ELLY ACTIVENESS: Elly thinking → side-eye.
+SFX: ironic pizzicato
+CAPTION / EDIT LABEL: "EVERYONE’S AN EXPERT"
+
+[S12] 01:00.40–01:05.89  (local; ALIGN TO VO)
+VO CUE (excerpt): "There’s just one problem. Historians haven’t found reliable..."
+VISUAL: Big edit stamp UNVERIFIED appears over soft-blurred anecdote, historical paper stacks beside Elly.
+CAMERA: Snap push-in then hold readable.
+ELLY ACTIVENESS: Elly matter-of-fact caution gesture.
+SFX: dry paper stamp
+CAPTION / EDIT LABEL: "UNVERIFIED ANECDOTE"
+
+[S13] 01:05.89–01:11.39  (local; ALIGN TO VO)
+VO CUE (excerpt): "Great stories aren’t always great history."
+VISUAL: Elly stands between myth storybook icon and archive evidence stack.
+CAMERA: Slow lateral track to archive.
+ELLY ACTIVENESS: Elly points to evidence.
+SFX: two small taps
+CAPTION / EDIT LABEL: "STORY ≠ EVIDENCE"
+
+[S14] 01:11.39–01:16.88  (local; ALIGN TO VO)
+VO CUE (excerpt): "What is better supported is that Kennedy reduced much of his stock exposure before the crash."
+VISUAL: Kennedy calmly transfers stock tokens into diversified liquid resource symbols before graph drops.
+CAMERA: Tracking pan along the asset transfer.
+ELLY ACTIVENESS: Elly explanatory.
+SFX: paper moves, vault click
+CAPTION / EDIT LABEL: "REDUCED EXPOSURE"
+
+[S15] 01:16.88–01:22.37  (local; ALIGN TO VO)
+VO CUE (excerpt): "He also profited from bets against declining stock prices."
+VISUAL: Kennedy beside a descending chart with trade indicator, same short principle but no made-up returns.
+CAMERA: Smooth zoom into market chart then back.
+ELLY ACTIVENESS: Elly teacher gesture.
+SFX: soft downward swoosh
+CAPTION / EDIT LABEL: "PROFITED FROM DECLINES"
+
+[S16] 01:22.37–01:27.86  (local; ALIGN TO VO)
+VO CUE (excerpt): "Instead of being trapped in the collapse..."
+VISUAL: Kennedy stands outside ring-shaped collapsing chart while indebted investor inside.
+CAMERA: Slow pull-out revealing separation.
+ELLY ACTIVENESS: Elly concerned, measured.
+SFX: distant rumble
+CAPTION / EDIT LABEL: "POSITIONED TO SURVIVE"
+
+[S17] 01:27.86–01:33.35  (local; ALIGN TO VO)
+VO CUE (excerpt): "Think about the difference between Kennedy and an average investor."
+VISUAL: Split-screen two desks: overleveraged worker vs Kennedy with low debt and assets.
+CAMERA: Slow split-panel pan.
+ELLY ACTIVENESS: Elly compares sides.
+SFX: scale tick
+CAPTION / EDIT LABEL: "DIFFERENT STARTING POSITIONS"
+
+[S18] 01:33.35–01:38.84  (local; ALIGN TO VO)
+VO CUE (excerpt): "The average investor might have had nearly all their savings tied up..."
+VISUAL: Ordinary stickman puts one egg-shaped coin into single risky basket.
+CAMERA: Tight zoom on single basket.
+ELLY ACTIVENESS: Elly raises concerned brow.
+SFX: soft coin deposit
+CAPTION / EDIT LABEL: "ALL SAVINGS EXPOSED"
+
+[S19] 01:38.84–01:44.33  (local; ALIGN TO VO)
+VO CUE (excerpt): "They might have borrowed money to buy even more."
+VISUAL: Borrowed coin pile stacks, margin call paper looms above.
+CAMERA: Short upward zoom then downward shake.
+ELLY ACTIVENESS: Elly recoils lightly.
+SFX: stamp thud
+CAPTION / EDIT LABEL: "MORE DEBT"
+
+[S20] 01:44.33–01:49.82  (local; ALIGN TO VO)
+VO CUE (excerpt): "When prices collapsed, they had very little flexibility."
+VISUAL: Investor is pinned by falling debt ledger; narrow exit door.
+CAMERA: Camera pulls away increasing feeling of constraint.
+ELLY ACTIVENESS: Elly sympathetic.
+SFX: low creak
+CAPTION / EDIT LABEL: "NO ROOM TO MOVE"
+
+[S21] 01:49.82–01:55.32  (local; ALIGN TO VO)
+VO CUE (excerpt): "Kennedy had already moved much of his wealth out of danger."
+VISUAL: Kennedy at desk with saved liquidity box, calm pose, chaotic Wall Street far outside window.
+CAMERA: Slow push-in to orderly desk.
+ELLY ACTIVENESS: Elly calm acknowledgement.
+SFX: quiet vault note
+CAPTION / EDIT LABEL: "CAPITAL PRESERVED"
+
+[S22] 01:55.32–02:00.81  (local; ALIGN TO VO)
+VO CUE (excerpt): "He had access to capital. He had business experience."
+VISUAL: Two symbolic cards appear: capital stack, multiple business ledgers, character of Kennedy unchanged.
+CAMERA: Two timed card pop-ins.
+ELLY ACTIVENESS: Elly counts two assets.
+SFX: two short chimes
+CAPTION / EDIT LABEL: "CASH + EXPERIENCE"
+
+[S23] 02:00.81–02:06.30  (local; ALIGN TO VO)
+VO CUE (excerpt): "And he had the financial flexibility to take advantage..."
+VISUAL: Kennedy looking at asset sale cards laid out; no false guarantee of profit.
+CAMERA: Gentle pull-out revealing options.
+ELLY ACTIVENESS: Elly points across alternatives.
+SFX: cards on table
+CAPTION / EDIT LABEL: "MORE CHOICES"
+
+[S24] 02:06.30–02:11.79  (local; ALIGN TO VO)
+VO CUE (excerpt): "Avoiding a disaster is one way to protect your money..."
+VISUAL: Storm cloud metaphor splits; first umbrella saves existing coin; second open door leads to asset deals.
+CAMERA: Pan umbrella to door then zoom forward.
+ELLY ACTIVENESS: Elly pivots questioningly.
+SFX: rain fade, door creak
+CAPTION / EDIT LABEL: "SURVIVE FIRST"
+
+[S25] 02:11.79–02:17.28  (local; ALIGN TO VO)
+VO CUE (excerpt): "Having money available after disaster creates a different advantage."
+VISUAL: Elly stands beside Kennedy over map of discounted property tokens, but ordinary stickman outside can’t access.
+CAMERA: Slow push-in on choice board.
+ELLY ACTIVENESS: Elly sober thoughtful.
+SFX: light hopeful piano rise
+CAPTION / EDIT LABEL: "OPTIONS AFTER THE CRASH"
+
+====================================================================================
+CHAPTER 5: "WHEN CASH BECOMES POWER"
+AUDIO FILE DURATION: 02:19.64 (139.64 s), 31 planned shots
+COLOR: cold steel / muted green → restrained brass / warm highlights
+MUSIC: low piano ostinato and quiet bass, clarity over celebration
+ON-SCREEN CHAPTER CARD: CHAPTER 5: WHEN CASH BECOMES POWER [first 2–3 seconds, overlay only]
+IMPORTANT: These proposed cuts are evenly allocated composition windows. MUST re-time based on word-aligned VO cues.
+====================================================================================
+
+[S01] 00:00.00–00:04.50  (local; ALIGN TO VO)
+VO CUE (excerpt): "Imagine two people entering the Great Depression."
+VISUAL: Two stickman silhouettes flank large Elly, forked road labeled with EDIT overlays only.
+CAMERA: Pull-out to wide comparison.
+ELLY ACTIVENESS: Elly presents both choices.
+SFX: two footsteps
+CAPTION / EDIT LABEL: "TWO PEOPLE. ONE CRISIS."
+
+[S02] 00:04.50–00:09.01  (local; ALIGN TO VO)
+VO CUE (excerpt): "The first person owns stocks purchased with borrowed money."
+VISUAL: Investor A holds fragile leveraged stock tower and loan papers.
+CAMERA: Slow push on fragility.
+ELLY ACTIVENESS: Elly warning expression.
+SFX: paper shuffle
+CAPTION / EDIT LABEL: "PERSON A: DEBT"
+
+[S03] 00:09.01–00:13.51  (local; ALIGN TO VO)
+VO CUE (excerpt): "The market collapses. Their investments lose value..."
+VISUAL: Tower falls while debt ledger remains unchanged on left.
+CAMERA: Downward tracking with subtle shake.
+ELLY ACTIVENESS: Elly flinch.
+SFX: stock crash sting
+CAPTION / EDIT LABEL: "ASSETS DOWN"
+
+[S04] 00:13.51–00:18.02  (local; ALIGN TO VO)
+VO CUE (excerpt): "...but their debts don’t simply disappear."
+VISUAL: Loan note stays large after everything else has faded; investor slumps.
+CAMERA: Slow isolated zoom into loan note.
+ELLY ACTIVENESS: Elly empathetic.
+SFX: low hollow thud
+CAPTION / EDIT LABEL: "DEBT STAYS"
+
+[S05] 00:18.02–00:22.52  (local; ALIGN TO VO)
+VO CUE (excerpt): "They may be forced to sell assets at terrible prices."
+VISUAL: Desperate auction: stickman sells house/stock icon for too few coins to broker.
+CAMERA: Side pan with sudden drop in price gauge.
+ELLY ACTIVENESS: Elly winces.
+SFX: auction tap
+CAPTION / EDIT LABEL: "FORCED TO SELL"
+
+[S06] 00:22.52–00:27.03  (local; ALIGN TO VO)
+VO CUE (excerpt): "Now imagine a second person."
+VISUAL: Screen resets to calm investor B: briefcase, modest cash vault and no crushing loan paper.
+CAMERA: Wipe split from A to B, gentle push-in.
+ELLY ACTIVENESS: Elly curious nod.
+SFX: quiet transition
+CAPTION / EDIT LABEL: "PERSON B: LIQUIDITY"
+
+[S07] 00:27.03–00:31.53  (local; ALIGN TO VO)
+VO CUE (excerpt): "They sold much of their risky investments before the collapse."
+VISUAL: Investor B removes stock tokens early, places assets in safer separate icons.
+CAMERA: Tracking motion following funds.
+ELLY ACTIVENESS: Elly approving measured.
+SFX: paper move
+CAPTION / EDIT LABEL: "REDUCED RISK"
+
+[S08] 00:31.53–00:36.04  (local; ALIGN TO VO)
+VO CUE (excerpt): "They aren’t desperate to repay a broker."
+VISUAL: Broker’s demand envelope slides past B without landing, contrast with A.
+CAMERA: Slow zoom out to emphasize freedom.
+ELLY ACTIVENESS: Elly relieved.
+SFX: envelope whoosh
+CAPTION / EDIT LABEL: "NO MARGIN PANIC"
+
+[S09] 00:36.04–00:40.54  (local; ALIGN TO VO)
+VO CUE (excerpt): "They still have substantial cash or other liquid assets available."
+VISUAL: Investor B has accessible coins in secure drawer, no implication bank entirely safe.
+CAMERA: Pan reveal of liquid assets, small warning bank icon.
+ELLY ACTIVENESS: Elly guarded optimism.
+SFX: drawer open
+CAPTION / EDIT LABEL: "FINANCIAL FLEXIBILITY"
+
+[S10] 00:40.54–00:45.05  (local; ALIGN TO VO)
+VO CUE (excerpt): "When businesses and property owners become desperate to sell..."
+VISUAL: Marketplace of distressed asset signs; stickmen sellers with downturned posture; Elly large front.
+CAMERA: Slow pan across asset stalls.
+ELLY ACTIVENESS: Elly concerned, not gleeful.
+SFX: paper signs swish
+CAPTION / EDIT LABEL: "SELLERS NEED CASH"
+
+[S11] 00:45.05–00:49.55  (local; ALIGN TO VO)
+VO CUE (excerpt): "The second person has choices. They can wait."
+VISUAL: Investor B seated watching clock as discounted asset offer sits on table.
+CAMERA: Clock-focused gentle push-in.
+ELLY ACTIVENESS: Elly points to clock.
+SFX: clock tick
+CAPTION / EDIT LABEL: "THEY CAN WAIT"
+
+[S12] 00:49.55–00:54.05  (local; ALIGN TO VO)
+VO CUE (excerpt): "They can negotiate."
+VISUAL: Buyer and seller stickmen exchange documents at table, scale balances.
+CAMERA: Two-person side pan.
+ELLY ACTIVENESS: Elly moderating gesture.
+SFX: paper tap
+CAPTION / EDIT LABEL: "THEY CAN NEGOTIATE"
+
+[S13] 00:54.05–00:58.56  (local; ALIGN TO VO)
+VO CUE (excerpt): "They can buy assets other people can no longer afford to hold."
+VISUAL: House and stock certificate change hands at lower symbolic price; elly watches with sober expression.
+CAMERA: Follow handoff then zoom out to street.
+ELLY ACTIVENESS: Elly thoughtful, not cheering.
+SFX: soft coin clink
+CAPTION / EDIT LABEL: "THEY HAVE OPTIONS"
+
+[S14] 00:58.56–01:03.06  (local; ALIGN TO VO)
+VO CUE (excerpt): "The first person is forced to react. The second... deciding."
+VISUAL: Split-screen A running, B choosing from laid-out cards.
+CAMERA: Rhythmic left-right push-in pair.
+ELLY ACTIVENESS: Elly contrasts sides.
+SFX: quick footstep, calm card slide
+CAPTION / EDIT LABEL: "FORCED REACTION / CHOICE"
+
+[S15] 01:03.06–01:07.57  (local; ALIGN TO VO)
+VO CUE (excerpt): "During a financial crisis, that difference can be enormous."
+VISUAL: Two paths widen into very different routes; no claim everyone could choose.
+CAMERA: Big overhead pull-out.
+ELLY ACTIVENESS: Elly serious nod.
+SFX: low dramatic chord
+CAPTION / EDIT LABEL: "FLEXIBILITY MATTERS"
+
+[S16] 01:07.57–01:12.07  (local; ALIGN TO VO)
+VO CUE (excerpt): "But there’s an important detail. Cash wasn’t completely safe either."
+VISUAL: Cash drawer shown next to wavering bank facade.
+CAMERA: Slow push to unstable bank.
+ELLY ACTIVENESS: Elly caution paw.
+SFX: subtle ominous click
+CAPTION / EDIT LABEL: "CASH WASN’T RISK-FREE"
+
+[S17] 01:12.07–01:16.58  (local; ALIGN TO VO)
+VO CUE (excerpt): "During the Great Depression, thousands of banks suspended operations."
+VISUAL: Bank windows close one after another; tiny queue remains.
+CAMERA: Wide left pan, slow deceleration.
+ELLY ACTIVENESS: Elly somber.
+SFX: metal shutters
+CAPTION / EDIT LABEL: "BANKS CLOSED"
+
+[S18] 01:16.58–01:21.08  (local; ALIGN TO VO)
+VO CUE (excerpt): "Keeping all your savings in a failing bank could be disastrous."
+VISUAL: Cash jar stuck behind locked bank window, ordinary investor cannot reach it.
+CAMERA: Slow closeup on barrier.
+ELLY ACTIVENESS: Elly worried.
+SFX: lock clack
+CAPTION / EDIT LABEL: "BANK FAILURE RISK"
+
+[S19] 01:21.08–01:25.59  (local; ALIGN TO VO)
+VO CUE (excerpt): "So the real advantage wasn’t simply holding cash."
+VISUAL: Cash icon grows a question-mark shadow, Elly shakes head gently.
+CAMERA: Small zoom-out to prepare next thesis.
+ELLY ACTIVENESS: Elly direct-to-camera correction.
+SFX: soft record dip
+CAPTION / EDIT LABEL: "NOT JUST CASH"
+
+[S20] 01:25.59–01:30.09  (local; ALIGN TO VO)
+VO CUE (excerpt): "It was maintaining financial flexibility... avoiding catastrophic losses."
+VISUAL: Three elements form a triangle: manageable debt, accessible funds, survival choices.
+CAMERA: Slow circular pan around visual triangle.
+ELLY ACTIVENESS: Elly teacher pointing each component.
+SFX: three soft taps
+CAPTION / EDIT LABEL: "PRESERVE YOUR OPTIONS"
+
+[S21] 01:30.09–01:34.59  (local; ALIGN TO VO)
+VO CUE (excerpt): "Kennedy’s wealth was not created entirely by the Depression."
+VISUAL: Kennedy timeline: wealth BEFORE 1929 clearly appears, stock crash in center, later wealth beyond.
+CAMERA: Slow horizontal track along timeline.
+ELLY ACTIVENESS: Elly precise and firm.
+SFX: timeline ticks
+CAPTION / EDIT LABEL: "WEALTHY BEFORE THE CRASH"
+
+[S22] 01:34.59–01:39.10  (local; ALIGN TO VO)
+VO CUE (excerpt): "His timing helped preserve and expand the fortune he had built."
+VISUAL: Kennedy’s sheltered ledger endures while turbulent market graph passes behind.
+CAMERA: Gentle forward dolly.
+ELLY ACTIVENESS: Elly acknowledging timing.
+SFX: soft vault click
+CAPTION / EDIT LABEL: "TIMING + RESOURCES"
+
+[S23] 01:39.10–01:43.60  (local; ALIGN TO VO)
+VO CUE (excerpt): "His business interests continued to develop... political dynasty."
+VISUAL: Simple Hollywood film reel, business ledger, Kennedy family tree and political podium icons.
+CAMERA: Pan icon sequence, no invented milestones.
+ELLY ACTIVENESS: Elly thoughtful.
+SFX: projector tick, page turn
+CAPTION / EDIT LABEL: "A FAMILY DYNASTY"
+
+[S24] 01:43.60–01:48.11  (local; ALIGN TO VO)
+VO CUE (excerpt): "But here’s the uncomfortable reality."
+VISUAL: Cheerful highlight fades; Elly turns to bleak breadline.
+CAMERA: Hard tone shift with slow push.
+ELLY ACTIVENESS: Elly sober, sympathetic.
+SFX: music thins
+CAPTION / EDIT LABEL: "THE UNCOMFORTABLE TRUTH"
+
+[S25] 01:48.11–01:52.61  (local; ALIGN TO VO)
+VO CUE (excerpt): "For an ordinary family struggling to buy food..."
+VISUAL: Ordinary stickman family with small bread loaf and empty wallet; property listing across street.
+CAMERA: Slow respectful pan.
+ELLY ACTIVENESS: Elly empathetic.
+SFX: quiet street air
+CAPTION / EDIT LABEL: "NO CASH TO INVEST"
+
+[S26] 01:52.61–01:57.12  (local; ALIGN TO VO)
+VO CUE (excerpt): "It’s easy to say, “Buy when everyone else is selling.”"
+VISUAL: Elly holds smug quote bubble from investor icon, then turns toward unemployed family.
+CAMERA: Push-in then drop bubble.
+ELLY ACTIVENESS: Elly mild skepticism.
+SFX: small ironic pluck
+CAPTION / EDIT LABEL: "EASY TO SAY"
+
+[S27] 01:57.12–02:01.62  (local; ALIGN TO VO)
+VO CUE (excerpt): "It’s much harder when you’ve lost your job, your savings..."
+VISUAL: Three symbols fade: job badge, savings jar, access-to-loan note.
+CAMERA: Three slower fades, slight pull-back.
+ELLY ACTIVENESS: Elly quiet concern.
+SFX: three low piano taps
+CAPTION / EDIT LABEL: "WHEN YOU’VE LOST EVERYTHING"
+
+[S28] 02:01.62–02:06.13  (local; ALIGN TO VO)
+VO CUE (excerpt): "A crisis does not magically create equal opportunities."
+VISUAL: Scale with affluent buyer and ordinary worker starts unbalanced; no stereotypes.
+CAMERA: Steady closeup then pull-out.
+ELLY ACTIVENESS: Elly explanatory and serious.
+SFX: scale creak
+CAPTION / EDIT LABEL: "NOT EQUAL OPPORTUNITY"
+
+[S29] 02:06.13–02:10.63  (local; ALIGN TO VO)
+VO CUE (excerpt): "It makes existing differences in financial resources even more important."
+VISUAL: Two paths diverge in front of Elly: one choices-rich, one blocked by debt.
+CAMERA: Wide pull-back showing full divergence.
+ELLY ACTIVENESS: Elly direct serious address.
+SFX: low sustained piano
+CAPTION / EDIT LABEL: "RESOURCES CHANGE OUTCOMES"
+
+[S30] 02:10.63–02:15.14  (local; ALIGN TO VO)
+VO CUE (excerpt): "Some fortunes survived while others disappeared."
+VISUAL: Contrasting two ledgers on side-by-side pedestals; one fades.
+CAMERA: Fade-through split then dissolve toward Jesse silhouette.
+ELLY ACTIVENESS: Elly turns toward Jesse.
+SFX: ticking bridge
+CAPTION / EDIT LABEL: "WHO SURVIVES?"
+
+[S31] 02:15.14–02:19.64  (local; ALIGN TO VO)
+VO CUE (excerpt): "But now, we need to return to Jesse Livermore."
+VISUAL: Empty trading desk and familiar signature dark vest Jesse shadow behind curtain.
+CAMERA: Slow suspense push-in.
+ELLY ACTIVENESS: Elly knowing anxious look.
+SFX: ominous transition
+CAPTION / EDIT LABEL: "BACK TO JESSE"
+
+====================================================================================
+CHAPTER 6: "THE MAN WHO COULDN’T KEEP HIS FORTUNE"
+AUDIO FILE DURATION: 02:02.04 (122.04 s), 26 planned shots
+COLOR: storm blue / tobacco brown → subdued desaturated grey
+MUSIC: sparse minor piano, subdued cello; NO comic SFX or irony during suicide reference
+ON-SCREEN CHAPTER CARD: CHAPTER 6: THE MAN WHO COULDN’T KEEP HIS FORTUNE [first 2–3 seconds, overlay only]
+IMPORTANT: These proposed cuts are evenly allocated composition windows. MUST re-time based on word-aligned VO cues.
+====================================================================================
+
+[S01] 00:00.00–00:04.69  (local; ALIGN TO VO)
+VO CUE (excerpt): "Remember Jesse Livermore?"
+VISUAL: Jesse signature stickman at trading desk, giant 1929 chart framed in background.
+CAMERA: Slow push-in, faint callback wipe.
+ELLY ACTIVENESS: Elly curious recollection.
+SFX: soft ticker
+CAPTION / EDIT LABEL: "REMEMBER JESSE?"
+
+[S02] 00:04.69–00:09.39  (local; ALIGN TO VO)
+VO CUE (excerpt): "The trader who... made an extraordinary amount of money..."
+VISUAL: Jesse holding large winnings ledger, stacked coins with question mark about estimate.
+CAMERA: Tilt to ledger, gentle zoom.
+ELLY ACTIVENESS: Elly measured nod.
+SFX: coin chime small
+CAPTION / EDIT LABEL: "A CRASH WINNER"
+
+[S03] 00:09.39–00:14.08  (local; ALIGN TO VO)
+VO CUE (excerpt): "You might expect the rest of his life to be simple."
+VISUAL: Jesse imagines retirement bubble: house, book, tranquil garden.
+CAMERA: Float zoom into bubble.
+ELLY ACTIVENESS: Elly half-smile.
+SFX: gentle harp
+CAPTION / EDIT LABEL: "TIME TO RETIRE?"
+
+[S04] 00:14.08–00:18.78  (local; ALIGN TO VO)
+VO CUE (excerpt): "Retire. Buy a mansion. Enjoy the fortune."
+VISUAL: Three bright vacation icons revolve around reclining stickman Jesse.
+CAMERA: Three punchy mini-zooms.
+ELLY ACTIVENESS: Elly playful hand tally.
+SFX: three light plucks
+CAPTION / EDIT LABEL: "RETIRE. RELAX. ENJOY."
+
+[S05] 00:18.78–00:23.47  (local; ALIGN TO VO)
+VO CUE (excerpt): "Never look at another stock chart again."
+VISUAL: Jesse tries shutting blinds over glowing stock chart; chart light peeks through.
+CAMERA: Push-in on chart sneaking back.
+ELLY ACTIVENESS: Elly raised eyebrow.
+SFX: ticker faint
+CAPTION / EDIT LABEL: "JUST ONE MORE TRADE..."
+
+[S06] 00:23.47–00:28.16  (local; ALIGN TO VO)
+VO CUE (excerpt): "Unfortunately, Livermore wasn’t built that way."
+VISUAL: Retirement bubble pops; Jesse walks back toward ticker board.
+CAMERA: Quick pull-back to stark trading desk.
+ELLY ACTIVENESS: Elly worried reaction.
+SFX: soft bubble pop
+CAPTION / EDIT LABEL: "BACK TO THE MARKET"
+
+[S07] 00:28.16–00:32.86  (local; ALIGN TO VO)
+VO CUE (excerpt): "Trading was more than a profession... a lifelong obsession."
+VISUAL: Jesse silhouette at midnight desk under ticking clock, papers piling up.
+CAMERA: Slow forward dolly, clock shadow moves.
+ELLY ACTIVENESS: Elly thoughtful, restrained.
+SFX: clock ticks low
+CAPTION / EDIT LABEL: "A LIFELONG OBSESSION"
+
+[S08] 00:32.86–00:37.55  (local; ALIGN TO VO)
+VO CUE (excerpt): "Winning one enormous trade did not mean he could never lose again."
+VISUAL: Past victory ledger sits beside present descending chart, no invented dates.
+CAMERA: Pan left victory/right losses.
+ELLY ACTIVENESS: Elly sober caution.
+SFX: downward piano note
+CAPTION / EDIT LABEL: "ONE WIN ≠ IMMUNITY"
+
+[S09] 00:37.55–00:42.24  (local; ALIGN TO VO)
+VO CUE (excerpt): "After 1929, Livermore continued facing financial and personal difficulties."
+VISUAL: Desk scene darkens with bills and worn notebooks; Jesse posture lower, abstract mood only.
+CAMERA: Gentle pull-back, no shake.
+ELLY ACTIVENESS: Elly quiet concern.
+SFX: paper rustle
+CAPTION / EDIT LABEL: "DIFFICULT YEARS"
+
+[S10] 00:42.24–00:46.94  (local; ALIGN TO VO)
+VO CUE (excerpt): "He eventually lost the fortune that had made him famous."
+VISUAL: Coin piles dim and vanish slowly while Jesse remains small background; Elly dominant foreground.
+CAMERA: Slow zoom-out and hold.
+ELLY ACTIVENESS: Elly sympathetic.
+SFX: single muted coin drop
+CAPTION / EDIT LABEL: "FORTUNE LOST"
+
+[S11] 00:46.94–00:51.63  (local; ALIGN TO VO)
+VO CUE (excerpt): "In 1934, he filed for bankruptcy."
+VISUAL: Plain 1934 date card added in edit atop bankruptcy document silhouette, no fake seal details.
+CAMERA: Slow push in, static hold.
+ELLY ACTIVENESS: Elly composed, serious.
+SFX: soft paper thud
+CAPTION / EDIT LABEL: "BANKRUPTCY — 1934"
+
+[S12] 00:51.63–00:56.33  (local; ALIGN TO VO)
+VO CUE (excerpt): "A man who reportedly earned around one hundred million dollars..."
+VISUAL: Muted split comparison of reported 1929 gains and 1934 filing, with estimate qualification visible.
+CAMERA: Slow lateral pan then stop.
+ELLY ACTIVENESS: Elly sober.
+SFX: two low piano tones
+CAPTION / EDIT LABEL: "FROM FORTUNE TO BANKRUPTCY"
+
+[S13] 00:56.33–01:01.02  (local; ALIGN TO VO)
+VO CUE (excerpt): "The complete financial details of his losses aren’t fully documented."
+VISUAL: Scattered archival-style ledger pages, some blank, framed as incomplete records.
+CAMERA: Gentle overhead pan.
+ELLY ACTIVENESS: Elly makes careful qualifier gesture.
+SFX: page turn
+CAPTION / EDIT LABEL: "DETAILS ARE INCOMPLETE"
+
+[S14] 01:01.02–01:05.71  (local; ALIGN TO VO)
+VO CUE (excerpt): "His career had always followed a dangerous pattern."
+VISUAL: Circular flow chart icons: trade gain → risk → loss → recovery attempt.
+CAMERA: Slow circle camera move.
+ELLY ACTIVENESS: Elly explains cautiously.
+SFX: four soft beats
+CAPTION / EDIT LABEL: "THE RISK CYCLE"
+
+[S15] 01:05.71–01:10.41  (local; ALIGN TO VO)
+VO CUE (excerpt): "Extraordinary success. Enormous risks. Devastating losses."
+VISUAL: Three cards with rising pile, giant lever, empty ledger; each change deliberately slower.
+CAMERA: Three clean rhythmic cuts.
+ELLY ACTIVENESS: Elly expression rises then falls.
+SFX: rising tone, descending tone
+CAPTION / EDIT LABEL: "SUCCESS. RISK. LOSS."
+
+[S16] 01:10.41–01:15.10  (local; ALIGN TO VO)
+VO CUE (excerpt): "Then another attempt to recover."
+VISUAL: Jesse reaches toward a trade order slip with dim uncertainty.
+CAMERA: Slow push in on hand and slip.
+ELLY ACTIVENESS: Elly concerned.
+SFX: quiet ticker pulse
+CAPTION / EDIT LABEL: "TRY AGAIN"
+
+[S17] 01:15.10–01:19.80  (local; ALIGN TO VO)
+VO CUE (excerpt): "His later life was marked by serious personal struggles."
+VISUAL: Jesse alone by dark office window, city lamps outside; no sensational imagery.
+CAMERA: Slow pull-back respectful.
+ELLY ACTIVENESS: Elly sympathetic, still.
+SFX: music only
+CAPTION / EDIT LABEL: "PERSONAL STRUGGLES"
+
+[S18] 01:19.80–01:24.49  (local; ALIGN TO VO)
+VO CUE (excerpt): "In 1940, Livermore died by suicide."
+VISUAL: Neutral dark slate background with discreet 1940 memorial-style date card; no depiction or implication of method.
+CAMERA: Static quiet hold, no zoom jolt.
+ELLY ACTIVENESS: Elly solemn, no jokes, minimal slow blink.
+SFX: music near silence
+CAPTION / EDIT LABEL: "JESSE LIVERMORE — 1940"
+
+[S19] 01:24.49–01:29.18  (local; ALIGN TO VO)
+VO CUE (excerpt): "It was a tragic ending, and no single financial mistake..."
+VISUAL: Empty desk and respectful silhouette fade to neutral.
+CAMERA: Very slow crossfade; reflective hold.
+ELLY ACTIVENESS: Elly solemn direct-to-viewer.
+SFX: soft subdued piano
+CAPTION / EDIT LABEL: "A COMPLEX HUMAN STORY"
+
+[S20] 01:29.18–01:33.88  (local; ALIGN TO VO)
+VO CUE (excerpt): "But his financial story does raise an important question."
+VISUAL: Fade back to blank balance sheet and two coin piles, ELLY foreground.
+CAMERA: Gentle push to question space.
+ELLY ACTIVENESS: Elly thoughtful.
+SFX: soft transitional note
+CAPTION / EDIT LABEL: "WHAT DOES WEALTH MEAN?"
+
+[S21] 01:33.88–01:38.57  (local; ALIGN TO VO)
+VO CUE (excerpt): "What’s the point of making a fortune if you can’t protect it?"
+VISUAL: Scale weighs earned coins vs protected savings, huge asymmetry.
+CAMERA: Push in on scale, slight pull-back for question.
+ELLY ACTIVENESS: Elly serious direct gaze.
+SFX: scale creak
+CAPTION / EDIT LABEL: "MAKE IT / KEEP IT"
+
+[S22] 01:38.57–01:43.26  (local; ALIGN TO VO)
+VO CUE (excerpt): "He understood how to profit from collapsing markets..."
+VISUAL: Jesse trading strength shown briefly, then portfolio safety symbol missing from board.
+CAMERA: Parallel panel dissolve.
+ELLY ACTIVENESS: Elly precise warning.
+SFX: quiet paper slide
+CAPTION / EDIT LABEL: "SKILL ≠ SECURITY"
+
+[S23] 01:43.26–01:47.96  (local; ALIGN TO VO)
+VO CUE (excerpt): "Kennedy took a different path."
+VISUAL: Kennedy signature stickman by surviving vault and business ledger in adjacent panel.
+CAMERA: Gentle pan from Jesse to Kennedy.
+ELLY ACTIVENESS: Elly switches to comparison gesture.
+SFX: soft transition
+CAPTION / EDIT LABEL: "A DIFFERENT PATH"
+
+[S24] 01:47.96–01:52.65  (local; ALIGN TO VO)
+VO CUE (excerpt): "He preserved his wealth, developed business interests..."
+VISUAL: Kennedy family-business icon group expands behind him; avoid claim all his success came from crash.
+CAMERA: Slow gradual zoom out.
+ELLY ACTIVENESS: Elly composed nod.
+SFX: modest major hint
+CAPTION / EDIT LABEL: "PRESERVE + BUILD"
+
+[S25] 01:52.65–01:57.35  (local; ALIGN TO VO)
+VO CUE (excerpt): "Both men navigated the same historic disaster..."
+VISUAL: Two stickman silhouettes on forked financial timeline: same crash center, distinct later paths.
+CAMERA: Wide pull-back to both timelines.
+ELLY ACTIVENESS: Elly reflective.
+SFX: low sustained chord
+CAPTION / EDIT LABEL: "SAME CRISIS. DIFFERENT FUTURES."
+
+[S26] 01:57.35–02:02.04  (local; ALIGN TO VO)
+VO CUE (excerpt): "That brings us to the real lesson of 1929."
+VISUAL: Elly steps front-and-center beside blank education board.
+CAMERA: Slow push-in then clean wipe.
+ELLY ACTIVENESS: Elly teacher pose → warm serious.
+SFX: soft page turn
+CAPTION / EDIT LABEL: "THE REAL LESSON"
+
+====================================================================================
+CHAPTER 7: "THE REAL SECRET"
+AUDIO FILE DURATION: 02:56.76 (176.76 s), 34 planned shots
+COLOR: subdued slate → warm cream/gold recovery with soft green
+MUSIC: same core motif returns as slow piano + plucked strings; restrained hopeful ending
+ON-SCREEN CHAPTER CARD: CHAPTER 7: THE REAL SECRET [first 2–3 seconds, overlay only]
+IMPORTANT: These proposed cuts are evenly allocated composition windows. MUST re-time based on word-aligned VO cues.
+====================================================================================
+
+[S01] 00:00.00–00:05.20  (local; ALIGN TO VO)
+VO CUE (excerpt): "When people hear stories about investors getting rich..."
+VISUAL: Stylized newspaper headlines of 1929 market crash around large Elly holding question-mark sheet.
+CAMERA: Slow zoom through layered papers.
+ELLY ACTIVENESS: Elly intrigued → skeptical.
+SFX: paper turn
+CAPTION / EDIT LABEL: "THE SECRET TO GETTING RICH?"
+
+[S02] 00:05.20–00:10.40  (local; ALIGN TO VO)
+VO CUE (excerpt): "They usually imagine a secret trick."
+VISUAL: Magician stickman reveals empty hat beside market chart; no real money magic.
+CAMERA: Quick ironic push-in.
+ELLY ACTIVENESS: Elly raised eyebrow.
+SFX: tiny magic pluck
+CAPTION / EDIT LABEL: "A SECRET TRICK?"
+
+[S03] 00:10.40–00:15.60  (local; ALIGN TO VO)
+VO CUE (excerpt): "Maybe someone knew the market would crash."
+VISUAL: Silhouette points at crystal ball with falling stock chart, flagged as fantasy.
+CAMERA: Gentle zoom-in then dissolve fantasy.
+ELLY ACTIVENESS: Elly doubtful.
+SFX: soft mystery ping
+CAPTION / EDIT LABEL: "PREDICT THE FUTURE?"
+
+[S04] 00:15.60–00:20.80  (local; ALIGN TO VO)
+VO CUE (excerpt): "Maybe someone had the perfect investment strategy."
+VISUAL: Perfect gear/diagram icon under confident investor; corners begin wobbling.
+CAMERA: Slow center push then tilt.
+ELLY ACTIVENESS: Elly shakes head lightly.
+SFX: gear tick
+CAPTION / EDIT LABEL: "A PERFECT STRATEGY?"
+
+[S05] 00:20.80–00:25.99  (local; ALIGN TO VO)
+VO CUE (excerpt): "Maybe there was one magical asset that always went up."
+VISUAL: Golden asset arrow keeps climbing absurdly, bubble pops.
+CAMERA: Comedic punch zoom then pull back.
+ELLY ACTIVENESS: Elly deadpan.
+SFX: soft pop
+CAPTION / EDIT LABEL: "ALWAYS GOES UP?"
+
+[S06] 00:25.99–00:31.19  (local; ALIGN TO VO)
+VO CUE (excerpt): "But history is messier than that."
+VISUAL: Messy ledger stack replaces clean fictional chart; Elly opens real-world folder.
+CAMERA: Cross dissolve into documentary desk.
+ELLY ACTIVENESS: Elly direct honest face.
+SFX: paper folder thud
+CAPTION / EDIT LABEL: "REALITY IS MESSIER"
+
+[S07] 00:31.19–00:36.39  (local; ALIGN TO VO)
+VO CUE (excerpt): "Some people made money by short selling."
+VISUAL: Simple Jesse short trade icon with price down, profit up.
+CAMERA: Small push onto paired chart.
+ELLY ACTIVENESS: Elly points mechanism.
+SFX: two coin clicks
+CAPTION / EDIT LABEL: "SHORT SELLING"
+
+[S08] 00:36.39–00:41.59  (local; ALIGN TO VO)
+VO CUE (excerpt): "Others protected themselves by reducing their exposure..."
+VISUAL: Kennedy removes vulnerable stock certificates before crash, vault/cash option retained.
+CAMERA: Lateral track following asset move.
+ELLY ACTIVENESS: Elly approving measured.
+SFX: document slide
+CAPTION / EDIT LABEL: "REDUCE RISK"
+
+[S09] 00:41.59–00:46.79  (local; ALIGN TO VO)
+VO CUE (excerpt): "Some wealthy investors were able to acquire assets..."
+VISUAL: Property and company ownership tokens on distressed sale desk; affluent buyer in background.
+CAMERA: Slow pull-out revealing buying power.
+ELLY ACTIVENESS: Elly sober.
+SFX: soft stamp
+CAPTION / EDIT LABEL: "BUYING DURING DISTRESS"
+
+[S10] 00:46.79–00:51.99  (local; ALIGN TO VO)
+VO CUE (excerpt): "But many wealthy people also lost enormous amounts of money."
+VISUAL: Well-dressed stickman loses stacked asset blocks; wealth cannot guarantee safety.
+CAMERA: Single smooth push-in to contrast.
+ELLY ACTIVENESS: Elly concerned.
+SFX: lower piano chord
+CAPTION / EDIT LABEL: "RICH PEOPLE LOST TOO"
+
+[S11] 00:51.99–00:57.19  (local; ALIGN TO VO)
+VO CUE (excerpt): "Millions of ordinary Americans had no realistic opportunity..."
+VISUAL: Breadline family foreground with employment shutter; property offering is unreachable in far background.
+CAMERA: Respectful slow pan.
+ELLY ACTIVENESS: Elly empathetic.
+SFX: subdued ambience
+CAPTION / EDIT LABEL: "MOST HAD NO CHOICE"
+
+[S12] 00:57.19–01:02.39  (local; ALIGN TO VO)
+VO CUE (excerpt): "The Great Depression wasn’t a guaranteed money-making opportunity."
+VISUAL: Giant red warning bar overlays market collapse schematic, not text inside generated image.
+CAMERA: Brief push-in on serious board.
+ELLY ACTIVENESS: Elly firm.
+SFX: single low stamp
+CAPTION / EDIT LABEL: "NOT A GUARANTEED OPPORTUNITY"
+
+[S13] 01:02.39–01:07.58  (local; ALIGN TO VO)
+VO CUE (excerpt): "It was a catastrophe. The people who benefited were exceptions."
+VISUAL: Elly foreground with broad 1930s hardship panorama behind, two tiny privileged exception stickmen far away.
+CAMERA: Very slow wide pull-back.
+ELLY ACTIVENESS: Elly solemn.
+SFX: music drops near silence
+CAPTION / EDIT LABEL: "THEY WERE EXCEPTIONS"
+
+[S14] 01:07.58–01:12.78  (local; ALIGN TO VO)
+VO CUE (excerpt): "Still, their stories reveal three important differences..."
+VISUAL: Clean chalkboard shows three empty outlined circles, Elly introduces checklist.
+CAMERA: Smooth push-in to board.
+ELLY ACTIVENESS: Elly presenting three fingers/paws symbolic.
+SFX: soft intro chime
+CAPTION / EDIT LABEL: "THREE LESSONS"
+
+[S15] 01:12.78–01:17.98  (local; ALIGN TO VO)
+VO CUE (excerpt): "First, debt can turn a bad investment into a disaster."
+VISUAL: Lesson icon #1: leverage tower topples over investor stickman.
+CAMERA: Downward pan and gentle impact shake.
+ELLY ACTIVENESS: Elly caution gesture.
+SFX: low knock
+CAPTION / EDIT LABEL: "1. DEBT AMPLIFIES DAMAGE"
+
+[S16] 01:17.98–01:23.18  (local; ALIGN TO VO)
+VO CUE (excerpt): "When you borrow heavily... it can eliminate your ability to recover."
+VISUAL: Debt chain blocks exit after stock fall, investor reaches for narrow escape.
+CAMERA: Slow tracking pull-away.
+ELLY ACTIVENESS: Elly worried.
+SFX: chain rattle abstract
+CAPTION / EDIT LABEL: "DON’T LET ONE LOSS END YOU"
+
+[S17] 01:23.18–01:28.38  (local; ALIGN TO VO)
+VO CUE (excerpt): "Second, liquidity creates options."
+VISUAL: Lesson icon #2: liquid savings jar and accessible door to several paths.
+CAMERA: Camera pulls out revealing doors.
+ELLY ACTIVENESS: Elly explains optimistically.
+SFX: soft unlock click
+CAPTION / EDIT LABEL: "2. LIQUIDITY = CHOICES"
+
+[S18] 01:28.38–01:33.58  (local; ALIGN TO VO)
+VO CUE (excerpt): "Having financial resources available during a crisis..."
+VISUAL: Investor B waits calmly while asset sale cards appear; non-wealthy investor far off.
+CAMERA: Slow lateral pan.
+ELLY ACTIVENESS: Elly calm nod.
+SFX: clock gentle
+CAPTION / EDIT LABEL: "TIME TO DECIDE"
+
+[S19] 01:33.58–01:38.78  (local; ALIGN TO VO)
+VO CUE (excerpt): "Third, making money is not the same as managing money."
+VISUAL: Lesson icon #3: two jars labeled on-screen EARN and PROTECT, money pours from one but second catches only some.
+CAMERA: Steady push-in on two jars.
+ELLY ACTIVENESS: Elly gestures left then right.
+SFX: coins soft
+CAPTION / EDIT LABEL: "3. EARN ≠ PROTECT"
+
+[S20] 01:38.78–01:43.98  (local; ALIGN TO VO)
+VO CUE (excerpt): "Jesse Livermore was extraordinarily skilled..."
+VISUAL: Jesse trading successes return in montage, then empty later ledger; no sensational tragedy callbacks.
+CAMERA: Slow split-screen crossfade.
+ELLY ACTIVENESS: Elly respectful concern.
+SFX: sparse piano
+CAPTION / EDIT LABEL: "SKILL ALONE WASN’T ENOUGH"
+
+[S21] 01:43.98–01:49.18  (local; ALIGN TO VO)
+VO CUE (excerpt): "Joseph Kennedy’s story highlights a different advantage."
+VISUAL: Kennedy by his capital-preservation portfolio and calm business desk.
+CAMERA: Gentle push-in.
+ELLY ACTIVENESS: Elly nod.
+SFX: soft light chord
+CAPTION / EDIT LABEL: "PRESERVE CAPITAL"
+
+[S22] 01:49.18–01:54.37  (local; ALIGN TO VO)
+VO CUE (excerpt): "Preserving capital before a disaster can matter..."
+VISUAL: Pre-crash savings protected under umbrella as storm of graphs passes.
+CAMERA: Pull out then drift forward in rain.
+ELLY ACTIVENESS: Elly explanatory.
+SFX: distant thunder muted
+CAPTION / EDIT LABEL: "SURVIVE THE STORM"
+
+[S23] 01:54.37–01:59.57  (local; ALIGN TO VO)
+VO CUE (excerpt): "And perhaps that’s the strangest truth about financial history."
+VISUAL: Elly in quiet 1929 city plaza, two contrasting paths visible from above.
+CAMERA: Slow elevated pull-back.
+ELLY ACTIVENESS: Elly philosophical expression.
+SFX: warm motif returning
+CAPTION / EDIT LABEL: "THE STRANGEST TRUTH"
+
+[S24] 01:59.57–02:04.77  (local; ALIGN TO VO)
+VO CUE (excerpt): "A market crash doesn’t affect everyone in the same way."
+VISUAL: Two side-by-side ledgers respond differently to same red market chart.
+CAMERA: Matched pans on each side.
+ELLY ACTIVENESS: Elly comparing both.
+SFX: two soft chimes
+CAPTION / EDIT LABEL: "SAME CRASH. DIFFERENT IMPACT."
+
+[S25] 02:04.77–02:09.97  (local; ALIGN TO VO)
+VO CUE (excerpt): "For some, it destroys years of progress. For others..."
+VISUAL: Worker family struggles at shut shop, trader keeps options intact; Elly unifies panels.
+CAMERA: Measured left-right pan, do not celebrate hardship.
+ELLY ACTIVENESS: Elly empathetic.
+SFX: soft bittersweet chord
+CAPTION / EDIT LABEL: "TWO DIFFERENT EXPERIENCES"
+
+[S26] 02:09.97–02:15.17  (local; ALIGN TO VO)
+VO CUE (excerpt): "Not because the disaster is good."
+VISUAL: Market crash graphic behind sombre Elly, no cheerfulness.
+CAMERA: Controlled push-in on Elly.
+ELLY ACTIVENESS: Elly firm head-shake.
+SFX: music dip
+CAPTION / EDIT LABEL: "A CRISIS IS NOT GOOD NEWS"
+
+[S27] 02:15.17–02:20.37  (local; ALIGN TO VO)
+VO CUE (excerpt): "...depending on debt, timing, resources, and decisions."
+VISUAL: Four simple icons around Elly: IOU, clock, vault, choice arrows, captions applied in edit.
+CAMERA: Four measured icon pop-ins.
+ELLY ACTIVENESS: Elly points at each.
+SFX: four unobtrusive ticks
+CAPTION / EDIT LABEL: "DEBT / TIMING / RESOURCES / CHOICES"
+
+[S28] 02:20.37–02:25.57  (local; ALIGN TO VO)
+VO CUE (excerpt): "In 1929, millions of Americans learned that lesson..."
+VISUAL: Historical-style breadline scene returns, lighting slowly warm toward respectful hope.
+CAMERA: Slow reverse dolly.
+ELLY ACTIVENESS: Elly serious empathy.
+SFX: soft piano
+CAPTION / EDIT LABEL: "THE HUMAN COST"
+
+[S29] 02:25.57–02:30.77  (local; ALIGN TO VO)
+VO CUE (excerpt): "Nearly a century later, the question remains just as relevant."
+VISUAL: Visual match-cut from 1929 ticker to abstract modern digital chart, no invented 2026 event.
+CAMERA: Match-cut zoom through old ticker to modern display.
+ELLY ACTIVENESS: Elly curious, engaging.
+SFX: gentle future whoosh
+CAPTION / EDIT LABEL: "WHAT ABOUT TODAY?"
+
+[S30] 02:30.77–02:35.96  (local; ALIGN TO VO)
+VO CUE (excerpt): "When the next major financial crisis arrives, will you be forced to sell?"
+VISUAL: Investor A symbol on left with imminent forced sale paper; Elly foreground.
+CAMERA: Short push-in on decision point.
+ELLY ACTIVENESS: Elly worried thought pose.
+SFX: paper warning
+CAPTION / EDIT LABEL: "FORCED TO SELL?"
+
+[S31] 02:35.96–02:41.16  (local; ALIGN TO VO)
+VO CUE (excerpt): "Or will you have the financial freedom to choose?"
+VISUAL: Investor B on right with secure liquid resources, path branching ahead.
+CAMERA: Wider pull-out revealing choice routes.
+ELLY ACTIVENESS: Elly hopeful smile.
+SFX: soft uplifting note
+CAPTION / EDIT LABEL: "FREE TO CHOOSE?"
+
+[S32] 02:41.16–02:46.36  (local; ALIGN TO VO)
+VO CUE (excerpt): "Sometimes, the biggest difference... isn’t predicting the future."
+VISUAL: Crystal ball fades; resilient emergency fund and manageable debt symbols remain.
+CAMERA: Slow dissolve; steady push-in.
+ELLY ACTIVENESS: Elly confident teacher.
+SFX: soft clearing chime
+CAPTION / EDIT LABEL: "NOT ABOUT PREDICTION"
+
+[S33] 02:46.36–02:51.56  (local; ALIGN TO VO)
+VO CUE (excerpt): "It’s making sure one bad future can’t destroy you."
+VISUAL: Elly stands dominant foreground before strengthened stickman home and balanced books in golden light.
+CAMERA: Slow warm zoom-out, hold closing image.
+ELLY ACTIVENESS: Elly reassuring nod.
+SFX: warm motif swell
+CAPTION / EDIT LABEL: "BUILD RESILIENCE"
+
+[S34] 02:51.56–02:56.76  (local; ALIGN TO VO)
+VO CUE (excerpt): "This is Smart Bark. Where history explains the money games..."
+VISUAL: Clean branded end frame: Elly large center, friendly pose, stickman trader and market icon miniature behind; logo/text as edit overlays.
+CAMERA: Classic gentle push-in then static hold.
+ELLY ACTIVENESS: Elly welcoming sign-off, final wave.
+SFX: single soft outro chime
+CAPTION / EDIT LABEL: "SMART BARK — MONEY HISTORY"
+
+====================================================================================
+RENDER / HANDOFF INSTRUCTIONS
+====================================================================================
+1. Extract v2 kit, reuse scripts/ pipeline. Inspect render.py supported animations/effect types before writing project-specific timeline.
+2. Give project /new folder EP015 and make 8 WAVs v00.wav..v07.wav in correct Prologue/Chapter order; sample rates as-is. Do not assume script file auto-generated.
+3. Build script.txt from APPROVED final voice-over script, split using ### in WAV order. Run ASR and alignment. Every quote cue must be matched to actual spoken material before final timeline is generated.
+4. Create image_plan.py with consistent style prefix, separate prompts for original background plates and recurring characters. Respect NO TEXT in generated images and Elly positioning.
+5. Create timeline.py using kit v2 renderer data structures and cues.py T(v, phrase), choose a specific in/out camera move for every shot, with motion justified by story. Do not rely on approximate numbers above as final timestamps.
+6. Generate original illustrations in batches; review contact sheets for cropping, facial consistency, timeline continuity and editor-overlaid label collisions.
+7. Render test stills and a 30–45s preview for Prologue before full episode. Validate zoom/pan/Elly layer, subtitles, SFX, ducking.
+8. Render entire episode with original WAV preserved and music ducked. Check transitions at all 8 audio boundaries, no repeated VO, no silent black frames, subtitle/talk alignment, and end of audio versus image.
+9. Export H.264 MP4 1920×1080, 30fps, AAC audio. Deliver storyboard, image plan, timeline, audio cue coverage report, scene contact sheets, and final MP4. Thumbnail not required.
+
+SELF-CHECK BEFORE DELIVERY
+[ ] All 8 WAVs used, in order, full length, with per-part local timing.
+[ ] No words spoken but left without corresponding visual beat.
+[ ] Correctly identified spoken cues using alignment; no arbitrary timestamp approximations in finished project.
+[ ] Every shot original to 1929; v2 editing language learned, Templar composition not copied.
+[ ] Smooth purposeful zoom-in/zoom-out, pans, push-ins, shake only on justified moments.
+[ ] Elly consistent in glasses, moon-star sweater, pink scarf, white fluffy bichon body; camera-safe, no cropping.
+[ ] All other characters are simple stickmen, easy to identify by props.
+[ ] No text or numbers baked into AI image; subtitle/captions/labels are renderer overlays.
+[ ] Dialogue is never drowned out by music or SFX.
+[ ] No comedic stingers on poverty, unemployment or Livermore suicide.
+[ ] All historical uncertain claims qualified.
+[ ] Proof frames checked at all chapter openings and on every dramatic change.
+[ ] Final project corresponds to story from Prologue through Ch7; no duplicate chapter and no dropped WAV.
+
+END OF PRODUCTION BRIEF
