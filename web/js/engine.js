@@ -2,6 +2,7 @@ import { PARTS, buildWords, partDuration, TIMING_SOURCE } from "./script.js";
 import { SHOTS } from "./timeline.js";
 import { POSES } from "./poses.js";
 import { paintFrame, camera, ellyPose, W, H } from "./compose.js";
+import { findPhrase } from "./cues.js";
 
 const $ = (id) => document.getElementById(id);
 const stage = $("stage");
@@ -29,33 +30,12 @@ const words = parts.flatMap((p) =>
   p.words.map((w) => ({ ...w, t0: w.t0 + p.offset, t1: w.t1 + p.offset })));
 
 // ---------------------------------------------------------------- alignment
-const norm = (s) => s
-  .replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"')
-  .toLowerCase().replace(/[^a-z0-9'\s]/g, "").trim();
-
-// Storyboard cues are excerpts and often elide across sentences, so the whole
-// phrase may not exist contiguously. Try the full phrase, then shorter prefixes.
-function findPhrase(partIndex, phrase) {
-  const toks = parts[partIndex].words.map((x) => norm(x.w));
-  const want = norm(phrase).split(/\s+/).filter(Boolean);
-  if (!want.length) return -1;
-  const floor = Math.min(3, want.length); // "October 1929." is only 2 words
-  for (let len = want.length; len >= floor; len--) {
-    const sub = want.slice(0, len);
-    for (let i = 0; i + sub.length <= toks.length; i++) {
-      let ok = true;
-      for (let j = 0; j < sub.length; j++) {
-        if (!toks[i + j].startsWith(sub[j])) { ok = false; break; }
-      }
-      if (ok) return i;
-    }
-  }
-  return -1;
-}
+// findPhrase lives in cues.js so tools/smoke_test.mjs can test the real matcher
+// instead of a lookalike. See the note at the top of that file.
 
 const shots = SHOTS.map((s) => {
   const pi = s.part == null ? 0 : s.part;
-  return { ...s, pi, wi: findPhrase(pi, s.cue) };
+  return { ...s, pi, wi: findPhrase(parts[pi].words, s.cue) };
 });
 
 // Assign in story order and force monotonicity: a cut landing before the
