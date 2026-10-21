@@ -450,11 +450,58 @@ def shot_times():
     return json.loads(r.stdout.strip().splitlines()[-1])
 
 
+def ensure_concat():
+    """Rebuild assets/audio/vo_full.wav from v00..v07 if it is missing.
+
+    The concatenated narration is 50 MB and trivially reproducible, so it is
+    not kept in the workspace. It is rebuilt here whenever needed.
+    """
+    if os.path.exists(VO):
+        return
+    import subprocess
+    parts = [os.path.join(AUDIO, f"v0{i}.wav") for i in range(8)]
+    missing = [p for p in parts if not os.path.exists(p)]
+    if missing:
+        raise SystemExit(
+            "missing VO masters: " + ", ".join(os.path.basename(m) for m in missing)
+            + "\nRe-pull them from Drive (see docs/vo_manifest.json).")
+    lst = os.path.join(AUDIO, ".concat.txt")
+    with open(lst, "w") as fh:
+        for p in parts:
+            fh.write(f"file '{p}'\n")
+    print("rebuilding vo_full.wav from v00..v07 ...")
+    r = subprocess.run(
+        [FFMPEG, "-y", "-hide_banner", "-loglevel", "error",
+         "-f", "concat", "-safe", "0", "-i", lst, "-c", "copy", VO])
+    os.remove(lst)
+    if r.returncode != 0:
+        raise SystemExit("ffmpeg concat failed")
+    with wave.open(VO) as w:
+        print(f"  vo_full.wav: {w.getnframes()/w.getframerate():.2f}s")
+
+
+def ffmpeg_bin():
+    import shutil
+    exe = shutil.which("ffmpeg")
+    if exe:
+        return exe
+    import glob
+    c = glob.glob(os.path.expanduser(
+        "~/.venv/lib/python3.*/site-packages/imageio_ffmpeg/binaries/ffmpeg-*"))
+    if c:
+        return sorted(c)[-1]
+    raise SystemExit("no ffmpeg; install with: pip install imageio-ffmpeg")
+
+
+FFMPEG = ffmpeg_bin()
+
+
 def main():
     man = json.load(open(os.path.join(ROOT, "docs", "vo_manifest.json"), encoding="utf-8"))
     durs = [p["seconds"] for p in sorted(man["parts"], key=lambda r: r["part"])]
     total = sum(durs)
 
+    ensure_concat()
     if not os.path.exists(VO):
         raise SystemExit(f"missing {VO}")
     with wave.open(VO, "rb") as w:
