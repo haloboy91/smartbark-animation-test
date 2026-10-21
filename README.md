@@ -31,8 +31,8 @@ signature always stays.
 
 ## Pose status
 
-`20 / 34` poses cut out. **217** storyboard "ELLY ACTIVENESS" beats are routed to
-canonical poses (`6` unresolved → neutral thinking). Run for the current state:
+`28 / 33` poses cut out. **217** storyboard "ELLY ACTIVENESS" beats are routed to
+canonical poses, **0 unresolved**. Run for the current state:
 
 ```bash
 python3 tools/build_pose_manifest.py
@@ -102,3 +102,9 @@ Rejects a generated plate if it has no usable green plate, if the plate is a
 gradient rather than flat (which leaves a halo), if the navy sweater / pink
 scarf / white fur signature has drifted, or if the character is too small or
 cropped by the frame.
+
+It has already earned its keep: the first `elly_newspaper` attempt passed a
+visual once-over but failed the gate with navy 0.2% / pink 0.0% - the newspaper
+was covering Elly's whole body, hiding both her and her outfit. The plate is
+quarantined in `greenscreen/rejected/` and will be regenerated with the paper
+small and held to one side.

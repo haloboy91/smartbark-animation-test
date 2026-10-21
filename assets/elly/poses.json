@@ -21,8 +21,8 @@
     ],
     "counts": {
       "total_poses": 33,
-      "available": 19,
-      "planned": 14,
+      "available": 28,
+      "planned": 5,
       "storyboard_beats": 217,
       "unresolved_beats": 0
     }
@@ -456,7 +456,7 @@
     {
       "id": "welcome_wave",
       "file": "elly_welcome_wave",
-      "source": "planned",
+      "source": "generated",
       "tags": [
         "welcome",
         "waving",
@@ -470,12 +470,12 @@
         "intro"
       ],
       "note": "Episode open and the Smart Bark sign-off.",
-      "available": false
+      "available": true
     },
     {
       "id": "worried",
       "file": "elly_worried",
-      "source": "planned",
+      "source": "generated",
       "tags": [
         "worried",
         "worry",
@@ -488,12 +488,12 @@
         "worried thought"
       ],
       "note": "Crash and debt beats.",
-      "available": false
+      "available": true
     },
     {
       "id": "proud",
       "file": "elly_proud",
-      "source": "planned",
+      "source": "generated",
       "tags": [
         "proud",
         "proudly",
@@ -506,12 +506,12 @@
         "triumph"
       ],
       "note": "Livermore's win, Kennedy's foresight.",
-      "available": false
+      "available": true
     },
     {
       "id": "excited",
       "file": "elly_excited",
-      "source": "planned",
+      "source": "generated",
       "tags": [
         "excited",
         "energetic",
@@ -523,7 +523,7 @@
         "exaggerated smile"
       ],
       "note": "Roaring Twenties mania (Ch1).",
-      "available": false
+      "available": true
     },
     {
       "id": "sitting_quiet",
@@ -543,7 +543,7 @@
     {
       "id": "sad",
       "file": "elly_sad",
-      "source": "planned",
+      "source": "generated",
       "tags": [
         "sad",
         "crying",
@@ -555,7 +555,7 @@
         "downcast"
       ],
       "note": "Ch6 Livermore. Handled as solemn, never comic.",
-      "available": false
+      "available": true
     },
     {
       "id": "angry",
@@ -591,7 +591,7 @@
     {
       "id": "empathetic",
       "file": "elly_empathetic",
-      "source": "planned",
+      "source": "generated",
       "tags": [
         "empathetic",
         "sympathetic",
@@ -604,7 +604,7 @@
         "compassion"
       ],
       "note": "Breadline / unemployment. Must not read as comic.",
-      "available": false
+      "available": true
     },
     {
       "id": "newspaper",
@@ -619,13 +619,13 @@
         "press",
         "front page"
       ],
-      "note": "Ch2. No legible text in the art - headlines are edit overlays.",
+      "note": "Ch2. No legible text in the art - headlines are edit overlays. First attempt REJECTED by validate_poses.py: the paper covered her whole body (navy 0.2%, pink 0.0%), so Elly and her outfit were hidden. Regenerate with the paper small and held to one side.",
       "available": false
     },
     {
       "id": "coin",
       "file": "elly_coin",
-      "source": "planned",
+      "source": "generated",
       "tags": [
         "coin",
         "cash",
@@ -636,12 +636,12 @@
         "coins"
       ],
       "note": "Ch5 'When Cash Becomes Power' hero prop.",
-      "available": false
+      "available": true
     },
     {
       "id": "umbrella",
       "file": "elly_umbrella",
-      "source": "planned",
+      "source": "generated",
       "tags": [
         "umbrella",
         "storm",
@@ -651,12 +651,12 @@
         "rain"
       ],
       "note": "Ch7 'SURVIVE THE STORM' - capital protected as the crash passes.",
-      "available": false
+      "available": true
     },
     {
       "id": "newsboy_hat",
       "file": "elly_newsboy_hat",
-      "source": "planned",
+      "source": "generated",
       "tags": [
         "hat",
         "1920s",
@@ -666,7 +666,7 @@
         "flat cap"
       ],
       "note": "Client-approved era flourish: signature outfit + a 1920s cap.",
-      "available": false
+      "available": true
     },
     {
       "id": "ledger",
@@ -711,28 +711,7 @@
     "present_three": 2,
     "proud": 1
   },
-  "generation_queue": [
-    {
-      "pose": "worried",
-      "beats": 11
-    },
-    {
-      "pose": "sad",
-      "beats": 4
-    },
-    {
-      "pose": "excited",
-      "beats": 4
-    },
-    {
-      "pose": "welcome_wave",
-      "beats": 2
-    },
-    {
-      "pose": "proud",
-      "beats": 1
-    }
-  ],
+  "generation_queue": [],
   "beat_routing": {
     "alarmed_pawmouth": [
       "Elly alarmed, controlled.",
