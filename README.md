@@ -7,12 +7,14 @@ Got Rich During the Great Depression (1929)"**.
 
 ```
 assets/elly/
-  references/   11 original Family Guy Elly masters (Drive "Elly Behavior" folder)
+  references/   11 original Family Guy Elly masters (Drive "Elly Behavior")
+                GENERATION ANCHORS ONLY - never keyed, see "Why not the Drive photos"
   cutouts/      transparent PNG poses  <-- what the renderer loads
   greenscreen/  raw generator output (gitignored, intermediate)
   poses.json    the contract: pose table + storyboard beat routing
 tools/
   key_elly.py            plate -> transparent cutout (black AND green plates)
+  validate_poses.py      quality gate for generated plates, run before keying
   contact_sheet.py       contact sheet for visual review
   build_pose_manifest.py builds assets/elly/poses.json, fails on missing art
   fetch_kit.sh           how to re-fetch Kit v2 from Drive
@@ -60,22 +62,30 @@ plate colour: Kit v2's own keyer hard-codes `greenness > 80`, which is correct
 for its pure `(0,255,0)` knight plates but keys out almost nothing on the muted
 sage green (≈ RGB 90,160,105, greenness 55) that the image generator returns.
 
-## ⚠️ Open question: reference labels
+## Why not the Drive "Elly Behavior" photos?
 
-Kit v2's README says the Drive Elly filenames are **wrong**:
+The 11 original masters are kept **only as identity anchors for image
+generation** - never as cutouts. Their plate is pure black, and Elly's signature
+look is *thick black outlines*. Plate and outline sit at the same luminance, so
+any luminance key makes the outline itself semi-transparent: the character comes
+out ragged and broken.
 
-| filename says | README says it actually is |
-|---|---|
-| `03_Elly_Proud_PiggyBank` | worried |
-| `04_Elly_Worried` | proud (piggy bank) |
-| `06_Elly_Excited` | waving |
-| `07_Elly_Sitting_Quiet` | excited |
-| `08_Elly_Welcome_Waving` | sitting |
-| `10_Elly_Crying` | sleepy |
-| `12_Elly_Sleepy` | crying |
+Every pose shipped to the renderer is therefore generated on a flat chroma-green
+plate and keyed with `tools/key_elly.py`. The generator is anchored on our own
+clean-pose art (`elly_solemn_direct.png`), not on the Drive photos, which also
+keeps identity consistent across the set.
 
-These poses are therefore committed under neutral ids (`ref03`, `ref04`,
-`ref06`, `ref07`, `ref08`, `ref10`, `ref12`) and flagged `LABEL UNVERIFIED` in
-`poses.json`. **Please confirm against `docs/elly_pose_contact_sheet.png`** and
-the ids will be renamed to semantic ones. `09_Elly_Thinking` is confirmed — it's
-the master supplied for EP015.
+Consequence: Kit v2's note that the Drive filenames are mismatched
+(`03_Proud` is actually worried, `10_Crying` actually sleepy, ...) no longer
+matters - those files are never used as poses.
+
+## Quality gate
+
+```bash
+python3 tools/validate_poses.py --src assets/elly/greenscreen --strict
+```
+
+Rejects a generated plate if it has no usable green plate, if the plate is a
+gradient rather than flat (which leaves a halo), if the navy sweater / pink
+scarf / white fur signature has drifted, or if the character is too small or
+cropped by the frame.
