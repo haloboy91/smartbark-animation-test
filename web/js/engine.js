@@ -1,4 +1,4 @@
-import { PARTS, buildWords } from "./script.js";
+import { PARTS, buildWords, partDuration, TIMING_SOURCE } from "./script.js";
 import { SHOTS } from "./timeline.js";
 import { POSES } from "./poses.js";
 import { paintFrame, camera, ellyPose, W, H } from "./compose.js";
@@ -15,8 +15,11 @@ const usePlates = $("usePlates");
 // concatenates WAVs in precise order." So each part owns a local timeline and
 // they are laid end to end to form the global one.
 const parts = PARTS.map((p, i) => {
-  const w = buildWords(p);
-  return { ...p, index: i, words: w, dur: w[w.length - 1].t1 + 0.9 };
+  const w = buildWords(p, i);
+  // Real length from the VO master; the +0.9 tail is only the synthetic
+  // fallback so the final word is not clipped when no manifest exists.
+  return { ...p, index: i, words: w,
+           dur: partDuration(i, w[w.length - 1].t1 + 0.9) };
 });
 let acc = 0;
 for (const p of parts) { p.offset = acc; acc += p.dur; }
@@ -75,9 +78,14 @@ shots.forEach((s, i) => {
 const unmatched = shots.filter((s) => !s.cueMatched);
 const perPart = {};
 shots.forEach((s) => { perPart[s.pi] = (perPart[s.pi] || 0) + 1; });
+const timingBlurb =
+  TIMING_SOURCE === "real-part-durations"
+    ? `part durations <b>real</b> (from the eight VO masters' byte sizes); ` +
+      `word timings inside each part still proportional until ASR runs`
+    : `<b>synthetic timings</b> — no VO manifest; replaced by asr/align words.json`;
 $("timingNote").innerHTML =
   `${parts.length} parts · ${shots.length} shots · word-cue aligned ` +
-  `(<b>synthetic timings</b> — no VO WAVs in repo; replaced by asr/align words.json)` +
+  `(${timingBlurb})` +
   ` · ${unmatched.length
       ? `<b>${unmatched.length} cue(s) unmatched</b>`
       : "all cues matched"}` +

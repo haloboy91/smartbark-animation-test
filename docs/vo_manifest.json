@@ -1,0 +1,24 @@
+{
+  "_comment": "EP015 voice-over masters. Sizes are authoritative Drive file sizes in bytes; durations are derived from them, not measured. See _derivation.",
+  "_source": "Google Drive folder 1Ecc0CTJ0c4ZUAyofuESJZ6564XvwhK4t",
+  "_derivation": "WAVs are 24000 Hz / 16-bit / mono = 48000 bytes per second. Verified two ways against the brief: Part 0 computes to 106.44s against the brief's stated 01:46.44 (exact), and Part 7 to 176.76s against its stated ~02:56. No other sample rate lands within 10% of both. Header overhead is <0.01s and is ignored.",
+  "_status": "Part durations are REAL. Within-part word timings are still synthetic until ASR runs - see README 'Audio timing'.",
+  "parts": [
+    { "part": 0, "name": "Part 0 The Crash That Made Some Men Rich.wav",
+      "file_id": "1OhK1g2ev2LYV7274CBVK49XOIZfCrCNT", "bytes": 5109164, "seconds": 106.44 },
+    { "part": 1, "name": "Chapter One When Everyone Thought They Were a Genius.wav",
+      "file_id": "1I35I2a2Ykt9dBoK4CGAggwa9-q2LbfaO", "bytes": 6735404, "seconds": 140.32 },
+    { "part": 2, "name": "Chapter Two The Party Ends.wav",
+      "file_id": "1EoavE4rCn_8nEEToo32inpkOBjaLUkZ1", "bytes": 5049644, "seconds": 105.20 },
+    { "part": 3, "name": "Chapter Three The Man Who Bet Against America.wav",
+      "file_id": "1oPK4CvYDHWvS8qfvfiV7buXeY1MVQRA0", "bytes": 8820524, "seconds": 183.76 },
+    { "part": 4, "name": "Chapter Four The Man Who Left the Party Early.wav",
+      "file_id": "1mjbn-wgNsda4Z_RVUO1cbwpkaxeXvLBG", "bytes": 6589484, "seconds": 137.28 },
+    { "part": 5, "name": "Chapter Five When Cash Becomes Power.wav",
+      "file_id": "1qrdYpIZfGejJPFgajyv0TZkWz1H2CAOk", "bytes": 6702764, "seconds": 139.64 },
+    { "part": 6, "name": "Chapter Six The Man Who Couldn't Keep His Fortune.wav",
+      "file_id": "1TcFmVxvX5WFa_Brf26qEZdbiETUVgafr", "bytes": 5857964, "seconds": 122.04 },
+    { "part": 7, "name": "Chapter Seven The Real Secret.wav",
+      "file_id": "1_AcmkpH94LdKytWUN21Y0-f3-ZhFwQnH", "bytes": 8484524, "seconds": 176.76 }
+  ]
+}

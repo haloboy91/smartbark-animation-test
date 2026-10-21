@@ -14,6 +14,7 @@ import re
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "docs", "script.txt")
 BRIEF = os.path.join(ROOT, "docs", "EP015_storyboard_brief.txt")
+VO_MANIFEST = os.path.join(ROOT, "docs", "vo_manifest.json")
 OUT = os.path.join(ROOT, "web", "js", "script.js")
 
 FALLBACK_CARDS = [
@@ -40,12 +41,29 @@ def cards_from_brief() -> list[str]:
     return found[:8] if len(found) >= 8 else FALLBACK_CARDS
 
 
+def real_durations() -> list[float]:
+    """Per-part seconds from the VO masters, or [] if the manifest is absent.
+
+    Durations are derived from authoritative Drive byte sizes at the verified
+    24 kHz / 16-bit / mono rate. They are real, not estimated - see the
+    manifest's own _derivation note for how that was pinned down.
+    """
+    if not os.path.exists(VO_MANIFEST):
+        return []
+    man = json.load(open(VO_MANIFEST, encoding="utf-8"))
+    rows = sorted(man["parts"], key=lambda r: r["part"])
+    if len(rows) != 8:
+        raise SystemExit(f"vo_manifest.json must list 8 parts, found {len(rows)}")
+    return [round(float(r["seconds"]), 3) for r in rows]
+
+
 def main() -> None:
     raw = open(SRC, encoding="utf-8").read()
     blocks = [b.strip() for b in raw.split("###")]
     title = blocks[0].strip()
     parts = [b for b in blocks[1:] if b]
     cards = cards_from_brief()
+    durs = real_durations()
 
     if len(parts) != 8:
         raise SystemExit(f"expected 8 parts in script.txt, found {len(parts)}")
@@ -56,14 +74,31 @@ def main() -> None:
         "//",
         "// EP015 narration, verbatim from the approved script.",
         "//",
-        "// TIMING NOTE: the real episode times cuts from word-level ASR alignment",
-        "// of the eight VO WAVs (kit v2: asr.py -> align.py -> cues.py). Those WAVs",
-        "// are not in this repo, so the engine derives SYNTHETIC word timings from a",
-        "// speaking rate. Every timing here is provisional and is replaced wholesale",
-        "// by real words.json when the VO lands.",
+        "// TIMING NOTE - read this before trusting any number in this file.",
+        "//",
+        "// PART DURATIONS ARE REAL. REAL_DURATIONS below is derived from the",
+        "// authoritative byte sizes of the eight VO masters in Drive, at the",
+        "// verified 24 kHz / 16-bit / mono rate. Part boundaries therefore land",
+        "// exactly where concatenating v00..v07.wav puts them. Only the WAVs",
+        "// themselves are outside the repo; the byte sizes are recorded in",
+        "// docs/vo_manifest.json.",
+        "//",
+        "// WORD TIMINGS INSIDE A PART ARE NOT REAL YET. They are synthetic and",
+        "// proportional: the part's words are spread across its true duration.",
+        "// That gets every cut into the right part and roughly the right place,",
+        "// but not word-accurate. Real timing needs ASR (kit v2 asr.py ->",
+        "// align.py -> words.json), which replaces buildWords wholesale with no",
+        "// change to timeline.js.",
         "",
-        "// tuned so synthetic part lengths land near the storyboard's WAV durations",
+        "// tuned so synthetic word spread is plausible within a part",
         "export const WPM = 155;",
+        "",
+        f"export const REAL_DURATIONS = {json.dumps(durs)};",
+        "export const TIMING_SOURCE = "
+        + json.dumps(
+            "real-part-durations" if durs else "synthetic-estimate"
+        )
+        + ";",
         "",
         f"export const TITLE = {json.dumps(title)};",
         "",
@@ -80,18 +115,41 @@ def main() -> None:
 
     out.append("""
 // Build word timings. The real pipeline replaces this with words.json from align.py.
-export function buildWords(part, wpm = WPM) {
+//
+// PART DURATIONS ARE REAL: the part's words are normalised onto
+// REAL_DURATIONS[partIndex], taken from the VO master's byte size. The
+// distribution within the part remains synthetic and proportional - longer
+// words and sentence ends get more time, but nothing here knows where the
+// narrator actually paused. That still needs ASR.
+export function buildWords(part, partIndex = 0, wpm = WPM) {
   const tokens = part.text.trim().split(/\\s+/);
   const secPerWord = 60 / wpm;
-  let t = 0;
-  return tokens.map((w) => {
+  const gap = secPerWord * 0.12;
+  const raw = tokens.map((w) => {
     let dur = secPerWord * (0.6 + 0.4 * Math.min(w.length / 5, 1.6));
     if (/[.!?]$/.test(w)) dur += 0.34;
     else if (/[,;:]$/.test(w)) dur += 0.16;
-    const word = { w, t0: t, t1: t + dur };
-    t += dur + secPerWord * 0.12;
+    return { w, dur };
+  });
+
+  const rawTotal = raw.reduce((a, r) => a + r.dur, 0)
+    + gap * Math.max(raw.length - 1, 0);
+  const target = REAL_DURATIONS[partIndex];
+  const k = (typeof target === "number" && rawTotal > 0) ? target / rawTotal : 1;
+
+  let acc = 0;
+  return raw.map((r, i) => {
+    const d = r.dur * k;
+    const word = { w: r.w, t0: acc, t1: acc + d };
+    acc += d + (i < raw.length - 1 ? gap * k : 0);
     return word;
   });
+}
+
+// Exact length of a part in seconds, straight from the VO master.
+export function partDuration(partIndex, fallback) {
+  const d = REAL_DURATIONS[partIndex];
+  return typeof d === "number" ? d : fallback;
 }""")
 
     with open(OUT, "w", encoding="utf-8") as fh:
