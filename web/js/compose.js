@@ -85,6 +85,22 @@ export function ellyPose(shot, p) {
   return cur;
 }
 
+/**
+ * Elly's composited height in pixels.
+ *
+ * Exported so the audit script measures the real value instead of re-deriving
+ * the formula - a re-derivation would drift the moment this changes.
+ *
+ * The camera affects her only partially (45% of its scale) so she stays
+ * readable and uncropped, then the result is hard-clamped to the brief's
+ * 35-50% of frame height. Without the clamp the camera term alone pushed her
+ * to 55.7% on zoom-in shots, which reads as distortion.
+ */
+export function ellyHeight(e, cam, breathe = 1) {
+  const raw = e.h * breathe * (1 + (cam.scale - 1) * 0.45);
+  return Math.min(H * 0.50, Math.max(H * 0.35, raw));
+}
+
 function wrapText(ctx, text, maxWidth) {
   const words = text.split(/\s+/);
   const lines = [];
@@ -140,7 +156,8 @@ export function paintFrame(ctx, t, state) {
 
     // Camera affects her only partially, so she stays readable and uncropped.
     const cx = cam.dx * 0.35 + (e.x - W / 2) * (1 + (cam.scale - 1) * 0.35) + W / 2;
-    const h = e.h * breathe * (1 + (cam.scale - 1) * 0.45);
+    // See ellyHeight: partial camera influence, clamped to 35-50% of frame.
+    const h = ellyHeight(e, cam, breathe);
     const w = (img.naturalWidth / img.naturalHeight) * h;
     const top = e.y + bob + rise - h;
 

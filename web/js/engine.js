@@ -2,7 +2,7 @@ import { PARTS, buildWords, partDuration, TIMING_SOURCE } from "./script.js";
 import { SHOTS } from "./timeline.js";
 import { POSES } from "./poses.js";
 import { paintFrame, camera, ellyPose, W, H } from "./compose.js";
-import { findPhrase } from "./cues.js";
+import { buildEpisode } from "./episode.js";
 
 const $ = (id) => document.getElementById(id);
 const stage = $("stage");
@@ -12,64 +12,10 @@ const ctx = frame.getContext("2d");
 const usePlates = $("usePlates");
 
 // ------------------------------------------------------------------ timing
-// The brief: "8 independent WAV files; each part begins at LOCAL 0:00. Agent
-// concatenates WAVs in precise order." So each part owns a local timeline and
-// they are laid end to end to form the global one.
-const parts = PARTS.map((p, i) => {
-  const w = buildWords(p, i);
-  // Real length from the VO master; the +0.9 tail is only the synthetic
-  // fallback so the final word is not clipped when no manifest exists.
-  return { ...p, index: i, words: w,
-           dur: partDuration(i, w[w.length - 1].t1 + 0.9) };
+// Shared with the MP4 renderer and the smoke test - see episode.js.
+const { parts, words, shots, TOTAL, activeShot, unmatched } = buildEpisode({
+  onWarning: (m) => console.warn(m),
 });
-let acc = 0;
-for (const p of parts) { p.offset = acc; acc += p.dur; }
-const TOTAL = acc;
-
-const words = parts.flatMap((p) =>
-  p.words.map((w) => ({ ...w, t0: w.t0 + p.offset, t1: w.t1 + p.offset })));
-
-// ---------------------------------------------------------------- alignment
-// findPhrase lives in cues.js so tools/smoke_test.mjs can test the real matcher
-// instead of a lookalike. See the note at the top of that file.
-
-const shots = SHOTS.map((s) => {
-  const pi = s.part == null ? 0 : s.part;
-  return { ...s, pi, wi: findPhrase(parts[pi].words, s.cue) };
-});
-
-// Assign in story order and force monotonicity: a cut landing before the
-// previous one is worse than an approximated one, so an unmatched cue is placed
-// at the end of the preceding shot instead of being allowed to jump backwards.
-let cursor = 0;
-shots.forEach((s) => {
-  if (s.wi < 0) console.warn(`cue not found for p${s.pi}/${s.id}: "${s.cue}"`);
-  const found = s.wi >= 0 ? parts[s.pi].offset + parts[s.pi].words[s.wi].t0 : null;
-  s.cueMatched = found !== null;
-  s.t0 = found !== null ? Math.max(found, cursor) : cursor;
-  cursor = s.t0;
-});
-shots.forEach((s, i) => {
-  const nxt = shots[i + 1];
-  s.t1 = nxt ? nxt.t0 : TOTAL;
-  if (s.t1 <= s.t0) s.t1 = s.t0 + 1;
-});
-
-const unmatched = shots.filter((s) => !s.cueMatched);
-const perPart = {};
-shots.forEach((s) => { perPart[s.pi] = (perPart[s.pi] || 0) + 1; });
-const timingBlurb =
-  TIMING_SOURCE === "real-part-durations"
-    ? `part durations <b>real</b> (from the eight VO masters' byte sizes); ` +
-      `word timings inside each part still proportional until ASR runs`
-    : `<b>synthetic timings</b> — no VO manifest; replaced by asr/align words.json`;
-$("timingNote").innerHTML =
-  `${parts.length} parts · ${shots.length} shots · word-cue aligned ` +
-  `(${timingBlurb})` +
-  ` · ${unmatched.length
-      ? `<b>${unmatched.length} cue(s) unmatched</b>`
-      : "all cues matched"}` +
-  ` · ${(TOTAL / 60).toFixed(1)} min · shots/part: ${Object.values(perPart).join("/")}`;
 
 // ----------------------------------------------------------------- assets
 function preload(map, key, src) {
@@ -85,11 +31,6 @@ shots.forEach((s) => { if (s.plate) preload(plates, s.plate, s.plate); });
 shots.forEach((s) => s.elly.forEach((e) => preload(poses, e.pose, POSES[e.pose])));
 // make sure every pose in the manifest is warm, not just the ones in shots
 Object.entries(POSES).forEach(([k, v]) => preload(poses, k, v));
-
-function activeShot(t) {
-  for (let i = shots.length - 1; i >= 0; i--) if (t >= shots[i].t0) return i;
-  return 0;
-}
 
 const state = {
   shots, parts, words, plates, poses,

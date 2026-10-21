@@ -1,0 +1,15 @@
+{
+  "name": "smartbark-engine",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Smart Bark production engine - headless MP4 renderer and browser preview",
+  "scripts": {
+    "smoke": "node tools/smoke_test.mjs",
+    "render": "node tools/render_video.mjs",
+    "preview": "node tools/render_video.mjs --from 0 --to 30 --out out/preview.mp4"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.80"
+  },
+  "type": "module"
+}

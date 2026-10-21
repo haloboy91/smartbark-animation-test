@@ -29,3 +29,8 @@ web/js/poses.js
 
 web/js/timeline.js
 web/js/script.js
+
+# --- build deps / render output ---
+node_modules/
+package-lock.json
+out/
