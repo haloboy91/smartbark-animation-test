@@ -14,11 +14,7 @@
 
   <div id="stageWrap">
     <div id="stage">
-      <canvas id="scene" width="1920" height="1080"></canvas>
-      <img id="elly" alt="">
-      <div id="caption"></div>
-      <div id="card"></div>
-      <div id="subtitle"></div>
+      <canvas id="frame" width="1920" height="1080"></canvas>
     </div>
   </div>
 
@@ -28,6 +24,8 @@
     <input id="scrub" type="range" min="0" max="1000" value="0">
     <span id="clock">0:00.00</span>
     <label class="toggle"><input type="checkbox" id="usePlates" checked> 1929 plates</label>
+    <button id="proof">Proof sheet</button>
+    <span class="note" id="proofStatus"></span>
   </div>
 
   <div id="hud">

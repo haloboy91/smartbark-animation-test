@@ -44,76 +44,15 @@ h1 { font-size: 17px; margin: 0; font-weight: 650; letter-spacing: .2px; }
   border-radius: 6px;
 }
 
-/* The scene canvas carries the camera move (zoom / pan / shake). */
-#scene {
+/* One canvas carries the whole composite: scene under the camera move, Elly as
+   a separate layer, and all text overlays. The live preview and the proof sheet
+   both go through compose.js, so they cannot disagree. */
+#frame {
   position: absolute;
   inset: 0;
   width: 1920px;
   height: 1080px;
-  transform-origin: 50% 50%;
-  will-change: transform;
 }
-
-/* Elly is a separate composited layer: she must never be baked into a plate,
-   and she must never be stretched or cropped. */
-#elly {
-  position: absolute;
-  transform-origin: 50% 100%;
-  pointer-events: none;
-  will-change: transform, opacity;
-}
-
-/* Captions / cards / subtitles are EDIT OVERLAYS, never baked into art. */
-#caption {
-  position: absolute;
-  left: 0; right: 0;
-  top: 96px;
-  text-align: center;
-  font-family: "Luckiest Guy", "Arial Black", Impact, sans-serif;
-  font-size: 62px;
-  letter-spacing: 1px;
-  color: #fff;
-  text-shadow: 0 4px 0 rgba(0,0,0,.55), 0 0 26px rgba(0,0,0,.45);
-  opacity: 0;
-  transition: opacity .18s linear;
-  padding: 0 120px;
-}
-
-#card {
-  position: absolute;
-  left: 50%;
-  top: 46%;
-  width: 1500px;
-  margin-left: -750px;
-  text-align: center;
-  font-family: "Luckiest Guy", "Arial Black", Impact, sans-serif;
-  font-size: 78px;
-  line-height: 1.14;
-  color: #ffe9c2;
-  text-shadow: 0 5px 0 rgba(0,0,0,.5), 0 0 40px rgba(0,0,0,.5);
-  opacity: 0;
-  transform: scale(.94);
-  transition: opacity .26s linear, transform .26s ease-out;
-}
-#card.on { opacity: 1; transform: scale(1); }
-
-#subtitle {
-  position: absolute;
-  left: 50%;
-  bottom: 104px;
-  width: 1640px;
-  margin-left: -820px;
-  text-align: center;
-  font-family: "Lato", ui-sans-serif, system-ui, sans-serif;
-  font-weight: 800;
-  font-size: 54px;
-  line-height: 1.26;
-  color: #fff;
-  text-shadow: 0 3px 10px rgba(0,0,0,.9), 0 0 3px rgba(0,0,0,.95);
-}
-
-#subtitle .w { opacity: .55; transition: opacity .08s linear; }
-#subtitle .w.on { opacity: 1; color: #ffd98a; }
 
 /* --- controls ---------------------------------------------------------- */
 #controls { display: flex; align-items: center; gap: 10px; margin: 16px 0 10px; justify-content: center; }

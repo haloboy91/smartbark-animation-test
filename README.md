@@ -10,6 +10,29 @@ assets/elly/
   cutouts/      transparent PNG poses  <-- what the renderer loads
   greenscreen/  raw generator output (gitignored, intermediate)
   poses.json    the contract: pose table + storyboard beat routing
+## The rig (live preview)
+
+Everything composites through one function, `paintFrame()` in
+`web/js/compose.js`. The live preview and the proof-sheet export both call it,
+so a proof frame is pixel-identical to what you see on screen - the brief asks
+for proof frames at every chapter opening and dramatic change, and they are only
+useful if they show the real composite (camera + Elly + overlays).
+
+The **Proof sheet** button renders one frame per shot and downloads it as a PNG,
+labelled and tinted so shots still on procedural fallback are obvious at a
+glance. That is the review artefact for framing problems, captions colliding
+with Elly, and plates that do not leave the right third clear.
+
+```
+python3 tools/build_web_assets.py   # poses.json -> web/js/poses.js
+python3 tools/build_script_js.py    # docs/script.txt -> web/js/script.js
+python3 tools/build_timeline.py     # storyboard -> web/js/timeline.js
+python3 -m http.server 8000 --bind 0.0.0.0
+```
+
+## Tools
+
+```
 tools/
   key_elly.py            plate -> transparent cutout (black AND green plates)
   validate_poses.py      quality gate for generated plates, run before keying
