@@ -1,72 +1,117 @@
 #!/usr/bin/env python3
-"""Lay every Elly cutout out on a checkerboard contact sheet for review.
+"""Build a labelled contact sheet for one part's background plates.
 
-Composited over a checkerboard so keying mistakes (green/black fringes, half
-keyed plates) are obvious, plus a second row-band over a 1929 sepia swatch so
-you can see how she sits against the episode's actual palette.
+The proof sheet in web/js/proofsheet.js renders through the compositor, so it
+needs a browser. This is the flat alternative: it grids the raw plates straight
+off disk so the art can be reviewed without running anything.
+
+    python tools/contact_sheet.py 1            # Chapter 1 -> docs/sheets/part1.png
+    python tools/contact_sheet.py 0 --cols 4
 """
-from __future__ import annotations
-
 import argparse
-import glob
-import os
+import pathlib
+import re
+import sys
 
-import numpy as np
 from PIL import Image, ImageDraw
 
-CELL = 300
-PAD = 14
-LABEL = 26
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+SCENES = ROOT / "assets" / "scenes"
+OUTDIR = ROOT / "docs" / "sheets"
+
+# Part 0 predates the pN_sNN convention; its plates are named sNN_<slug>.
+CAPTIONS = {}
 
 
-def checker(w: int, h: int, sq: int = 16) -> Image.Image:
-    yy, xx = np.mgrid[0:h, 0:w]
-    t = ((xx // sq) + (yy // sq)) % 2
-    a = np.where(t == 0, 245, 205).astype(np.uint8)
-    return Image.fromarray(np.dstack([a, a, a]), "RGB")
+def load_captions():
+    """Pull the shot captions out of the storyboard brief, keyed by (part, id)."""
+    brief = ROOT / "docs" / "EP015_storyboard_brief.txt"
+    if not brief.exists():
+        return
+    part = -1
+    for line in brief.read_text(encoding="utf-8").split("\n"):
+        m = re.match(r"^CHAPTER (\d+):", line)
+        if m:
+            part = int(m.group(1))
+            continue
+        m = re.match(r"^\[S(\d+)\]", line)
+        if m and part >= 0:
+            CAPTIONS[(part, int(m.group(1)))] = ""
+            cur = (part, int(m.group(1)))
+            continue
+        m = re.match(r'^CAPTION / EDIT LABEL:\s*"?(.+?)"?\s*$', line.strip())
+        if m and part >= 0 and CAPTIONS:
+            key = max(CAPTIONS)
+            if key[0] == part:
+                CAPTIONS[key] = m.group(1).strip()
+        _ = cur if False else None
 
 
-def main() -> None:
+def plates_for(part):
+    """Return [(shot_id, path)] for a part, preferring jpg (the shipped format)."""
+    found = {}
+    for p in sorted(SCENES.iterdir()):
+        if p.suffix.lower() not in {".png", ".jpg", ".jpeg"}:
+            continue
+        m = re.match(r"^p(\d+)_s(\d+)\.", p.name)
+        if m and int(m.group(1)) == part:
+            sid = int(m.group(2))
+            # jpg wins: it is what the compositor actually loads.
+            if sid not in found or p.suffix.lower() in {".jpg", ".jpeg"}:
+                found[sid] = p
+        elif part == 0 and not m:
+            m0 = re.match(r"^s(\d+)_", p.name)
+            if m0:
+                sid = int(m0.group(1))
+                if sid not in found or p.suffix.lower() in {".jpg", ".jpeg"}:
+                    found[sid] = p
+    return sorted(found.items())
+
+
+def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--src", default="assets/elly/cutouts")
-    ap.add_argument("--out", default="docs/elly_pose_contact_sheet.png")
+    ap.add_argument("part", type=int)
     ap.add_argument("--cols", type=int, default=6)
+    ap.add_argument("--cell", type=int, default=320, help="cell width in px")
     args = ap.parse_args()
 
-    files = sorted(glob.glob(os.path.join(args.src, "*.png")))
-    if not files:
-        raise SystemExit(f"no cutouts in {args.src}")
+    load_captions()
+    items = plates_for(args.part)
+    if not items:
+        sys.exit(f"no plates found for part {args.part}")
 
+    cw = args.cell
+    ch = int(cw * 9 / 16)
+    label = 26
+    pad = 14
     cols = args.cols
-    rows = (len(files) + cols - 1) // cols
-    W = cols * (CELL + PAD) + PAD
-    H = rows * (CELL + LABEL + PAD) + PAD
+    rows = (len(items) + cols - 1) // cols
 
-    sheet = Image.new("RGB", (W, H), (28, 28, 32))
-    board = checker(W, H)
-    sheet.paste(board, (0, 0))
+    sheet = Image.new(
+        "RGB",
+        (cols * (cw + pad) + pad, rows * (ch + label + pad) + pad),
+        (22, 22, 26),
+    )
     d = ImageDraw.Draw(sheet)
 
-    for i, f in enumerate(files):
-        im = Image.open(f).convert("RGBA")
-        name = os.path.splitext(os.path.basename(f))[0]
-        cx = PAD + (i % cols) * (CELL + PAD)
-        cy = PAD + (i // cols) * (CELL + LABEL + PAD)
+    for i, (sid, path) in enumerate(items):
+        r, c = divmod(i, cols)
+        x = pad + c * (cw + pad)
+        y = pad + r * (ch + label + pad)
+        im = Image.open(path).convert("RGB").resize((cw, ch), Image.LANCZOS)
+        sheet.paste(im, (x, y))
+        d.rectangle([x, y, x + cw, y + ch], outline=(70, 70, 78), width=1)
+        cap = CAPTIONS.get((args.part, sid), "")
+        text = f"S{sid:02d}" + (f"  {cap}" if cap else "")
+        if len(text) > 34:
+            text = text[:33] + "\u2026"
+        d.text((x + 4, y + ch + 6), text, fill=(214, 214, 222))
 
-        # fit inside the cell, preserving aspect
-        s = min(CELL / im.width, (CELL - 10) / im.height)
-        im = im.resize((max(1, int(im.width * s)), max(1, int(im.height * s))), Image.LANCZOS)
-        ox = cx + (CELL - im.width) // 2
-        oy = cy + (CELL - im.height)
-        sheet.paste(im, (ox, oy), im)
-
-        d.rectangle([cx, cy, cx + CELL, cy + CELL + LABEL], outline=(70, 70, 78), width=1)
-        label = name if len(name) <= 26 else name[:25] + "\u2026"
-        d.text((cx + 6, cy + CELL + 6), label, fill=(235, 235, 240))
-
-    os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
-    sheet.save(args.out)
-    print(f"{len(files)} poses -> {args.out} ({W}x{H})")
+    OUTDIR.mkdir(parents=True, exist_ok=True)
+    out = OUTDIR / f"part{args.part}.png"
+    sheet.save(out, optimize=True)
+    kb = out.stat().st_size / 1024
+    print(f"{len(items)} plates -> {out.relative_to(ROOT)}  ({sheet.width}x{sheet.height}, {kb:.0f} KB)")
 
 
 if __name__ == "__main__":
