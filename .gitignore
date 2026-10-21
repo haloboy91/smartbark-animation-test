@@ -23,3 +23,6 @@ final_audio.wav
 
 # --- web rig ---------------------------------------------------------------
 web/js/poses.js
+
+web/js/timeline.js
+web/js/script.js

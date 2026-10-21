@@ -16,42 +16,80 @@ const cardEl = $("card");
 const subEl = $("subtitle");
 const usePlates = $("usePlates");
 
-const part = PARTS[0];
-const words = buildWords(part);
-const TOTAL = words[words.length - 1].t1 + 1.2;
+// The brief: "8 independent WAV files; each part begins at LOCAL 0:00. Agent
+// concatenates WAVs in precise order." So each part gets its own local timeline
+// and they are laid end to end to make the global one.
+const parts = PARTS.map((p, i) => {
+  const w = buildWords(p);
+  return { ...p, index: i, words: w, dur: w[w.length - 1].t1 + 0.9 };
+});
+let acc = 0;
+for (const p of parts) { p.offset = acc; acc += p.dur; }
+const TOTAL = acc;
+
+// Flattened word list for subtitles, shifted into global time.
+const words = parts.flatMap((p) =>
+  p.words.map((w) => ({ ...w, t0: w.t0 + p.offset, t1: w.t1 + p.offset })));
 
 // ---------------------------------------------------------------- alignment
 // Locate a cue phrase in the word stream. This is the browser equivalent of the
 // kit's cues.py T(v, "phrase"): shots are anchored to spoken words, never to
 // the storyboard's evenly-allocated placeholder windows.
-const norm = (s) => s.toLowerCase().replace(/[^a-z0-9'\s]/g, "").trim();
+// Fold curly punctuation to ASCII: storyboard cues use ’ while the script uses '.
+const norm = (s) => s
+  .replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"')
+  .toLowerCase().replace(/[^a-z0-9'\s]/g, "").trim();
 
-function findPhrase(phrase) {
+// Storyboard cues are excerpts and often elide across sentences, so the full
+// phrase may not exist contiguously in the script. Try the whole phrase, then
+// progressively shorter prefixes down to 3 words.
+function findPhrase(partIndex, phrase) {
+  const toks = parts[partIndex].words.map((x) => norm(x.w));
   const want = norm(phrase).split(/\s+/).filter(Boolean);
-  const toks = words.map((x) => norm(x.w));
-  for (let i = 0; i + want.length <= toks.length; i++) {
-    let ok = true;
-    for (let j = 0; j < want.length; j++) {
-      if (!toks[i + j].startsWith(want[j])) { ok = false; break; }
+  if (!want.length) return -1;
+  const floor = Math.min(3, want.length); // short cues like "October 1929." are 2 words
+  for (let len = want.length; len >= floor; len--) {
+    const sub = want.slice(0, len);
+    for (let i = 0; i + sub.length <= toks.length; i++) {
+      let ok = true;
+      for (let j = 0; j < sub.length; j++) {
+        if (!toks[i + j].startsWith(sub[j])) { ok = false; break; }
+      }
+      if (ok) return i;
     }
-    if (ok) return i;
   }
   return -1;
 }
 
-const shots = SHOTS.map((s) => ({ ...s, wi: findPhrase(s.cue) }));
+const shots = SHOTS.map((s) => {
+  const pi = s.part == null ? 0 : s.part;
+  return { ...s, pi, wi: findPhrase(pi, s.cue) };
+});
+// Assign times in story order and force monotonicity. A cut that lands before
+// the previous one is worse than an approximated one, so an unmatched cue is
+// placed at the end of the preceding shot rather than allowed to jump back.
+let cursor = 0;
 shots.forEach((s, i) => {
-  if (s.wi < 0) console.warn(`cue not found for ${s.id}: "${s.cue}"`);
-  s.t0 = s.wi >= 0 ? words[s.wi].t0 : 0;
+  if (s.wi < 0) console.warn(`cue not found for p${s.pi}/${s.id}: "${s.cue}"`);
+  const found = s.wi >= 0 ? parts[s.pi].offset + parts[s.pi].words[s.wi].t0 : null;
+  s.cueMatched = found !== null;
+  s.t0 = found !== null ? Math.max(found, cursor) : cursor;
+  cursor = s.t0;
+});
+shots.forEach((s, i) => {
   const nxt = shots[i + 1];
-  s.t1 = nxt && nxt.wi >= 0 ? nxt.t0 : TOTAL;
+  s.t1 = nxt ? nxt.t0 : TOTAL;
+  if (s.t1 <= s.t0) s.t1 = s.t0 + 1; // never leave a zero-length shot
 });
 
-const warnings = shots.filter((s) => s.wi < 0).length;
+const warnings = shots.filter((s) => s.wi < 0);
+const perPart = {};
+shots.forEach((s) => { perPart[s.pi] = (perPart[s.pi] || 0) + 1; });
 $("timingNote").innerHTML =
-  `Part 0 · ${shots.length} shots · word-cue aligned ` +
+  `${parts.length} parts · ${shots.length} shots · word-cue aligned ` +
   `(<b>synthetic timings</b> — no VO WAVs in repo; replaced by asr/align words.json)` +
-  (warnings ? ` · <b>${warnings} cue(s) unmatched</b>` : "");
+  ` · ${warnings.length ? `<b>${warnings.length} cue(s) unmatched</b>` : "all cues matched"}` +
+  ` · parts: ${Object.values(perPart).join("/")}`;
 
 // ------------------------------------------------------------------ easing
 const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
@@ -234,13 +272,14 @@ function render(now) {
   captionEl.textContent = cOn ? shot.caption : "";
   captionEl.style.opacity = cOn ? 1 : 0;
 
-  // chapter card lives in the first 2.6s of the part, as an overlay
-  cardEl.textContent = part.card;
-  cardEl.classList.toggle("on", t < 2.6);
+  // chapter card: first 2.6s of each part, local to that part
+  const curPart = parts.find((p) => t >= p.offset && t < p.offset + p.dur) || parts[parts.length - 1];
+  cardEl.textContent = curPart.card;
+  cardEl.classList.toggle("on", t - curPart.offset < 2.6);
 
   $("clock").textContent = fmt(t);
   $("scrub").value = Math.round((t / TOTAL) * 1000);
-  $("hShot").textContent = `${shot.id}  ${shot.t0.toFixed(2)}–${shot.t1.toFixed(2)}s`;
+  $("hShot").textContent = `p${shot.pi} ${shot.id}  ${shot.t0.toFixed(2)}–${shot.t1.toFixed(2)}s`;
   $("hCam").textContent = shot.camera ? shot.camera.type : "static";
   $("hPose").textContent = ellyPose(shot, p).pose;
   $("hBeat").textContent = shot.beat;
@@ -278,7 +317,7 @@ $("scrub").oninput = (e) => { t = (+e.target.value / 1000) * TOTAL; playing = fa
 // --------------------------------------------------------------- shot list
 $("shotlist").innerHTML = shots.map((s, i) => `
   <div class="shot" data-i="${i}">
-    <div class="id">${s.id} · ${s.camera ? s.camera.type : "static"}</div>
+    <div class="id">p${s.pi ?? 0} · ${s.id} · ${s.camera ? s.camera.type : "static"}</div>
     <div class="meta">${s.t0.toFixed(1)}s · ${s.scene} · ${(s.t1 - s.t0).toFixed(1)}s</div>
     <div class="cap">${escapeHtml(s.caption)}</div>
   </div>`).join("");
