@@ -10,8 +10,11 @@ __pycache__/
 *.pyc
 
 # --- render output ---------------------------------------------------------
+# Anchored to the repo root on purpose. A bare `scenes/` matches ANY directory
+# named scenes at any depth, which silently swallowed assets/scenes/ and kept
+# every generated background plate out of git.
+/scenes/
 render_tmp/
-scenes/
 sfx/
 final_audio.wav
 *.mp4
