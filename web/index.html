@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Smart Bark EP015 — Animation Test Rig</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1>EP015 · Animation Test Rig</h1>
+    <div class="note" id="timingNote"></div>
+  </header>
+
+  <div id="stageWrap">
+    <div id="stage">
+      <canvas id="scene" width="1920" height="1080"></canvas>
+      <img id="elly" alt="">
+      <div id="caption"></div>
+      <div id="card"></div>
+      <div id="subtitle"></div>
+    </div>
+  </div>
+
+  <div id="controls">
+    <button id="play">▶ Play</button>
+    <button id="restart">↺</button>
+    <input id="scrub" type="range" min="0" max="1000" value="0">
+    <span id="clock">0:00.00</span>
+  </div>
+
+  <div id="hud">
+    <div><b>shot</b> <span id="hShot">—</span></div>
+    <div><b>camera</b> <span id="hCam">—</span></div>
+    <div><b>elly</b> <span id="hPose">—</span></div>
+    <div><b>beat</b> <span id="hBeat">—</span></div>
+  </div>
+
+  <div id="shotlist"></div>
+</div>
+<script type="module" src="js/engine.js"></script>
+</body>
+</html>
