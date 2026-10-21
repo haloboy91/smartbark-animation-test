@@ -37,7 +37,9 @@ const FPS = parseInt(arg("fps", "30"), 10);
 const CRF = parseInt(arg("crf", "25"), 10);
 const SEGMENT = arg("segment", null) ? parseFloat(arg("segment")) : null;
 const SCALE = parseFloat(arg("scale", "1"));
-const VO = arg("vo", "assets/audio/vo_full.wav");
+// Default to the mixed soundtrack (VO + ducked music + SFX). Pass
+// --vo assets/audio/vo_full.wav for narration only.
+const VO = arg("vo", "assets/audio/soundtrack.wav");
 const MUTE = has("mute");
 
 // ------------------------------------------------------------------ ffmpeg

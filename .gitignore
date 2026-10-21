@@ -41,3 +41,6 @@ kit/Smart_Bark_Kit_v2/elly_knight_cutouts/
 kit/Smart_Bark_Kit_v2/elly_knight_greenscreen/
 models/
 web/js/words.json
+assets/audio/vo_full.wav
+assets/audio/soundtrack.wav
+assets/audio/v0*.wav
