@@ -255,11 +255,13 @@ function Mouth({shape, open}: {shape: SignalValue<MouthShape>; open: SignalValue
 
 export function EllyRig({pose, children}: {pose: EllyPose; children?: unknown}) {
   return (
-    // The rig is authored y-up; Motion Canvas is y-down, so the root flips y.
-    // Part textures carry their own scale[1,-1] and stay upright under it.
+    // The rig is authored y-up; Motion Canvas is y-down. The root flips both
+    // axes via negative y scale AND negates its y position, so every y-up
+    // coordinate lands at its correct screen position. Part textures carry
+    // their own scale[1,-1] and stay upright under the root flip.
     <Node
       x={pose.rootX}
-      y={pose.rootY}
+      y={() => -(pose.rootY as number)}
       scale={() => [pose.rootScale as number, -(pose.rootScale as number)]}
       rotation={pose.rootRotation}
     >

@@ -100,7 +100,8 @@ export default makeScene2D(function* (view) {
       <Rect width={1920} height={220} y={500} fill="#1a1f3d" />
       <Circle width={1500} height={190} y={470} fill="#232a55" />
 
-      {/* Contact shadow follows the root, shrinking on lifts/bends. */}
+      {/* Contact shadow follows the root, shrinking on lifts/bends.
+          rootY is y-up, so its screen (y-down) position is negated. */}
       <Circle
         ref={shadow}
         width={330}
@@ -110,12 +111,14 @@ export default makeScene2D(function* (view) {
         shadowBlur={14}
         shadowColor="#000000"
         x={() => pose().rootX}
-        y={() => pose().rootY + 14}
+        y={() => -(pose().rootY + 14)}
         scale={() => 1 - clamp01((-450 - pose().rootY) / 400) * 0.35}
       />
 
       <EllyRig pose={rigPose}>
-        {/* Coin lives in the rig root so attached coordinates match. */}
+        {/* Coin lives in the rig root so attached coordinates match. The
+            inner counter-flip keeps its highlight upright under the root's
+            y-axis flip (circles themselves are symmetric). */}
         <Node
           ref={coinRef}
           x={() => pose().coin.x}
@@ -123,10 +126,12 @@ export default makeScene2D(function* (view) {
           scale={() => pose().coin.scale}
           opacity={() => (pose().coin.visible ? 1 : 0)}
         >
-          <Node scale={() => [Math.cos(pose().coin.spin), 1]}>
-            <Circle width={64} height={64} fill="#e3b65b" stroke="#8a6a2f" lineWidth={5} />
-            <Circle width={42} height={42} fill="#f3d27e" stroke="#b98f3c" lineWidth={3} />
-            <Circle width={12} height={12} x={-9} y={-9} fill="#fff3cf" opacity={0.9} />
+          <Node scale={[1, -1]}>
+            <Node scale={() => [Math.cos(pose().coin.spin), 1]}>
+              <Circle width={64} height={64} fill="#e3b65b" stroke="#8a6a2f" lineWidth={5} />
+              <Circle width={42} height={42} fill="#f3d27e" stroke="#b98f3c" lineWidth={3} />
+              <Circle width={12} height={12} x={-9} y={-9} fill="#fff3cf" opacity={0.9} />
+            </Node>
           </Node>
         </Node>
       </EllyRig>
