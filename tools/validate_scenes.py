@@ -71,7 +71,7 @@ def main() -> None:
     ap.add_argument("--strict", action="store_true")
     args = ap.parse_args()
 
-    files = sorted(glob.glob(os.path.join(args.src, "*.jpg")))
+    files = sorted(sorted(glob.glob(os.path.join(args.src, "*.png")) + glob.glob(os.path.join(args.src, "*.jpg"))))
     if not files:
         raise SystemExit(f"no plates in {args.src}")
 
