@@ -29,8 +29,8 @@ W = {
     # face parts arranged symmetrically around the centered nose (~world 469,229)
     "eye_l":     ("eye_open.png",    (0.5, 0.5),  "head",     (442, 202), 0.098, 10, False, True),
     "eye_r":     ("eye_open.png",    (0.5, 0.5),  "head",     (498, 202), 0.098, 10, False, True),
-    "lid_l":     ("eyelid.png",      (0.5, 0.62), "head",     (442, 194), 0.080, 11, False, False),
-    "lid_r":     ("eyelid.png",      (0.5, 0.62), "head",     (498, 194), 0.080, 11, True,  False),
+    "lid_l":     ("eyelid.png",      (0.5, 0.62), "head",     (442, 194), 0.060, 11, False, False),
+    "lid_r":     ("eyelid.png",      (0.5, 0.62), "head",     (498, 194), 0.060, 11, True,  False),
     "brow_l":    ("eyebrow.png",     (0.5, 0.5),  "head",     (442, 172), 0.042, 11, False, True),
     "brow_r":    ("eyebrow.png",     (0.5, 0.5),  "head",     (498, 172), 0.042, 11, True,  True),
     "mouth":     ("mouth_smile.png", (0.5, 0.5),  "head",     (470, 256), 0.102, 10, False, True),

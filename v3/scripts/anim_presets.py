@@ -431,8 +431,12 @@ def p_head_turn(a: Anim, i, n):
     k = math.sin(math.pi * u)                                   # out and back
     p = a.base()
     p["head"]["a"] = -0.5 * k
-    _turn_swap(p, a, k > 0.75)
-    a.blink(p, i / 24.0, period=2.2)
+    side = k > 0.75
+    _turn_swap(p, a, side)
+    # blink only while the front face is shown — blink() would otherwise
+    # un-hide lids that _turn_swap removed for the profile sprite
+    if not side:
+        a.blink(p, i / 24.0, period=2.2)
     return p
 
 
@@ -463,12 +467,15 @@ def p_side_view(a: Anim, i, n):
     for k in ("arm_up_r", "arm_lo_r", "leg_up_r", "leg_lo_r", "foot_r"):
         p[k]["visible"] = False
     # near-side arm hangs straight down against the profile torso
-    a.pose_arm(p, "l", 0.12, 0.05)
-    # near-side leg tucks under the side body, sole flat on the ground
+    p["arm_up_l"]["a"] = 0.0
+    p["arm_lo_l"]["a"] = -0.12
+    # near-side leg tucks under the side body, sole flat on the ground.
+    # bend=-1 keeps the shin vertical (the +1 sign rotates it ~horizontal);
+    # target 6px ahead of the hip centres the leg under the profile torso.
     gy = a.world(a.rest, "foot_l")[1]
     hip = a.world(p, "root_hip")
     a.pin_foot(p, "leg_up_l", "leg_lo_l", "foot_l",
-               (hip[0] - 6, gy), 1.0)
+               (hip[0] + 6, gy), -1.0)
     p["tail"]["a"] = 0.12 * math.sin(TAU * t / 2.2)
     p["head"]["a"] = -0.05
     return p

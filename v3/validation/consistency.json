@@ -82,15 +82,14 @@
     "arm_upper",
     "ear",
     "eye_open",
+    "eyebrow",
+    "eyelid",
     "head_base",
+    "head_side",
     "leg_lower",
     "leg_upper",
     "torso",
     "torso_side"
   ],
-  "pending_regeneration": [
-    "head_side",
-    "eyelid",
-    "eyebrow"
-  ]
+  "pending_regeneration": []
 }

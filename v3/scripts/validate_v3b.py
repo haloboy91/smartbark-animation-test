@@ -29,8 +29,9 @@ spec = json.loads((ROOT / "rig" / "rig_front.json").read_text())
 rig = SpriteRig(spec)
 a = Anim(rig)
 FPS, N = 24, 120
-REGEN = {"head_base", "torso", "torso_side", "ear", "arm_upper",
-         "arm_lower_paw", "leg_upper", "leg_lower", "eye_open"}
+REGEN = {"head_base", "head_side", "torso", "torso_side", "ear", "arm_upper",
+         "arm_lower_paw", "leg_upper", "leg_lower", "eye_open",
+         "eyelid", "eyebrow"}
 
 
 def save(im, name):
@@ -56,7 +57,7 @@ for k, name in enumerate(parts):
     sheet.paste(im2, (cx + (cell - im2.width) // 2, cy + 40 + (cell - 56 - im2.height) // 2), im2)
     tag = "*" if name in REGEN else " "
     d.text((cx + 10, cy + 10), f"{k+1:02d}{tag}{name}", fill=(255, 220, 120))
-d.text((8, rows * cell - 18), "* regenerated V3-correction part (9); other 11 retained", fill=(230, 230, 230))
+d.text((8, rows * cell - 18), "* regenerated V3-correction part (12/12)", fill=(230, 230, 230))
 save(sheet, "sprite-sheet-v2.png")
 
 # ------------------------------------------------------------------ views -----
@@ -135,7 +136,7 @@ height = max(v[1] for v in rw.values()) - min(v[1] for v in rw.values())
 report = {"palette_vs_reference": palette, "residual_green_pct": green,
           "assembled_height_px": round(height, 1), "node_count": len(rig.nodes),
           "regenerated_parts": sorted(REGEN),
-          "pending_regeneration": ["head_side", "eyelid", "eyebrow"]}
+          "pending_regeneration": []}
 (OUT / "consistency.json").write_text(json.dumps(report, indent=2))
 print(json.dumps(palette, indent=1))
 print("green max:", max(green.values()))
