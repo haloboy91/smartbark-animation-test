@@ -1,0 +1,519 @@
+{
+  "name": "elly-front-v2",
+  "view": "front-three-quarter",
+  "world_targets": {
+    "root_hip": [
+      470,
+      400
+    ],
+    "torso": [
+      470,
+      300
+    ],
+    "tail": [
+      382,
+      386
+    ],
+    "head": [
+      470,
+      285
+    ],
+    "ear_l": [
+      404,
+      172
+    ],
+    "ear_r": [
+      536,
+      172
+    ],
+    "eye_l": [
+      442,
+      202
+    ],
+    "eye_r": [
+      498,
+      202
+    ],
+    "lid_l": [
+      442,
+      194
+    ],
+    "lid_r": [
+      498,
+      194
+    ],
+    "brow_l": [
+      442,
+      172
+    ],
+    "brow_r": [
+      498,
+      172
+    ],
+    "mouth": [
+      470,
+      256
+    ],
+    "arm_up_l": [
+      414,
+      298
+    ],
+    "arm_lo_l": [
+      411,
+      350
+    ],
+    "arm_up_r": [
+      526,
+      298
+    ],
+    "arm_lo_r": [
+      529,
+      350
+    ],
+    "leg_up_l": [
+      447,
+      402
+    ],
+    "leg_lo_l": [
+      445,
+      435
+    ],
+    "foot_l": [
+      443,
+      458
+    ],
+    "leg_up_r": [
+      493,
+      402
+    ],
+    "leg_lo_r": [
+      495,
+      435
+    ],
+    "foot_r": [
+      497,
+      458
+    ]
+  },
+  "mouth_anchors": {
+    "mouth_smile.png": [
+      0,
+      0,
+      1.0
+    ],
+    "mouth_talk.png": [
+      0,
+      6,
+      0.62
+    ],
+    "mouth_happy.png": [
+      0,
+      8,
+      0.6
+    ],
+    "mouth_surprised.png": [
+      0,
+      4,
+      0.85
+    ],
+    "mouth_angry.png": [
+      0,
+      -2,
+      0.8
+    ]
+  },
+  "nodes": [
+    {
+      "name": "root_hip",
+      "image": null,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "z": 0,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        470,
+        400
+      ],
+      "scale": 1.0
+    },
+    {
+      "name": "torso",
+      "image": "torso.png",
+      "pivot": [
+        0.5,
+        0.16
+      ],
+      "z": 4,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        0.0,
+        -100.0
+      ],
+      "scale": 0.166,
+      "parent": "root_hip"
+    },
+    {
+      "name": "tail",
+      "image": "tail.png",
+      "pivot": [
+        0.18,
+        0.82
+      ],
+      "z": 1,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        -88.0,
+        -14.0
+      ],
+      "scale": 0.072,
+      "parent": "root_hip"
+    },
+    {
+      "name": "head",
+      "image": "head_base.png",
+      "pivot": [
+        0.5,
+        0.92
+      ],
+      "z": 8,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        0.0,
+        -90.361
+      ],
+      "scale": 0.95783,
+      "parent": "torso"
+    },
+    {
+      "name": "ear_l",
+      "image": "ear.png",
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "z": 7,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        -415.094,
+        -710.692
+      ],
+      "scale": 0.69182,
+      "parent": "head"
+    },
+    {
+      "name": "ear_r",
+      "image": "ear.png",
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "z": 9,
+      "mirror_x": true,
+      "visible": true,
+      "rest": [
+        415.094,
+        -710.692
+      ],
+      "scale": 0.69182,
+      "parent": "head"
+    },
+    {
+      "name": "eye_l",
+      "image": "eye_open.png",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "z": 10,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        -176.101,
+        -522.013
+      ],
+      "scale": 0.61635,
+      "parent": "head"
+    },
+    {
+      "name": "eye_r",
+      "image": "eye_open.png",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "z": 10,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        176.101,
+        -522.013
+      ],
+      "scale": 0.61635,
+      "parent": "head"
+    },
+    {
+      "name": "lid_l",
+      "image": "eyelid.png",
+      "pivot": [
+        0.5,
+        0.62
+      ],
+      "z": 11,
+      "mirror_x": false,
+      "visible": false,
+      "rest": [
+        -176.101,
+        -572.327
+      ],
+      "scale": 0.37736,
+      "parent": "head"
+    },
+    {
+      "name": "lid_r",
+      "image": "eyelid.png",
+      "pivot": [
+        0.5,
+        0.62
+      ],
+      "z": 11,
+      "mirror_x": true,
+      "visible": false,
+      "rest": [
+        176.101,
+        -572.327
+      ],
+      "scale": 0.37736,
+      "parent": "head"
+    },
+    {
+      "name": "brow_l",
+      "image": "eyebrow.png",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "z": 11,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        -176.101,
+        -710.692
+      ],
+      "scale": 0.26415,
+      "parent": "head",
+      "angle": 0.12
+    },
+    {
+      "name": "brow_r",
+      "image": "eyebrow.png",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "z": 11,
+      "mirror_x": true,
+      "visible": true,
+      "rest": [
+        176.101,
+        -710.692
+      ],
+      "scale": 0.26415,
+      "parent": "head",
+      "angle": -0.12
+    },
+    {
+      "name": "mouth",
+      "image": "mouth_smile.png",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "z": 10,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        0.0,
+        -182.39
+      ],
+      "scale": 0.64151,
+      "parent": "head"
+    },
+    {
+      "name": "arm_up_l",
+      "image": "arm_upper.png",
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "z": 3,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        -337.349,
+        -12.048
+      ],
+      "scale": 0.6506,
+      "parent": "torso"
+    },
+    {
+      "name": "arm_lo_l",
+      "image": "arm_lower_paw.png",
+      "pivot": [
+        0.5,
+        0.08
+      ],
+      "z": 3,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        -27.778,
+        481.481
+      ],
+      "scale": 0.88889,
+      "parent": "arm_up_l"
+    },
+    {
+      "name": "arm_up_r",
+      "image": "arm_upper.png",
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "z": 6,
+      "mirror_x": true,
+      "visible": true,
+      "rest": [
+        337.349,
+        -12.048
+      ],
+      "scale": 0.6506,
+      "parent": "torso"
+    },
+    {
+      "name": "arm_lo_r",
+      "image": "arm_lower_paw.png",
+      "pivot": [
+        0.5,
+        0.08
+      ],
+      "z": 6,
+      "mirror_x": true,
+      "visible": true,
+      "rest": [
+        27.778,
+        481.481
+      ],
+      "scale": 0.88889,
+      "parent": "arm_up_r"
+    },
+    {
+      "name": "leg_up_l",
+      "image": "leg_upper.png",
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "z": 3,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        -23.0,
+        2.0
+      ],
+      "scale": 0.066,
+      "parent": "root_hip"
+    },
+    {
+      "name": "leg_lo_l",
+      "image": "leg_lower.png",
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "z": 3,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        -30.303,
+        500.0
+      ],
+      "scale": 0.90909,
+      "parent": "leg_up_l"
+    },
+    {
+      "name": "foot_l",
+      "image": "foot_paw.png",
+      "pivot": [
+        0.5,
+        0.22
+      ],
+      "z": 3,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        -33.333,
+        383.333
+      ],
+      "scale": 1.33333,
+      "parent": "leg_lo_l"
+    },
+    {
+      "name": "leg_up_r",
+      "image": "leg_upper.png",
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "z": 6,
+      "mirror_x": true,
+      "visible": true,
+      "rest": [
+        23.0,
+        2.0
+      ],
+      "scale": 0.066,
+      "parent": "root_hip"
+    },
+    {
+      "name": "leg_lo_r",
+      "image": "leg_lower.png",
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "z": 6,
+      "mirror_x": true,
+      "visible": true,
+      "rest": [
+        30.303,
+        500.0
+      ],
+      "scale": 0.90909,
+      "parent": "leg_up_r"
+    },
+    {
+      "name": "foot_r",
+      "image": "foot_paw.png",
+      "pivot": [
+        0.5,
+        0.22
+      ],
+      "z": 6,
+      "mirror_x": true,
+      "visible": true,
+      "rest": [
+        33.333,
+        383.333
+      ],
+      "scale": 1.33333,
+      "parent": "leg_lo_r"
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "connectivity": {
+    "walk": {
+      "worst_coverage": {
+        "root_hip->torso": 1.0,
+        "torso->head": 1.0,
+        "head->eye_l": 0.999,
+        "head->mouth": 1.0,
+        "torso->arm_up_l": 0.357,
+        "arm_up_l->arm_lo_l": 0.576,
+        "torso->arm_up_r": 0.416,
+        "arm_up_r->arm_lo_r": 0.533,
+        "root_hip->leg_up_l": 0.871,
+        "leg_up_l->leg_lo_l": 0.438,
+        "leg_lo_l->foot_l": 0.493,
+        "root_hip->leg_up_r": 0.757,
+        "leg_up_r->leg_lo_r": 0.537,
+        "leg_lo_r->foot_r": 0.489
+      },
+      "worst_at_frame": {
+        "torso->arm_up_l": 75,
+        "arm_up_l->arm_lo_l": 8,
+        "torso->arm_up_r": 8,
+        "arm_up_r->arm_lo_r": 37,
+        "root_hip->leg_up_l": 71,
+        "leg_up_l->leg_lo_l": 29,
+        "leg_lo_l->foot_l": 92,
+        "root_hip->leg_up_r": 6,
+        "leg_up_r->leg_lo_r": 20,
+        "leg_lo_r->foot_r": 65,
+        "head->eye_l": 116
+      },
+      "threshold": 0.12,
+      "any_below_threshold": false
+    },
+    "talk": {
+      "worst_coverage": {
+        "root_hip->torso": 1.0,
+        "torso->head": 1.0,
+        "head->eye_l": 0.98,
+        "head->mouth": 1.0,
+        "torso->arm_up_l": 0.366,
+        "arm_up_l->arm_lo_l": 0.894,
+        "torso->arm_up_r": 0.421,
+        "arm_up_r->arm_lo_r": 0.446,
+        "root_hip->leg_up_l": 0.884,
+        "leg_up_l->leg_lo_l": 0.57,
+        "leg_lo_l->foot_l": 0.802,
+        "root_hip->leg_up_r": 0.895,
+        "leg_up_r->leg_lo_r": 0.48,
+        "leg_lo_r->foot_r": 0.833
+      },
+      "worst_at_frame": {
+        "head->eye_l": 21,
+        "torso->arm_up_l": 20,
+        "arm_up_l->arm_lo_l": 54,
+        "torso->arm_up_r": 89,
+        "arm_up_r->arm_lo_r": 13,
+        "root_hip->leg_up_l": 52,
+        "leg_up_l->leg_lo_l": 1,
+        "leg_lo_l->foot_l": 56,
+        "root_hip->leg_up_r": 56,
+        "leg_up_r->leg_lo_r": 67,
+        "leg_lo_r->foot_r": 52
+      },
+      "threshold": 0.12,
+      "any_below_threshold": false
+    },
+    "sit": {
+      "worst_coverage": {
+        "root_hip->torso": 1.0,
+        "torso->head": 1.0,
+        "head->eye_l": 0.994,
+        "head->mouth": 1.0,
+        "torso->arm_up_l": 0.373,
+        "arm_up_l->arm_lo_l": 0.894,
+        "torso->arm_up_r": 0.443,
+        "arm_up_r->arm_lo_r": 0.63,
+        "root_hip->leg_up_l": 0.884,
+        "leg_up_l->leg_lo_l": 0.573,
+        "leg_lo_l->foot_l": 0.802,
+        "root_hip->leg_up_r": 0.895,
+        "leg_up_r->leg_lo_r": 0.544,
+        "leg_lo_r->foot_r": 0.83
+      },
+      "worst_at_frame": {
+        "head->eye_l": 119,
+        "torso->arm_up_l": 2,
+        "arm_up_l->arm_lo_l": 54,
+        "torso->arm_up_r": 4,
+        "arm_up_r->arm_lo_r": 111,
+        "root_hip->leg_up_l": 52,
+        "leg_up_l->leg_lo_l": 52,
+        "leg_lo_l->foot_l": 56,
+        "root_hip->leg_up_r": 56,
+        "leg_up_r->leg_lo_r": 40,
+        "leg_lo_r->foot_r": 56
+      },
+      "threshold": 0.12,
+      "any_below_threshold": false
+    },
+    "point": {
+      "worst_coverage": {
+        "root_hip->torso": 1.0,
+        "torso->head": 1.0,
+        "head->eye_l": 0.973,
+        "head->mouth": 1.0,
+        "torso->arm_up_l": 0.388,
+        "arm_up_l->arm_lo_l": 0.905,
+        "torso->arm_up_r": 0.439,
+        "arm_up_r->arm_lo_r": 0.608,
+        "root_hip->leg_up_l": 0.862,
+        "leg_up_l->leg_lo_l": 0.551,
+        "leg_lo_l->foot_l": 0.617,
+        "root_hip->leg_up_r": 0.869,
+        "leg_up_r->leg_lo_r": 0.556,
+        "leg_lo_r->foot_r": 0.617
+      },
+      "worst_at_frame": {
+        "head->eye_l": 51,
+        "torso->arm_up_l": 81,
+        "arm_up_l->arm_lo_l": 119,
+        "torso->arm_up_r": 106,
+        "arm_up_r->arm_lo_r": 36,
+        "root_hip->leg_up_l": 0,
+        "leg_up_l->leg_lo_l": 0,
+        "leg_lo_l->foot_l": 0,
+        "root_hip->leg_up_r": 5,
+        "leg_up_r->leg_lo_r": 7,
+        "leg_lo_r->foot_r": 0
+      },
+      "threshold": 0.12,
+      "any_below_threshold": false
+    }
+  },
+  "palette": {
+    "fur": {
+      "sprite_rgb": [
+        245.1,
+        241.6,
+        230.1
+      ],
+      "anchor_rgb": [
+        245,
+        244,
+        238
+      ],
+      "delta": 8.3
+    },
+    "sweater_navy": {
+      "sprite_rgb": [
+        51.4,
+        66.0,
+        102.4
+      ],
+      "anchor_rgb": [
+        42,
+        58,
+        92
+      ],
+      "delta": 16.1
+    },
+    "scarf_pink": {
+      "sprite_rgb": [
+        198.0,
+        110.6,
+        112.3
+      ],
+      "anchor_rgb": [
+        206,
+        112,
+        122
+      ],
+      "delta": 12.7
+    },
+    "star_moon_yellow": {
+      "sprite_rgb": [
+        219.6,
+        182.7,
+        101.1
+      ],
+      "anchor_rgb": [
+        232,
+        190,
+        92
+      ],
+      "delta": 17.0
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "palette_vs_reference": {
+    "fur": {
+      "reference": [
+        249.0,
+        246.0,
+        239.0
+      ],
+      "current": [
+        245.0,
+        241.0,
+        229.0
+      ],
+      "delta": 11.9
+    },
+    "navy": {
+      "reference": [
+        56.0,
+        73.0,
+        114.0
+      ],
+      "current": [
+        56.0,
+        71.0,
+        110.0
+      ],
+      "delta": 4.5
+    },
+    "scarf": {
+      "reference": [
+        207.0,
+        115.0,
+        115.0
+      ],
+      "current": [
+        199.0,
+        110.0,
+        112.0
+      ],
+      "delta": 9.9
+    },
+    "yellow": {
+      "reference": [
+        221.0,
+        184.0,
+        101.0
+      ],
+      "current": [
+        220.0,
+        183.0,
+        100.0
+      ],
+      "delta": 1.7
+    }
+  },
+  "residual_green_pct": {
+    "arm_lower_paw.png": 0.0,
+    "arm_upper.png": 0.0,
+    "ear.png": 0.0,
+    "eye_open.png": 0.0,
+    "eyebrow.png": 0.0,
+    "eyelid.png": 0.0,
+    "foot_paw.png": 0.0,
+    "hand_point.png": 0.0,
+    "head_base.png": 0.0,
+    "head_side.png": 0.0,
+    "leg_lower.png": 0.0,
+    "leg_upper.png": 0.0,
+    "mouth_angry.png": 0.0,
+    "mouth_happy.png": 0.0,
+    "mouth_smile.png": 0.0,
+    "mouth_surprised.png": 0.0,
+    "mouth_talk.png": 0.0,
+    "tail.png": 0.0,
+    "torso.png": 0.0,
+    "torso_side.png": 0.0
+  },
+  "assembled_height_px": 286.0,
+  "node_count": 23,
+  "regenerated_parts": [
+    "arm_lower_paw",
+    "arm_upper",
+    "ear",
+    "eye_open",
+    "eyebrow",
+    "eyelid",
+    "head_base",
+    "head_side",
+    "leg_lower",
+    "leg_upper",
+    "torso",
+    "torso_side"
+  ],
+  "pending_regeneration": []
+}

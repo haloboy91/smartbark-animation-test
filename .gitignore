@@ -1,0 +1,21 @@
+# Python virtualenv for the Pillow/ffmpeg preview renderer
+.venv/
+render/__pycache__/
+**/__pycache__/
+
+# Throwaway inspection crops (contact sheet, GIF and MP4 are kept)
+render/inspect-*.png
+google_drive/
+.reference/
+.venv/
+**/__pycache__/
+v2/render/inspect-*.png
+
+# v3 pipeline: keep keyed sprites/animations, ignore raw green-screen plates and scratch
+v3/parts_raw/
+v3/qc/
+v3/clips/tmp/
+
+# v3 correction backups (rollback to git tag v3-checkpoint)
+v3/parts_png_v1/
+v3/parts_raw_v1/

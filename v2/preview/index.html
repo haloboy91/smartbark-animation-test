@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Smartbark — Elly walks, turns and sits (StykAnimate v2 preview)</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; background: #1c1f26; color: #e8e6e1;
+    font: 14px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 20px;
+  }
+  h1 { font-size: 18px; font-weight: 650; margin: 4px 0 0; }
+  p.sub { margin: 0; color: #a9a59c; font-size: 13px; }
+  .stage {
+    width: min(960px, 100%); border-radius: 14px; overflow: hidden;
+    box-shadow: 0 18px 50px rgba(0,0,0,.45); background: #000;
+  }
+  video, canvas { display: block; width: 100%; height: auto; }
+  .tabs { display: flex; gap: 8px; }
+  .tabs button {
+    appearance: none; border: 1px solid #3a3f4b; background: #343945; color: #c9c5bc;
+    border-radius: 999px; padding: 7px 18px; font-weight: 650; cursor: pointer;
+  }
+  .tabs button.active { background: #e0b65c; color: #211f1a; border-color: #e0b65c; }
+  .controls {
+    width: min(960px, 100%); display: none; flex-wrap: wrap; gap: 10px; align-items: center;
+    background: #262a33; padding: 12px 14px; border-radius: 12px;
+  }
+  .controls.show { display: flex; }
+  button.plain {
+    appearance: none; border: 1px solid #3a3f4b; background: #343945; color: #f2efe9;
+    border-radius: 9px; padding: 8px 14px; font-weight: 600; cursor: pointer;
+  }
+  button.plain:hover { background: #3e4451; }
+  input[type="range"] { flex: 1 1 260px; accent-color: #e0b65c; }
+  label.toggle { display: flex; align-items: center; gap: 6px; color: #c9c5bc; }
+  .readout { font-variant-numeric: tabular-nums; color: #c9c5bc; min-width: 118px; }
+  .file { margin-left: auto; font-size: 12px; color: #a9a59c; }
+  .file input { margin-left: 6px; }
+  .beat { width: min(960px, 100%); font-size: 12px; color: #8f8b82; }
+  .links a { color: #e0b65c; text-decoration: none; margin: 0 10px; font-size: 13px; }
+  .links a:hover { text-decoration: underline; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+  <h1>Elly — walk to the chair, turn, sit and settle (v2)</h1>
+  <p class="sub">7.75 s · 186 frames @ 24 fps · 960×540 · static camera · baked two-bone IK</p>
+
+  <div class="tabs">
+    <button id="tabVideo" class="active" type="button">▶ Video player</button>
+    <button id="tabRig" type="button">🦴 Interactive rig view</button>
+  </div>
+
+  <div class="stage" id="videoStage">
+    <video id="video" controls autoplay loop muted playsinline preload="auto"
+           src="./elly-v2-walk-turn-sit.mp4" type="video/mp4"></video>
+  </div>
+
+  <div class="stage hidden" id="rigStage">
+    <canvas id="canvas" width="960" height="540"></canvas>
+  </div>
+
+  <div class="controls" id="rigControls">
+    <button id="play" class="plain" type="button">⏸ Pause</button>
+    <input id="scrub" type="range" min="0" max="0" value="0" />
+    <span class="readout" id="readout">frame 0 / 0</span>
+    <label class="toggle"><input id="loop" type="checkbox" checked /> loop</label>
+    <label class="file">Load another .styk
+      <input id="file" type="file" accept=".styk,application/json" />
+    </label>
+  </div>
+  <p class="beat" id="beat"></p>
+
+  <p class="links">
+    <a href="./elly-v2-walk-turn-sit.mp4" target="_blank" rel="noopener">Open MP4</a>
+    <a href="./elly-v2-walk-turn-sit.gif" target="_blank" rel="noopener">Open GIF</a>
+  </p>
+
+  <script src="./project-data.js"></script>
+  <script>
+  // ------------------------------------------------------------- tab switching
+  const tabVideo = document.getElementById('tabVideo');
+  const tabRig = document.getElementById('tabRig');
+  const videoStage = document.getElementById('videoStage');
+  const rigStage = document.getElementById('rigStage');
+  const rigControls = document.getElementById('rigControls');
+  const video = document.getElementById('video');
+
+  tabVideo.addEventListener('click', () => {
+    tabVideo.classList.add('active'); tabRig.classList.remove('active');
+    videoStage.classList.remove('hidden'); rigStage.classList.add('hidden');
+    rigControls.classList.remove('show');
+    video.play().catch(() => {});
+  });
+  tabRig.addEventListener('click', () => {
+    tabRig.classList.add('active'); tabVideo.classList.remove('active');
+    rigStage.classList.remove('hidden'); videoStage.classList.add('hidden');
+    rigControls.classList.add('show');
+    video.pause();
+  });
+
+  // ------------------------------------------------- interactive rig canvas view
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const playBtn = document.getElementById('play');
+  const scrub = document.getElementById('scrub');
+  const readout = document.getElementById('readout');
+  const loopBox = document.getElementById('loop');
+  const beatEl = document.getElementById('beat');
+
+  // frame numbers match build-v2.mjs phase boundaries
+  const BEATS = [
+    [0, 'idle breathing'], [12, 'walking to the chair'], [92, 'stopping'],
+    [102, 'turning toward the chair'], [128, 'backing up to the seat'],
+    [138, 'sitting down'], [162, 'settling — blink and happy pant'], [185, 'final pose'],
+  ];
+
+  let project = window.SMARTBARK_PROJECT;
+  let frameIndex = 0;
+  let playing = true;
+  let lastTick = performance.now();
+  let acc = 0;
+
+  function figureMap(doc) {
+    const m = new Map();
+    for (const f of doc.figure_types) m.set(f.figure_type_id, f);
+    return m;
+  }
+
+  // Honors per-object length overrides (blink lids, mouth/tongue, ring anchors).
+  function computeJoints(figure, obj) {
+    const scale = obj.scale ?? 1;
+    const angles = obj.angles;
+    const useLen = obj.len_flag === 1 && Array.isArray(obj.lengths) && obj.lengths.length;
+    const segs = figure.segments;
+    const joints = new Map([[0, [obj.root_x, obj.root_y]]]);
+    let remaining = segs.map((_, i) => i);
+    for (let pass = 0; pass < segs.length + 1 && remaining.length; pass++) {
+      const next = [];
+      for (const i of remaining) {
+        const seg = segs[i];
+        const parent = joints.get(seg.parent_id);
+        if (!parent) { next.push(i); continue; }
+        const base = useLen && i < obj.lengths.length ? obj.lengths[i] : seg.length;
+        const length = base * scale;
+        const a = angles[i];
+        joints.set(seg.segment_id, [parent[0] + length * Math.cos(a), parent[1] + length * Math.sin(a)]);
+      }
+      remaining = next;
+    }
+    return joints;
+  }
+
+  function drawObject(obj, figure) {
+    const joints = computeJoints(figure, obj);
+    const order = figure.segments
+      .map((seg, i) => [seg.z_order ?? i + 1, i])
+      .sort((a, b) => a[0] - b[0]);
+    for (const [, i] of order) {
+      const seg = figure.segments[i];
+      const alpha = 1 - (seg.transparency ?? 0) / 255;
+      if (alpha <= 0.01) continue;
+      const start = joints.get(seg.parent_id);
+      const end = joints.get(seg.segment_id);
+      if (!start || !end) continue;
+      const [r, g, b] = seg.color_rgb;
+      ctx.fillStyle = ctx.strokeStyle = `rgba(${r},${g},${b},${alpha})`;
+      const thickness = Math.max(0, seg.thickness * Math.abs(obj.scale ?? 1));
+      const kind = seg.segment_kind ?? 'line';
+      if (kind === 'circleClear') {
+        const dist = Math.hypot(end[0] - start[0], end[1] - start[1]);
+        const radius = (dist + thickness) / 2;
+        if (radius <= 0) continue;
+        const cx = (start[0] + end[0]) / 2, cy = (start[1] + end[1]) / 2;
+        ctx.beginPath();
+        ctx.lineWidth = thickness;
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.stroke();
+      } else if (kind === 'circleFill' || kind === 'circle' || kind === 'plainBall') {
+        const dist = Math.hypot(end[0] - start[0], end[1] - start[1]);
+        const radius = (dist + thickness) / 2;
+        if (radius <= 0) continue;
+        const cx = (start[0] + end[0]) / 2, cy = (start[1] + end[1]) / 2;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        if (thickness <= 0.5) continue;
+        ctx.lineWidth = thickness;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.beginPath();
+        ctx.moveTo(start[0], start[1]);
+        ctx.lineTo(end[0], end[1]);
+        ctx.stroke();
+        const cap = thickness / 2;
+        for (const p of [start, end]) {
+          ctx.beginPath();
+          ctx.arc(p[0], p[1], cap, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+  }
+
+  function backdrop(w, h, groundY) {
+    const grad = ctx.createLinearGradient(0, 0, 0, groundY);
+    grad.addColorStop(0, '#f6f1e8');
+    grad.addColorStop(1, '#e7dfd2');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, groundY);
+    ctx.fillStyle = '#ded8cd';
+    ctx.fillRect(0, groundY, w, h - groundY);
+    ctx.strokeStyle = '#c4beb4';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(0, groundY);
+    ctx.lineTo(w, groundY);
+    ctx.stroke();
+  }
+
+  function drawFrame(doc, frame) {
+    const w = doc.canvas_width, h = doc.canvas_height;
+    backdrop(w, h, 432);
+    const types = figureMap(doc);
+    const order = frame.object_draw_order ?? frame.objects.map((_, i) => i);
+    for (const slot of order) drawObject(frame.objects[slot], types.get(frame.objects[slot].figure_type_id));
+  }
+
+  function currentBeat(index) {
+    let label = BEATS[0][1];
+    for (const [at, name] of BEATS) if (index >= at) label = name;
+    return label;
+  }
+
+  function render() {
+    const frames = project.keyframes;
+    frameIndex = Math.max(0, Math.min(frames.length - 1, frameIndex));
+    drawFrame(project, frames[frameIndex]);
+    scrub.value = frameIndex;
+    readout.textContent = `frame ${frameIndex + 1} / ${frames.length}`;
+    beatEl.textContent = `story beat: ${currentBeat(frameIndex)} · ${(frameIndex / project.fps).toFixed(2)}s`;
+  }
+
+  function tick(now) {
+    const dt = now - lastTick;
+    lastTick = now;
+    if (playing && !rigStage.classList.contains('hidden')) {
+      acc += dt;
+      const step = 1000 / project.fps;
+      while (acc >= step) {
+        acc -= step;
+        frameIndex++;
+        if (frameIndex >= project.keyframes.length) {
+          if (loopBox.checked) frameIndex = 0;
+          else { frameIndex = project.keyframes.length - 1; playing = false; playBtn.textContent = '▶ Play'; }
+        }
+      }
+      render();
+    }
+    requestAnimationFrame(tick);
+  }
+
+  playBtn.addEventListener('click', () => {
+    playing = !playing;
+    playBtn.textContent = playing ? '⏸ Pause' : '▶ Play';
+    if (playing && frameIndex === project.keyframes.length - 1) frameIndex = 0;
+  });
+  scrub.addEventListener('input', () => { frameIndex = Number(scrub.value); render(); });
+  document.getElementById('file').addEventListener('change', async (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    try {
+      project = JSON.parse(await file.text());
+      frameIndex = 0;
+      scrub.max = project.keyframes.length - 1;
+      render();
+    } catch (err) {
+      alert('Could not open file: ' + err.message);
+    }
+  });
+
+  scrub.max = project.keyframes.length - 1;
+  render();
+  requestAnimationFrame(tick);
+  video.play().catch(() => {});
+  </script>
+</body>
+</html>
