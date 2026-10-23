@@ -1,0 +1,14 @@
+{
+  "name": "smartbark-animation-test",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "StykAnimate 2D dog animation: walk to the table, sit down, stand up",
+  "scripts": {
+    "build": "node scripts/build-project.mjs",
+    "validate": "node scripts/validate-project.mjs",
+    "cross-check": "node scripts/cross-check.mjs",
+    "render": "if [ -x .venv/bin/python ]; then .venv/bin/python render/render.py; else python3 render/render.py; fi",
+    "all": "node scripts/build-project.mjs && node scripts/validate-project.mjs && node scripts/cross-check.mjs && npm run render"
+  }
+}

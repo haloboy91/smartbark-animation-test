@@ -1,0 +1,12 @@
+# Python virtualenv for the Pillow/ffmpeg preview renderer
+.venv/
+render/__pycache__/
+**/__pycache__/
+
+# Throwaway inspection crops (contact sheet, GIF and MP4 are kept)
+render/inspect-*.png
+google_drive/
+.reference/
+.venv/
+**/__pycache__/
+v2/render/inspect-*.png
