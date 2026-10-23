@@ -18,30 +18,54 @@
     width: min(960px, 100%); border-radius: 14px; overflow: hidden;
     box-shadow: 0 18px 50px rgba(0,0,0,.45); background: #000;
   }
-  canvas { display: block; width: 100%; height: auto; }
+  video, canvas { display: block; width: 100%; height: auto; }
+  .tabs { display: flex; gap: 8px; }
+  .tabs button {
+    appearance: none; border: 1px solid #3a3f4b; background: #343945; color: #c9c5bc;
+    border-radius: 999px; padding: 7px 18px; font-weight: 650; cursor: pointer;
+  }
+  .tabs button.active { background: #e0b65c; color: #211f1a; border-color: #e0b65c; }
   .controls {
-    width: min(960px, 100%); display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    width: min(960px, 100%); display: none; flex-wrap: wrap; gap: 10px; align-items: center;
     background: #262a33; padding: 12px 14px; border-radius: 12px;
   }
-  button {
+  .controls.show { display: flex; }
+  button.plain {
     appearance: none; border: 1px solid #3a3f4b; background: #343945; color: #f2efe9;
     border-radius: 9px; padding: 8px 14px; font-weight: 600; cursor: pointer;
   }
-  button:hover { background: #3e4451; }
+  button.plain:hover { background: #3e4451; }
   input[type="range"] { flex: 1 1 260px; accent-color: #e0b65c; }
   label.toggle { display: flex; align-items: center; gap: 6px; color: #c9c5bc; }
   .readout { font-variant-numeric: tabular-nums; color: #c9c5bc; min-width: 118px; }
   .file { margin-left: auto; font-size: 12px; color: #a9a59c; }
   .file input { margin-left: 6px; }
   .beat { width: min(960px, 100%); font-size: 12px; color: #8f8b82; }
+  .links a { color: #e0b65c; text-decoration: none; margin: 0 10px; font-size: 13px; }
+  .links a:hover { text-decoration: underline; }
+  .hidden { display: none; }
 </style>
 </head>
 <body>
   <h1>Elly — walk to the chair, turn, sit and settle (v2)</h1>
-  <p class="sub">StykAnimate/Pivot v5 figures · forward-kinematics with baked two-bone IK and length overrides</p>
-  <div class="stage"><canvas id="canvas" width="960" height="540"></canvas></div>
-  <div class="controls">
-    <button id="play" type="button">⏸ Pause</button>
+  <p class="sub">7.75 s · 186 frames @ 24 fps · 960×540 · static camera · baked two-bone IK</p>
+
+  <div class="tabs">
+    <button id="tabVideo" class="active" type="button">▶ Video player</button>
+    <button id="tabRig" type="button">🦴 Interactive rig view</button>
+  </div>
+
+  <div class="stage" id="videoStage">
+    <video id="video" controls autoplay loop muted playsinline preload="auto"
+           src="./elly-v2-walk-turn-sit.mp4" type="video/mp4"></video>
+  </div>
+
+  <div class="stage hidden" id="rigStage">
+    <canvas id="canvas" width="960" height="540"></canvas>
+  </div>
+
+  <div class="controls" id="rigControls">
+    <button id="play" class="plain" type="button">⏸ Pause</button>
     <input id="scrub" type="range" min="0" max="0" value="0" />
     <span class="readout" id="readout">frame 0 / 0</span>
     <label class="toggle"><input id="loop" type="checkbox" checked /> loop</label>
@@ -51,8 +75,35 @@
   </div>
   <p class="beat" id="beat"></p>
 
+  <p class="links">
+    <a href="./elly-v2-walk-turn-sit.mp4" target="_blank" rel="noopener">Open MP4</a>
+    <a href="./elly-v2-walk-turn-sit.gif" target="_blank" rel="noopener">Open GIF</a>
+  </p>
+
   <script src="./project-data.js"></script>
   <script>
+  // ------------------------------------------------------------- tab switching
+  const tabVideo = document.getElementById('tabVideo');
+  const tabRig = document.getElementById('tabRig');
+  const videoStage = document.getElementById('videoStage');
+  const rigStage = document.getElementById('rigStage');
+  const rigControls = document.getElementById('rigControls');
+  const video = document.getElementById('video');
+
+  tabVideo.addEventListener('click', () => {
+    tabVideo.classList.add('active'); tabRig.classList.remove('active');
+    videoStage.classList.remove('hidden'); rigStage.classList.add('hidden');
+    rigControls.classList.remove('show');
+    video.play().catch(() => {});
+  });
+  tabRig.addEventListener('click', () => {
+    tabRig.classList.add('active'); tabVideo.classList.remove('active');
+    rigStage.classList.remove('hidden'); videoStage.classList.add('hidden');
+    rigControls.classList.add('show');
+    video.pause();
+  });
+
+  // ------------------------------------------------- interactive rig canvas view
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
   const playBtn = document.getElementById('play');
@@ -121,7 +172,6 @@
       const thickness = Math.max(0, seg.thickness * Math.abs(obj.scale ?? 1));
       const kind = seg.segment_kind ?? 'line';
       if (kind === 'circleClear') {
-        // stroked ring: the segment midpoint is the circle center
         const dist = Math.hypot(end[0] - start[0], end[1] - start[1]);
         const radius = (dist + thickness) / 2;
         if (radius <= 0) continue;
@@ -199,7 +249,7 @@
   function tick(now) {
     const dt = now - lastTick;
     lastTick = now;
-    if (playing) {
+    if (playing && !rigStage.classList.contains('hidden')) {
       acc += dt;
       const step = 1000 / project.fps;
       while (acc >= step) {
@@ -237,6 +287,7 @@
   scrub.max = project.keyframes.length - 1;
   render();
   requestAnimationFrame(tick);
+  video.play().catch(() => {});
   </script>
 </body>
 </html>
