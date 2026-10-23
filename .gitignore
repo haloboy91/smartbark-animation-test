@@ -10,3 +10,8 @@ google_drive/
 .venv/
 **/__pycache__/
 v2/render/inspect-*.png
+
+# v3 pipeline: keep keyed sprites/animations, ignore raw green-screen plates and scratch
+v3/parts_raw/
+v3/qc/
+v3/clips/tmp/

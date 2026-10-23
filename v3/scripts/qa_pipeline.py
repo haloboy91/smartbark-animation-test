@@ -64,18 +64,28 @@ def check_smoothness(world_seq: list[dict], max_jump_px: float = 42.0,
     return out
 
 
-def check_foot_contact(world_seq, foot_nodes, planted_ranges, tol=2.0):
-    """planted_ranges: {foot_node: [(start_frame,end_frame),...]} ground holds y."""
+def check_foot_contact(world_seq, foot_nodes, planted_ranges, tol=2.0,
+                       allow_x_sweep=()):
+    """planted_ranges: {foot_node: [(start_frame,end_frame),...]} ground holds y.
+
+    Feet in allow_x_sweep use the centered walk-loop convention: vertical
+    ground contact is strict while the authored gait sweeps x relative to the
+    static-camera body. Everything else must be fully pinned (x and y).
+    """
     out = []
     for foot, ranges in planted_ranges.items():
         for (s, e) in ranges:
             ys = [world_seq[f][foot][1] for f in range(s, e + 1)]
             drift = max(ys) - min(ys)
-            # x must also hold (no horizontal slide) while planted
             xs = [world_seq[f][foot][0] for f in range(s, e + 1)]
             xdrift = max(xs) - min(xs)
-            ok = drift <= tol and xdrift <= tol
-            out.append((f"{foot}@{s}-{e}", ok, f"yDrift={drift:.2f}px xDrift={xdrift:.2f}px"))
+            if foot in allow_x_sweep:
+                ok = drift <= tol
+                detail = f"yDrift={drift:.2f}px (ground contact; xSweep={xdrift:.1f}px authored)"
+            else:
+                ok = drift <= tol and xdrift <= tol
+                detail = f"yDrift={drift:.2f}px xDrift={xdrift:.2f}px"
+            out.append((f"{foot}@{s}-{e}", ok, detail))
     return out
 
 
@@ -119,7 +129,8 @@ def report(title, rows):
     return ok_all
 
 
-def run_all(rig, poses, foot_planted, joint_pairs, expected_h, clip_name):
+def run_all(rig, poses, foot_planted, joint_pairs, expected_h, clip_name,
+            allow_x_sweep=()):
     print(f"\n########## QA: {clip_name} ({len(poses)} frames) ##########")
     results = []
     results.append(report("1. sprite transparency / no green", check_transparency()))
@@ -128,7 +139,8 @@ def run_all(rig, poses, foot_planted, joint_pairs, expected_h, clip_name):
     results.append(report("3. joint continuity (overlap)",
                           check_joint_overlap(rig, poses[len(poses) // 2], joint_pairs)))
     results.append(report("4. foot contact (no slide)",
-                          check_foot_contact(world_seq, list(foot_planted), foot_planted)))
+                          check_foot_contact(world_seq, list(foot_planted),
+                                             foot_planted, allow_x_sweep=allow_x_sweep)))
     results.append(report("5. motion smoothness (no teleport)", check_smoothness(world_seq)))
     passed = all(results)
     print(f"\n>>> {clip_name}: {'ALL CHECKS PASS' if passed else 'FAILURES PRESENT — REGENERATE/FIX'}")

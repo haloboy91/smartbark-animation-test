@@ -52,7 +52,9 @@ def two_bone_ik(origin, target, l1: float, l2: float, bend: float = 1.0):
     a1 = base + bend * math.acos(cos_a)
     cos_b = (l1 * l1 + l2 * l2 - d * d) / (2 * l1 * l2)
     cos_b = max(-1.0, min(1.0, cos_b))
-    a2 = a1 + math.pi - bend * math.acos(cos_b)
+    # interior elbow fold (pi - beta) applied with the same bend sign so the
+    # chain actually closes on the target: end == origin + l1 u1 + l2 u2
+    a2 = norm(a1 + bend * (math.acos(cos_b) - math.pi))
     return norm(a1), norm(a2)
 
 
@@ -67,6 +69,7 @@ class Node:
     rest: tuple[float, float] = (0.0, 0.0)
     z: int = 0
     mirror_x: bool = False              # flip the sprite (left/right limbs)
+    base_scale: float = 1.0
     img: Image.Image | None = field(default=None, repr=False)
 
 
@@ -84,7 +87,8 @@ class SpriteRig:
                 name=n["name"], image=n.get("image"),
                 pivot=tuple(n.get("pivot", (0.5, 0.5))), parent=n.get("parent"),
                 rest=tuple(n.get("rest", (0, 0))), z=n.get("z", 0),
-                mirror_x=bool(n.get("mirror_x")), img=img,
+                mirror_x=bool(n.get("mirror_x")), base_scale=float(n.get("scale", 1.0)),
+                img=img,
             )
         self.order = sorted(self.nodes, key=lambda k: self.nodes[k].z)
 
@@ -96,8 +100,8 @@ class SpriteRig:
 
     def rest_pose(self):
         """Identity pose: every node at its authored rest offset, angle 0."""
-        return {k: {"x": n.rest[0], "y": n.rest[1], "a": 0.0, "s": 1.0,
-                    "visible": True, "image": n.image}
+        return {k: {"x": n.rest[0], "y": n.rest[1], "a": 0.0,
+                    "s": n.base_scale, "visible": True, "image": n.image}
                 for k, n in self.nodes.items()}
 
     def world_transforms(self, pose: dict):
@@ -117,8 +121,11 @@ class SpriteRig:
             else:
                 px, py, pa, ps = solve(n.parent)
                 ca, sa = math.cos(pa), math.sin(pa)
-                wx = px + local[0] * ca - local[1] * sa
-                wy = py + local[0] * sa + local[1] * ca
+                # child local offsets inherit the parent's cumulative scale so a
+                # whole subtree scales/rotates rigidly about the parent pivot
+                lx, ly = local[0] * ps, local[1] * ps
+                wx = px + lx * ca - ly * sa
+                wy = py + lx * sa + ly * ca
                 wa, ws = norm(pa + ang), ps * scl
             world[name] = (wx, wy, wa, ws)
             return world[name]
@@ -130,7 +137,10 @@ class SpriteRig:
     def render(self, pose: dict, size=(960, 540), bg=(247, 242, 234, 255)):
         canvas = Image.new("RGBA", size, bg)
         world = self.world_transforms(pose)
-        for name in self.order:
+        # per-pose z override lets raised arms composite in front of the head
+        order = sorted(self.nodes,
+                       key=lambda k: pose.get(k, {}).get("z", self.nodes[k].z))
+        for name in order:
             n = self.nodes[name]
             p = pose.get(name, {})
             if p.get("visible", True) is False or n.img is None:

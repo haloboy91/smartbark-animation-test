@@ -1,0 +1,490 @@
+{
+  "name": "elly-front",
+  "view": "front-three-quarter",
+  "world_targets": {
+    "root_hip": [
+      470,
+      360
+    ],
+    "torso": [
+      470,
+      272
+    ],
+    "tail": [
+      408,
+      344
+    ],
+    "head": [
+      476,
+      260
+    ],
+    "ear_l": [
+      405,
+      192
+    ],
+    "ear_r": [
+      548,
+      186
+    ],
+    "eye_l": [
+      472,
+      180
+    ],
+    "eye_r": [
+      500,
+      175
+    ],
+    "lid_l": [
+      472,
+      172
+    ],
+    "lid_r": [
+      500,
+      167
+    ],
+    "brow_l": [
+      470,
+      160
+    ],
+    "brow_r": [
+      500,
+      155
+    ],
+    "mouth": [
+      486,
+      220
+    ],
+    "arm_up_l": [
+      398,
+      286
+    ],
+    "arm_lo_l": [
+      390,
+      316
+    ],
+    "arm_up_r": [
+      542,
+      286
+    ],
+    "arm_lo_r": [
+      550,
+      316
+    ],
+    "leg_up_l": [
+      448,
+      372
+    ],
+    "leg_lo_l": [
+      444,
+      412
+    ],
+    "foot_l": [
+      440,
+      434
+    ],
+    "leg_up_r": [
+      492,
+      372
+    ],
+    "leg_lo_r": [
+      496,
+      412
+    ],
+    "foot_r": [
+      500,
+      434
+    ]
+  },
+  "nodes": [
+    {
+      "name": "root_hip",
+      "image": null,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "z": 0,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        470,
+        360
+      ],
+      "scale": 1.0
+    },
+    {
+      "name": "torso",
+      "image": "torso.png",
+      "pivot": [
+        0.5,
+        0.16
+      ],
+      "z": 4,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        0.0,
+        -88.0
+      ],
+      "scale": 0.225,
+      "parent": "root_hip"
+    },
+    {
+      "name": "tail",
+      "image": "tail.png",
+      "pivot": [
+        0.18,
+        0.82
+      ],
+      "z": 1,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        -62.0,
+        -16.0
+      ],
+      "scale": 0.085,
+      "parent": "root_hip"
+    },
+    {
+      "name": "head",
+      "image": "head_base.png",
+      "pivot": [
+        0.5,
+        0.92
+      ],
+      "z": 8,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        26.667,
+        -53.333
+      ],
+      "scale": 0.82667,
+      "parent": "torso"
+    },
+    {
+      "name": "ear_l",
+      "image": "ear.png",
+      "pivot": [
+        0.5,
+        0.12
+      ],
+      "z": 9,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        -381.72,
+        -365.591
+      ],
+      "scale": 0.47312,
+      "parent": "head"
+    },
+    {
+      "name": "ear_r",
+      "image": "ear.png",
+      "pivot": [
+        0.5,
+        0.12
+      ],
+      "z": 7,
+      "mirror_x": true,
+      "visible": true,
+      "rest": [
+        387.097,
+        -397.849
+      ],
+      "scale": 0.47312,
+      "parent": "head"
+    },
+    {
+      "name": "eye_l",
+      "image": "eye_open.png",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "z": 10,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        -21.505,
+        -430.108
+      ],
+      "scale": 0.33333,
+      "parent": "head"
+    },
+    {
+      "name": "eye_r",
+      "image": "eye_open.png",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "z": 10,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        129.032,
+        -456.989
+      ],
+      "scale": 0.35484,
+      "parent": "head"
+    },
+    {
+      "name": "lid_l",
+      "image": "eyelid.png",
+      "pivot": [
+        0.5,
+        0.55
+      ],
+      "z": 11,
+      "mirror_x": false,
+      "visible": false,
+      "rest": [
+        -21.505,
+        -473.118
+      ],
+      "scale": 0.35484,
+      "parent": "head"
+    },
+    {
+      "name": "lid_r",
+      "image": "eyelid.png",
+      "pivot": [
+        0.5,
+        0.55
+      ],
+      "z": 11,
+      "mirror_x": true,
+      "visible": false,
+      "rest": [
+        129.032,
+        -500.0
+      ],
+      "scale": 0.37634,
+      "parent": "head"
+    },
+    {
+      "name": "brow_l",
+      "image": "eyebrow.png",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "z": 11,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        -32.258,
+        -537.634
+      ],
+      "scale": 0.24194,
+      "parent": "head"
+    },
+    {
+      "name": "brow_r",
+      "image": "eyebrow.png",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "z": 11,
+      "mirror_x": true,
+      "visible": true,
+      "rest": [
+        129.032,
+        -564.516
+      ],
+      "scale": 0.25806,
+      "parent": "head"
+    },
+    {
+      "name": "mouth",
+      "image": "mouth_smile.png",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "z": 10,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        53.763,
+        -215.054
+      ],
+      "scale": 0.32258,
+      "parent": "head"
+    },
+    {
+      "name": "arm_up_l",
+      "image": "arm_upper.png",
+      "pivot": [
+        0.5,
+        0.08
+      ],
+      "z": 3,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        -320.0,
+        62.222
+      ],
+      "scale": 0.36444,
+      "parent": "torso"
+    },
+    {
+      "name": "arm_lo_l",
+      "image": "arm_lower_paw.png",
+      "pivot": [
+        0.5,
+        0.07
+      ],
+      "z": 3,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        -97.561,
+        365.854
+      ],
+      "scale": 1.03659,
+      "parent": "arm_up_l"
+    },
+    {
+      "name": "arm_up_r",
+      "image": "arm_upper.png",
+      "pivot": [
+        0.5,
+        0.08
+      ],
+      "z": 6,
+      "mirror_x": true,
+      "visible": true,
+      "rest": [
+        320.0,
+        62.222
+      ],
+      "scale": 0.36444,
+      "parent": "torso"
+    },
+    {
+      "name": "arm_lo_r",
+      "image": "arm_lower_paw.png",
+      "pivot": [
+        0.5,
+        0.07
+      ],
+      "z": 6,
+      "mirror_x": true,
+      "visible": true,
+      "rest": [
+        97.561,
+        365.854
+      ],
+      "scale": 1.03659,
+      "parent": "arm_up_r"
+    },
+    {
+      "name": "leg_up_l",
+      "image": "leg_upper.png",
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "z": 3,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        -22.0,
+        12.0
+      ],
+      "scale": 0.072,
+      "parent": "root_hip"
+    },
+    {
+      "name": "leg_lo_l",
+      "image": "leg_lower.png",
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "z": 3,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        -55.556,
+        555.556
+      ],
+      "scale": 1.0,
+      "parent": "leg_up_l"
+    },
+    {
+      "name": "foot_l",
+      "image": "foot_paw.png",
+      "pivot": [
+        0.5,
+        0.22
+      ],
+      "z": 3,
+      "mirror_x": false,
+      "visible": true,
+      "rest": [
+        -55.556,
+        305.556
+      ],
+      "scale": 1.25,
+      "parent": "leg_lo_l"
+    },
+    {
+      "name": "leg_up_r",
+      "image": "leg_upper.png",
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "z": 6,
+      "mirror_x": true,
+      "visible": true,
+      "rest": [
+        22.0,
+        12.0
+      ],
+      "scale": 0.072,
+      "parent": "root_hip"
+    },
+    {
+      "name": "leg_lo_r",
+      "image": "leg_lower.png",
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "z": 6,
+      "mirror_x": true,
+      "visible": true,
+      "rest": [
+        55.556,
+        555.556
+      ],
+      "scale": 1.0,
+      "parent": "leg_up_r"
+    },
+    {
+      "name": "foot_r",
+      "image": "foot_paw.png",
+      "pivot": [
+        0.5,
+        0.22
+      ],
+      "z": 6,
+      "mirror_x": true,
+      "visible": true,
+      "rest": [
+        55.556,
+        305.556
+      ],
+      "scale": 1.25,
+      "parent": "leg_lo_r"
+    }
+  ]
+}
