@@ -120,6 +120,35 @@ def check_proportions(world_seq, expected_h, tol=0.12) -> list[tuple[str, bool, 
     return out
 
 
+def check_mouth_alignment(rig, poses, margin_frac=0.2):
+    """Every swapped mouth sprite must stay inside the head's world footprint
+    (no mouth drifting off the muzzle/chin across talk/expression frames)."""
+    head = rig.nodes["head"]
+    hw, hh = head.img.width, head.img.height
+    px, py = head.pivot
+    out = []
+    worst = 0.0
+    for f, pose in enumerate(poses[::4]):
+        world = rig.world_transforms(pose)
+        hx, hy, _, hs = world["head"]
+        mx, my = world["mouth"][0], world["mouth"][1]
+        left = hx - px * hw * hs + margin_frac * hw * hs
+        right = hx + (1 - px) * hw * hs - margin_frac * hw * hs
+        top = hy - py * hh * hs
+        bottom = hy + (1 - py) * hh * hs
+        inside = left <= mx <= right and top <= my <= bottom
+        # margin slack: distance outside the box, normalized by head width
+        ox = max(0.0, left - mx, mx - right) / (hw * hs)
+        worst = max(worst, ox)
+        if not inside:
+            out.append((f"frame{f*4}", False,
+                        f"mouth outside head box ox={ox:.2f}"))
+    if not out:
+        out.append(("mouth_anchor", True,
+                    "all mouth shapes stay within the head footprint"))
+    return out
+
+
 def report(title, rows):
     print(f"\n== {title} ==")
     ok_all = True
@@ -141,7 +170,9 @@ def run_all(rig, poses, foot_planted, joint_pairs, expected_h, clip_name,
     results.append(report("4. foot contact (no slide)",
                           check_foot_contact(world_seq, list(foot_planted),
                                              foot_planted, allow_x_sweep=allow_x_sweep)))
-    results.append(report("5. motion smoothness (no teleport)", check_smoothness(world_seq)))
+    results.append(report("5. mouth alignment (anchored under nose)",
+                          check_mouth_alignment(rig, poses)))
+    results.append(report("6. motion smoothness (no teleport)", check_smoothness(world_seq)))
     passed = all(results)
     print(f"\n>>> {clip_name}: {'ALL CHECKS PASS' if passed else 'FAILURES PRESENT — REGENERATE/FIX'}")
     return passed

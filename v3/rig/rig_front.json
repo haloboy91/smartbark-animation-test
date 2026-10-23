@@ -1,98 +1,125 @@
 {
-  "name": "elly-front",
+  "name": "elly-front-v2",
   "view": "front-three-quarter",
   "world_targets": {
     "root_hip": [
       470,
-      360
+      400
     ],
     "torso": [
       470,
-      272
+      300
     ],
     "tail": [
-      408,
-      344
+      382,
+      386
     ],
     "head": [
-      476,
-      260
+      470,
+      285
     ],
     "ear_l": [
-      405,
-      192
-    ],
-    "ear_r": [
-      548,
-      186
-    ],
-    "eye_l": [
-      472,
-      180
-    ],
-    "eye_r": [
-      500,
-      175
-    ],
-    "lid_l": [
-      472,
+      404,
       172
     ],
+    "ear_r": [
+      536,
+      172
+    ],
+    "eye_l": [
+      442,
+      202
+    ],
+    "eye_r": [
+      498,
+      202
+    ],
+    "lid_l": [
+      442,
+      194
+    ],
     "lid_r": [
-      500,
-      167
+      498,
+      194
     ],
     "brow_l": [
-      470,
-      160
+      442,
+      172
     ],
     "brow_r": [
-      500,
-      155
+      498,
+      172
     ],
     "mouth": [
-      486,
-      220
+      470,
+      256
     ],
     "arm_up_l": [
-      398,
-      286
+      414,
+      298
     ],
     "arm_lo_l": [
-      390,
-      316
+      411,
+      350
     ],
     "arm_up_r": [
-      542,
-      286
+      526,
+      298
     ],
     "arm_lo_r": [
-      550,
-      316
+      529,
+      350
     ],
     "leg_up_l": [
-      448,
-      372
+      447,
+      402
     ],
     "leg_lo_l": [
-      444,
-      412
+      445,
+      435
     ],
     "foot_l": [
-      440,
-      434
+      443,
+      458
     ],
     "leg_up_r": [
-      492,
-      372
+      493,
+      402
     ],
     "leg_lo_r": [
-      496,
-      412
+      495,
+      435
     ],
     "foot_r": [
-      500,
-      434
+      497,
+      458
+    ]
+  },
+  "mouth_anchors": {
+    "mouth_smile.png": [
+      0,
+      0,
+      1.0
+    ],
+    "mouth_talk.png": [
+      0,
+      6,
+      0.62
+    ],
+    "mouth_happy.png": [
+      0,
+      8,
+      0.6
+    ],
+    "mouth_surprised.png": [
+      0,
+      4,
+      0.85
+    ],
+    "mouth_angry.png": [
+      0,
+      -2,
+      0.8
     ]
   },
   "nodes": [
@@ -108,7 +135,7 @@
       "visible": true,
       "rest": [
         470,
-        360
+        400
       ],
       "scale": 1.0
     },
@@ -124,9 +151,9 @@
       "visible": true,
       "rest": [
         0.0,
-        -88.0
+        -100.0
       ],
-      "scale": 0.225,
+      "scale": 0.166,
       "parent": "root_hip"
     },
     {
@@ -140,10 +167,10 @@
       "mirror_x": false,
       "visible": true,
       "rest": [
-        -62.0,
-        -16.0
+        -88.0,
+        -14.0
       ],
-      "scale": 0.085,
+      "scale": 0.072,
       "parent": "root_hip"
     },
     {
@@ -157,10 +184,10 @@
       "mirror_x": false,
       "visible": true,
       "rest": [
-        26.667,
-        -53.333
+        0.0,
+        -90.361
       ],
-      "scale": 0.82667,
+      "scale": 0.95783,
       "parent": "torso"
     },
     {
@@ -168,16 +195,16 @@
       "image": "ear.png",
       "pivot": [
         0.5,
-        0.12
+        0.1
       ],
-      "z": 9,
+      "z": 7,
       "mirror_x": false,
       "visible": true,
       "rest": [
-        -381.72,
-        -365.591
+        -415.094,
+        -710.692
       ],
-      "scale": 0.47312,
+      "scale": 0.69182,
       "parent": "head"
     },
     {
@@ -185,16 +212,16 @@
       "image": "ear.png",
       "pivot": [
         0.5,
-        0.12
+        0.1
       ],
-      "z": 7,
+      "z": 9,
       "mirror_x": true,
       "visible": true,
       "rest": [
-        387.097,
-        -397.849
+        415.094,
+        -710.692
       ],
-      "scale": 0.47312,
+      "scale": 0.69182,
       "parent": "head"
     },
     {
@@ -208,10 +235,10 @@
       "mirror_x": false,
       "visible": true,
       "rest": [
-        -21.505,
-        -430.108
+        -176.101,
+        -522.013
       ],
-      "scale": 0.33333,
+      "scale": 0.61635,
       "parent": "head"
     },
     {
@@ -225,10 +252,10 @@
       "mirror_x": false,
       "visible": true,
       "rest": [
-        129.032,
-        -456.989
+        176.101,
+        -522.013
       ],
-      "scale": 0.35484,
+      "scale": 0.61635,
       "parent": "head"
     },
     {
@@ -236,16 +263,16 @@
       "image": "eyelid.png",
       "pivot": [
         0.5,
-        0.55
+        0.62
       ],
       "z": 11,
       "mirror_x": false,
       "visible": false,
       "rest": [
-        -21.505,
-        -473.118
+        -176.101,
+        -572.327
       ],
-      "scale": 0.35484,
+      "scale": 0.50314,
       "parent": "head"
     },
     {
@@ -253,16 +280,16 @@
       "image": "eyelid.png",
       "pivot": [
         0.5,
-        0.55
+        0.62
       ],
       "z": 11,
       "mirror_x": true,
       "visible": false,
       "rest": [
-        129.032,
-        -500.0
+        176.101,
+        -572.327
       ],
-      "scale": 0.37634,
+      "scale": 0.50314,
       "parent": "head"
     },
     {
@@ -276,11 +303,12 @@
       "mirror_x": false,
       "visible": true,
       "rest": [
-        -32.258,
-        -537.634
+        -176.101,
+        -710.692
       ],
-      "scale": 0.24194,
-      "parent": "head"
+      "scale": 0.26415,
+      "parent": "head",
+      "angle": 0.12
     },
     {
       "name": "brow_r",
@@ -293,11 +321,12 @@
       "mirror_x": true,
       "visible": true,
       "rest": [
-        129.032,
-        -564.516
+        176.101,
+        -710.692
       ],
-      "scale": 0.25806,
-      "parent": "head"
+      "scale": 0.26415,
+      "parent": "head",
+      "angle": -0.12
     },
     {
       "name": "mouth",
@@ -310,10 +339,10 @@
       "mirror_x": false,
       "visible": true,
       "rest": [
-        53.763,
-        -215.054
+        0.0,
+        -182.39
       ],
-      "scale": 0.32258,
+      "scale": 0.64151,
       "parent": "head"
     },
     {
@@ -321,16 +350,16 @@
       "image": "arm_upper.png",
       "pivot": [
         0.5,
-        0.08
+        0.1
       ],
       "z": 3,
       "mirror_x": false,
       "visible": true,
       "rest": [
-        -320.0,
-        62.222
+        -337.349,
+        -12.048
       ],
-      "scale": 0.36444,
+      "scale": 0.6506,
       "parent": "torso"
     },
     {
@@ -338,21 +367,38 @@
       "image": "arm_lower_paw.png",
       "pivot": [
         0.5,
-        0.07
+        0.08
       ],
       "z": 3,
       "mirror_x": false,
       "visible": true,
       "rest": [
-        -97.561,
-        365.854
+        -27.778,
+        481.481
       ],
-      "scale": 1.03659,
+      "scale": 0.88889,
       "parent": "arm_up_l"
     },
     {
       "name": "arm_up_r",
       "image": "arm_upper.png",
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "z": 6,
+      "mirror_x": true,
+      "visible": true,
+      "rest": [
+        337.349,
+        -12.048
+      ],
+      "scale": 0.6506,
+      "parent": "torso"
+    },
+    {
+      "name": "arm_lo_r",
+      "image": "arm_lower_paw.png",
       "pivot": [
         0.5,
         0.08
@@ -361,27 +407,10 @@
       "mirror_x": true,
       "visible": true,
       "rest": [
-        320.0,
-        62.222
+        27.778,
+        481.481
       ],
-      "scale": 0.36444,
-      "parent": "torso"
-    },
-    {
-      "name": "arm_lo_r",
-      "image": "arm_lower_paw.png",
-      "pivot": [
-        0.5,
-        0.07
-      ],
-      "z": 6,
-      "mirror_x": true,
-      "visible": true,
-      "rest": [
-        97.561,
-        365.854
-      ],
-      "scale": 1.03659,
+      "scale": 0.88889,
       "parent": "arm_up_r"
     },
     {
@@ -395,10 +424,10 @@
       "mirror_x": false,
       "visible": true,
       "rest": [
-        -22.0,
-        12.0
+        -23.0,
+        2.0
       ],
-      "scale": 0.072,
+      "scale": 0.066,
       "parent": "root_hip"
     },
     {
@@ -412,10 +441,10 @@
       "mirror_x": false,
       "visible": true,
       "rest": [
-        -55.556,
-        555.556
+        -30.303,
+        500.0
       ],
-      "scale": 1.0,
+      "scale": 0.90909,
       "parent": "leg_up_l"
     },
     {
@@ -429,10 +458,10 @@
       "mirror_x": false,
       "visible": true,
       "rest": [
-        -55.556,
-        305.556
+        -33.333,
+        383.333
       ],
-      "scale": 1.25,
+      "scale": 1.33333,
       "parent": "leg_lo_l"
     },
     {
@@ -446,10 +475,10 @@
       "mirror_x": true,
       "visible": true,
       "rest": [
-        22.0,
-        12.0
+        23.0,
+        2.0
       ],
-      "scale": 0.072,
+      "scale": 0.066,
       "parent": "root_hip"
     },
     {
@@ -463,10 +492,10 @@
       "mirror_x": true,
       "visible": true,
       "rest": [
-        55.556,
-        555.556
+        30.303,
+        500.0
       ],
-      "scale": 1.0,
+      "scale": 0.90909,
       "parent": "leg_up_r"
     },
     {
@@ -480,10 +509,10 @@
       "mirror_x": true,
       "visible": true,
       "rest": [
-        55.556,
-        305.556
+        33.333,
+        383.333
       ],
-      "scale": 1.25,
+      "scale": 1.33333,
       "parent": "leg_lo_r"
     }
   ]

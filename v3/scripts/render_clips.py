@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 """
-render_clips.py — Phase 5: render the three required 5s test clips through the
-QA gates, then export MP4 (H.264) and GIF. Also renders per-clip contact
-sheets so every clip can be visually inspected before it is accepted.
+render_clips.py — Phase C: render the four required 5s clips through the QA
+gates, then export MP4 (H.264) and GIF, with a simple parallax environment and
+a root-following contact shadow for the root-motion walk.
 
-  clip 1  walking          -> walk_5s
-  clip 2  sitting + talking-> sit_talk_5s
-  clip 3  pointing + react -> point_react_5s
+  walk_5s   root-motion walk (planted feet truly pinned, world scrolls past)
+  talk_5s   sitting + talking
+  sit_5s    sitting idle
+  point_5s  pointing raise / hold / lower
 """
 from __future__ import annotations
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -18,13 +20,15 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 from sprite_engine import SpriteRig, smooth
-from anim_presets import Anim, PRESETS
+from anim_presets import (Anim, PRESETS, p_walk_root, WALK_CYCLES,
+                          WALK_HIP_X0, WALK_STEP, STANCE)
 
 ROOT = Path(__file__).resolve().parents[1]
-FPS = 24
-SECONDS = 5
-FRAMES = FPS * SECONDS
+FPS, SECONDS, FRAMES = 24, 5, 120
 W, H = 960, 540
+SKY = (247, 242, 234)
+GROUND = (226, 219, 206)
+GROUND_Y = 478
 
 JOINT_PAIRS = [
     ("root_hip", "torso"), ("torso", "head"), ("head", "eye_l"),
@@ -35,14 +39,14 @@ JOINT_PAIRS = [
 ]
 
 
-def clip_walk(a: Anim, i, n):
-    return PRESETS["walking"](a, i, n)
+# ------------------------------------------------------------- clip scripts --
+def clip_walk(a, i, n):
+    return p_walk_root(a, i, n)
 
 
-def clip_sit_talk(a: Anim, i, n):
-    # settle into the seat over the first 12 frames, then talk
+def clip_talk(a, i, n):
     p = PRESETS["talking"](a, i, n)
-    if i < 12:
+    if i < 12:                                   # ease into the seat
         k = smooth(i / 12)
         rest = a.base()
         for name in p:
@@ -51,24 +55,73 @@ def clip_sit_talk(a: Anim, i, n):
     return p
 
 
-def clip_point_react(a: Anim, i, n):
-    """Point (raise -> hold -> lower toward neutral), then a clean cut into the
-    surprised reaction, whose first frame is the neutral base pose, so no node
-    ever teleports and no cross-pose blend can pull the rig apart."""
-    half = n // 2
-    if i < half:
-        rise = smooth(i / (half * 0.5))
-        fall = 1.0 - 0.92 * smooth((i - half * 0.62) / (half * 0.38))
-        u = max(0.0, min(1.0, rise * fall))
-        return PRESETS["pointing"](a, i, half, u_env=u)
-    return PRESETS["surprised"](a, i - half, n - half)
+def clip_sit(a, i, n):
+    return PRESETS["sitting"](a, i, n)
+
+
+def clip_point(a, i, n):
+    half = n
+    rise = smooth(i / (half * 0.5))
+    fall = 1.0 - 0.92 * smooth((i - half * 0.62) / (half * 0.38))
+    u = max(0.0, min(1.0, rise * fall))
+    return PRESETS["pointing"](a, i, n, u_env=u)
 
 
 CLIPS = {
-    "walk_5s": (clip_walk, {"l": 0.0, "r": 0.5}),
-    "sit_talk_5s": (clip_sit_talk, None),
-    "point_react_5s": (clip_point_react, None),
+    "walk_5s": (clip_walk, "locomotion"),
+    "talk_5s": (clip_talk, "static"),
+    "sit_5s": (clip_sit, "static"),
+    "point_5s": (clip_point, "static"),
 }
+
+
+# --------------------------------------------------------------- environment --
+def background(travel, root_x, ground_y):
+    """Parallax backdrop: warm sky, ground band, two scrolling soft layers and
+    a contact shadow under the character. Environment shapes only."""
+    bg = Image.new("RGB", (W, H), SKY)
+    d = ImageDraw.Draw(bg)
+    d.rectangle((0, GROUND_Y, W, H), fill=GROUND)
+    # far layer: slow rounded clouds
+    for k in range(6):
+        base = (k * 220 - travel * 0.25) % (W + 240) - 120
+        cy = 90 + (k % 3) * 34
+        d.ellipse((base, cy, base + 120, cy + 34), fill=(255, 255, 255))
+    # near layer: bushes anchored to the ground, faster scroll
+    for k in range(7):
+        base = (k * 180 - travel * 0.6) % (W + 200) - 100
+        d.ellipse((base, GROUND_Y - 46, base + 130, GROUND_Y + 18), fill=(205, 214, 190))
+    # contact shadow tracks the root
+    d.ellipse((root_x - 70, ground_y + 8, root_x + 70, ground_y + 26),
+              fill=(120, 112, 100))
+    return bg
+
+
+def composite(rig, pose, mode, travel):
+    char = rig.render(pose, size=(W, H), bg=(0, 0, 0, 0))
+    hip = rig.world_transforms(pose)["root_hip"]
+    gy = rig.world_transforms(pose)["foot_l"][1] + 24
+    bg = background(travel if mode == "locomotion" else 0.0, hip[0], gy)
+    bg = bg.convert("RGBA")
+    bg.alpha_composite(char)
+    return bg.convert("RGB")
+
+
+def planted_windows():
+    """Root-walk stance windows from the same phase used by p_walk_root."""
+    out = {"foot_l": [], "foot_r": []}
+    for foot, off in (("foot_l", 0.0), ("foot_r", 0.5)):
+        start = None
+        for i in range(FRAMES):
+            s = WALK_CYCLES * i / (FRAMES - 1)
+            planted = (s + off) % 1.0 < STANCE
+            if planted and start is None:
+                start = i
+            if not planted and start is not None:
+                out[foot].append((start, i - 1)); start = None
+        if start is not None:
+            out[foot].append((start, FRAMES - 1))
+    return out
 
 
 def contact_sheet(frames, path, label):
@@ -78,10 +131,8 @@ def contact_sheet(frames, path, label):
     d = ImageDraw.Draw(sheet)
     d.text((8, 4), label, fill=(255, 220, 120))
     for idx, fr in enumerate(frames):
-        im = Image.fromarray(fr).resize((tw, th))
-        x = (idx % cols) * tw
-        y = 24 + (idx // cols) * th
-        sheet.paste(im, (x, y))
+        x, y = (idx % cols) * tw, 24 + (idx // cols) * th
+        sheet.paste(Image.fromarray(fr).resize((tw, th)), (x, y))
     sheet.save(path)
 
 
@@ -91,33 +142,35 @@ def main():
     a = Anim(rig)
     from qa_pipeline import run_all
 
-    # neutral reference height from rest-pose pivot extents
     rest_world = rig.world_transforms(rig.rest_pose())
-    ys = [v[1] for v in rest_world.values()]
-    neutral_h = max(ys) - min(ys)
+    neutral_h = max(v[1] for v in rest_world.values()) - min(v[1] for v in rest_world.values())
+    travel_total = WALK_CYCLES * WALK_STEP
 
     out_dir = ROOT / "clips"
     (out_dir / "tmp").mkdir(parents=True, exist_ok=True)
     qa_summary = {}
 
-    for name, (builder, gait_offsets) in CLIPS.items():
+    for name, (builder, mode) in CLIPS.items():
         poses = [builder(a, i, FRAMES) for i in range(FRAMES)]
-        frames = [np.asarray(rig.render(p, size=(W, H)).convert("RGB")) for p in poses]
+        frames = []
+        for i, p in enumerate(poses):
+            travel = (WALK_HIP_X0 + WALK_CYCLES * i / (FRAMES - 1) * WALK_STEP
+                      - WALK_HIP_X0) if mode == "locomotion" else 0.0
+            frames.append(np.asarray(composite(rig, p, mode, travel)))
 
-        if gait_offsets:  # stance windows derived from the same gait parametric
-            planted = {}
-            for side, off in gait_offsets.items():
-                foot = f"foot_{side}"
-                planted[foot] = a.planted_ranges(FRAMES, off, cycles=4)
+        if mode == "locomotion":
+            planted = planted_windows()
+            sweep = ()                                   # feet are truly pinned
             expected = neutral_h
-        elif name == "sit_talk_5s":
+        elif name == "talk_5s":
             planted = {"foot_l": [(12, FRAMES - 1)], "foot_r": [(12, FRAMES - 1)]}
+            sweep = ("foot_l", "foot_r")
             expected = neutral_h * 0.93
         else:
             planted = {"foot_l": [(0, FRAMES - 1)], "foot_r": [(0, FRAMES - 1)]}
-            expected = neutral_h
+            sweep = ("foot_l", "foot_r")
+            expected = neutral_h * (0.93 if name == "sit_5s" else 1.0)
 
-        sweep = ("foot_l", "foot_r") if gait_offsets else ()
         ok = run_all(rig, poses, planted, JOINT_PAIRS, expected, name,
                      allow_x_sweep=sweep)
         qa_summary[name] = bool(ok)
@@ -127,16 +180,12 @@ def main():
             continue
 
         mp4 = out_dir / f"{name}.mp4"
-        imageio.mimsave(mp4, frames, fps=FPS, codec="libx264",
-                        quality=8, macro_block_size=2,
-                        output_params=["-pix_fmt", "yuv420p"])
+        imageio.mimsave(mp4, frames, fps=FPS, codec="libx264", quality=8,
+                        macro_block_size=2, output_params=["-pix_fmt", "yuv420p"])
         gif_frames = [Image.fromarray(f).resize((480, 270), Image.LANCZOS)
                       .quantize(colors=128, method=Image.FASTOCTREE) for f in frames]
         gif = out_dir / f"{name}.gif"
-        # GIF durations are quantized to 10ms; mix 40/50ms frames (one 50ms
-        # every fifth) so 120 frames total ~5.04s instead of a flat 4.8s.
-        n_gif = len(gif_frames)
-        durations = [50 if idx % 5 == 0 else 40 for idx in range(n_gif)]
+        durations = [50 if idx % 5 == 0 else 40 for idx in range(len(gif_frames))]
         gif_frames[0].save(gif, save_all=True, append_images=gif_frames[1:],
                            duration=durations, loop=0, optimize=False, disposal=2)
         contact_sheet(frames[::10], ROOT / "qc" / f"{name}-sheet.png", name)

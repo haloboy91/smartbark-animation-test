@@ -102,6 +102,22 @@ class Anim:
         """Hold the sole at world angle 0 regardless of the shin angle."""
         pose[foot]["a"] = norm(-self.world(pose, lower)[2])
 
+    def pin_foot(self, pose, upper, lower, foot, target, bend):
+        """Two-bone IK to the ankle, then inverse-FK correct the foot node so
+        its pivot lands EXACTLY on the world target with a flat sole — planted
+        feet therefore have zero x/y slide even while the hip bobs."""
+        rest_lo = self.world(self.rest, lower)
+        rest_ft = self.world(self.rest, foot)
+        ankle_drop = rest_ft[1] - rest_lo[1]
+        self.aim_ik(pose, upper, lower, (target[0], target[1] - ankle_drop), bend)
+        ax, ay, pa, ps = self.world(pose, lower)
+        dx, dy = target[0] - ax, target[1] - ay
+        ca, sa = math.cos(pa), math.sin(pa)
+        # world delta = R(pa) * (ps * local)  =>  local = R(-pa) * delta / ps
+        pose[foot]["x"] = (ca * dx + sa * dy) / ps
+        pose[foot]["y"] = (-sa * dx + ca * dy) / ps
+        pose[foot]["a"] = norm(-pa)
+
     def pose_arm(self, pose, side, upper_ang, lower_ang, front=False):
         """Direct FK for an arm (more predictable than IK for sleeve sprites).
         side 'l': positive angles raise outward; side 'r': negative raises.
@@ -114,10 +130,28 @@ class Anim:
             pose[up]["z"] = pose[lo]["z"] = 12
 
     def set_mouth(self, pose, kind):
-        pose["mouth"]["image"] = MOUTHS[kind]
+        """Swap the mouth sprite AND apply its per-shape anchor so every mouth
+        shape centers under the nose instead of sharing one pivot."""
+        img = MOUTHS[kind]
+        node = pose["mouth"]
+        node["image"] = img
+        dx, dy, smul = self.rig.spec.get("mouth_anchors", {}).get(
+            img, [0, 0, 1.0])
+        node["x"] = self.rest["mouth"]["x"] + dx
+        node["y"] = self.rest["mouth"]["y"] + dy
+        node["s"] = self.rest["mouth"]["s"] * smul
 
-    def blink(self, pose, t, period=2.6, dur=0.22):
-        """Blink both lids: lids slide over the eyes, then retract."""
+    def clear_mouth_anchor(self, pose):
+        """Reset the mouth node to its smile baseline."""
+        node = pose["mouth"]
+        node["image"] = MOUTHS["smile"]
+        node["x"] = self.rest["mouth"]["x"]
+        node["y"] = self.rest["mouth"]["y"]
+        node["s"] = self.rest["mouth"]["s"]
+
+    def blink(self, pose, t, period=2.6, dur=0.3):
+        """Blink both lids: lids slide fully over the eyes, then retract.
+        Stronger travel and a longer hold so the blink reads on camera."""
         ph = (t % period) / period
         q = dur / period
         on = ph < q
@@ -125,8 +159,8 @@ class Anim:
             pose[lid]["visible"] = on
             if on:
                 k = math.sin(math.pi * ph / q)          # 0..1..0
-                pose[lid]["y"] = self.rest[lid]["y"] - 6 * (1 - k)
-                pose[eye]["scale_y"] = self.world(pose, eye)[3] * (1 - 0.55 * k)
+                pose[lid]["y"] = self.rest[lid]["y"] - 14 * (1 - k)
+                pose[eye]["scale_y"] = self.world(pose, eye)[3] * (1 - 0.75 * k)
 
     def foot_path(self, phase, offset, ground_y, sx, lift, stance=0.62):
         """Treadmill gait foot target; returns (dx, dy, planted)."""
@@ -209,6 +243,51 @@ def p_walk(a, i, n):
                  arm_swing=0.38, bob=3.5)
 
 
+# Root-motion walk: the hip translates across the frame and planted feet are
+# pinned at fixed world contact points (zero slide), while swing feet arc to
+# the next contact. Used for the locomotion clip with a parallax background.
+WALK_STEP = 34.0          # px advanced per footfall
+WALK_CYCLES = 4
+WALK_HIP_X0 = 400.0       # hip x at the first frame
+STRIKE_AHEAD = 22.0       # planted foot sits this far ahead of the hip at strike
+STANCE = 0.62
+
+
+def _walk_foot_target(a, foot_node, phase_offset, s, lift):
+    """Absolute-world foot target for the root-motion walk."""
+    gy = a.world(a.rest, foot_node)[1]
+    local = (s + phase_offset) % 1.0
+    k = math.floor(s + phase_offset)
+    contact = WALK_HIP_X0 + (k + phase_offset) * WALK_STEP + STRIKE_AHEAD
+    if local < STANCE:                                   # planted: fixed contact
+        return contact, gy, True
+    p = (local - STANCE) / (1 - STANCE)                  # swing to next contact
+    nxt = WALK_HIP_X0 + (k + 1 + phase_offset) * WALK_STEP + STRIKE_AHEAD
+    x = contact + (nxt - contact) * smooth(p)
+    return x, gy - lift * math.sin(math.pi * p), False
+
+
+def p_walk_root(a, i, n):
+    p = a.base()
+    s = WALK_CYCLES * i / max(1, n - 1)                  # continuous step count
+    ph = TAU * s
+    p["root_hip"]["x"] = WALK_HIP_X0 + s * WALK_STEP     # hip travels with the gait
+    p["root_hip"]["y"] = a.rest["root_hip"]["y"] + 3.2 * abs(math.sin(ph))
+    p["torso"]["a"] = 0.05
+    for side, off, up, lo, foot in (
+            ("l", 0.0, "leg_up_l", "leg_lo_l", "foot_l"),
+            ("r", 0.5, "leg_up_r", "leg_lo_r", "foot_r")):
+        tx, ty, _planted = _walk_foot_target(a, foot, off, s, lift=18)
+        bend = 1.0 if side == "l" else -1.0
+        a.pin_foot(p, up, lo, foot, (tx, ty), bend)
+    sw = 0.36 * math.sin(ph)
+    p["arm_up_l"]["a"], p["arm_up_r"]["a"] = sw, -sw
+    p["tail"]["a"] = 0.18 * math.sin(ph)
+    p["head"]["a"] = -0.02
+    a.blink(p, i / 24.0)
+    return p
+
+
 def p_run(a, i, n):
     return _gait(a, i, n, cycles=6, stride=26, lift=32, lean=0.16,
                  arm_swing=0.7, bob=4.0)
@@ -247,7 +326,7 @@ def p_talking(a: Anim, i, n):
     p["brow_r"]["a"] = -0.12 * math.sin(TAU * t / 1.7)
     # illustrative right paw raises outward twice while speaking
     gest = max(0.0, math.sin(TAU * t / 2.5))
-    a.pose_arm(p, "r", -0.7 * gest, -0.2 * gest, front=gest > 0.2)
+    a.pose_arm(p, "r", -0.5 * gest, -0.15 * gest, front=gest > 0.2)
     return p
 
 
@@ -259,7 +338,7 @@ def p_pointing(a: Anim, i, n, u_env=None):
     # raise the right arm out-right (FK); the point sprite's index finger
     # extends the gesture. Small pokes once fully extended.
     poke = 0.05 * math.sin(TAU * (i / 24.0) * 2.2) if u > 0.55 else 0.0
-    a.pose_arm(p, "r", -0.72 * u - poke, -0.2 * u, front=u > 0.15)
+    a.pose_arm(p, "r", -0.55 * u - poke, -0.15 * u, front=u > 0.15)
     if u > 0.25:                                   # point hand only while raised
         p["arm_lo_r"]["image"] = "hand_point.png"
         p["arm_lo_r"]["s"] = a.rest["arm_lo_r"]["s"] * 0.92
@@ -321,8 +400,8 @@ def p_happy(a: Anim, i, n):
     for b in ("brow_l", "brow_r"):
         p[b]["a"] = 0.25
     # both arms flung up-out in a cheer, angle-limited so sleeves stay joined
-    a.pose_arm(p, "l", 0.72, 0.18, front=True)
-    a.pose_arm(p, "r", -0.72, -0.18, front=True)
+    a.pose_arm(p, "l", 0.55, 0.15, front=True)
+    a.pose_arm(p, "r", -0.55, -0.15, front=True)
     p["tail"]["a"] = 0.5 * math.sin(TAU * t * 3)                # fast wag
     return p
 
@@ -373,6 +452,28 @@ def p_body_turn(a: Anim, i, n):
     return p
 
 
+def p_side_view(a: Anim, i, n):
+    """Dedicated profile configuration: side-view head/torso sprites with the
+    far-side limbs hidden and the near-side arm/leg repositioned to read in
+    profile (not front-view limbs bolted onto a side body)."""
+    p = a.base()
+    t = i / 24.0
+    _turn_swap(p, a, True, side_image_torso="torso_side.png")
+    # hide the far-side arm and leg entirely
+    for k in ("arm_up_r", "arm_lo_r", "leg_up_r", "leg_lo_r", "foot_r"):
+        p[k]["visible"] = False
+    # near-side arm hangs straight down against the profile torso
+    a.pose_arm(p, "l", 0.12, 0.05)
+    # near-side leg tucks under the side body, sole flat on the ground
+    gy = a.world(a.rest, "foot_l")[1]
+    hip = a.world(p, "root_hip")
+    a.pin_foot(p, "leg_up_l", "leg_lo_l", "foot_l",
+               (hip[0] - 6, gy), 1.0)
+    p["tail"]["a"] = 0.12 * math.sin(TAU * t / 2.2)
+    p["head"]["a"] = -0.05
+    return p
+
+
 PRESETS = {
     "idle_breathing": p_idle,
     "walking": p_walk,
@@ -385,4 +486,5 @@ PRESETS = {
     "happy": p_happy,
     "head_turn": p_head_turn,
     "body_turn": p_body_turn,
+    "side_view": p_side_view,
 }

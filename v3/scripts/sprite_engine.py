@@ -70,6 +70,7 @@ class Node:
     z: int = 0
     mirror_x: bool = False              # flip the sprite (left/right limbs)
     base_scale: float = 1.0
+    rest_angle: float = 0.0
     img: Image.Image | None = field(default=None, repr=False)
 
 
@@ -88,6 +89,7 @@ class SpriteRig:
                 pivot=tuple(n.get("pivot", (0.5, 0.5))), parent=n.get("parent"),
                 rest=tuple(n.get("rest", (0, 0))), z=n.get("z", 0),
                 mirror_x=bool(n.get("mirror_x")), base_scale=float(n.get("scale", 1.0)),
+                rest_angle=float(n.get("angle", 0.0)),
                 img=img,
             )
         self.order = sorted(self.nodes, key=lambda k: self.nodes[k].z)
@@ -99,8 +101,9 @@ class SpriteRig:
         return (n.pivot[0] * n.img.width, n.pivot[1] * n.img.height)
 
     def rest_pose(self):
-        """Identity pose: every node at its authored rest offset, angle 0."""
-        return {k: {"x": n.rest[0], "y": n.rest[1], "a": 0.0,
+        """Identity pose: every node at its authored rest offset, angle 0
+        (or the spec's authored rest angle)."""
+        return {k: {"x": n.rest[0], "y": n.rest[1], "a": n.rest_angle,
                     "s": n.base_scale, "visible": True, "image": n.image}
                 for k, n in self.nodes.items()}
 

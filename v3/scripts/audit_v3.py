@@ -137,8 +137,9 @@ def joint_coverage(pose, parent, child, radius=26):
 
 clips = {
     "walk": lambda i: rc.clip_walk(a, i, N),
-    "sit_talk": lambda i: rc.clip_sit_talk(a, i, N),
-    "point_react": lambda i: rc.clip_point_react(a, i, N),
+    "talk": lambda i: rc.clip_talk(a, i, N),
+    "sit": lambda i: rc.clip_sit(a, i, N),
+    "point": lambda i: rc.clip_point(a, i, N),
 }
 connectivity = {}
 for cname, builder in clips.items():

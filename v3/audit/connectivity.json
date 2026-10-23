@@ -4,93 +4,129 @@
       "worst_coverage": {
         "root_hip->torso": 1.0,
         "torso->head": 1.0,
-        "head->eye_l": 1.0,
+        "head->eye_l": 0.999,
         "head->mouth": 1.0,
-        "torso->arm_up_l": 0.405,
-        "arm_up_l->arm_lo_l": 0.486,
-        "torso->arm_up_r": 0.456,
-        "arm_up_r->arm_lo_r": 0.551,
-        "root_hip->leg_up_l": 0.933,
+        "torso->arm_up_l": 0.357,
+        "arm_up_l->arm_lo_l": 0.576,
+        "torso->arm_up_r": 0.416,
+        "arm_up_r->arm_lo_r": 0.533,
+        "root_hip->leg_up_l": 0.871,
+        "leg_up_l->leg_lo_l": 0.438,
+        "leg_lo_l->foot_l": 0.493,
+        "root_hip->leg_up_r": 0.757,
+        "leg_up_r->leg_lo_r": 0.537,
+        "leg_lo_r->foot_r": 0.489
+      },
+      "worst_at_frame": {
+        "torso->arm_up_l": 75,
+        "arm_up_l->arm_lo_l": 8,
+        "torso->arm_up_r": 8,
+        "arm_up_r->arm_lo_r": 37,
+        "root_hip->leg_up_l": 71,
+        "leg_up_l->leg_lo_l": 29,
+        "leg_lo_l->foot_l": 92,
+        "root_hip->leg_up_r": 6,
+        "leg_up_r->leg_lo_r": 20,
+        "leg_lo_r->foot_r": 65,
+        "head->eye_l": 116
+      },
+      "threshold": 0.12,
+      "any_below_threshold": false
+    },
+    "talk": {
+      "worst_coverage": {
+        "root_hip->torso": 1.0,
+        "torso->head": 1.0,
+        "head->eye_l": 0.98,
+        "head->mouth": 1.0,
+        "torso->arm_up_l": 0.366,
+        "arm_up_l->arm_lo_l": 0.894,
+        "torso->arm_up_r": 0.421,
+        "arm_up_r->arm_lo_r": 0.446,
+        "root_hip->leg_up_l": 0.884,
+        "leg_up_l->leg_lo_l": 0.57,
+        "leg_lo_l->foot_l": 0.802,
+        "root_hip->leg_up_r": 0.895,
+        "leg_up_r->leg_lo_r": 0.48,
+        "leg_lo_r->foot_r": 0.833
+      },
+      "worst_at_frame": {
+        "head->eye_l": 21,
+        "torso->arm_up_l": 20,
+        "arm_up_l->arm_lo_l": 54,
+        "torso->arm_up_r": 89,
+        "arm_up_r->arm_lo_r": 13,
+        "root_hip->leg_up_l": 52,
+        "leg_up_l->leg_lo_l": 1,
+        "leg_lo_l->foot_l": 56,
+        "root_hip->leg_up_r": 56,
+        "leg_up_r->leg_lo_r": 67,
+        "leg_lo_r->foot_r": 52
+      },
+      "threshold": 0.12,
+      "any_below_threshold": false
+    },
+    "sit": {
+      "worst_coverage": {
+        "root_hip->torso": 1.0,
+        "torso->head": 1.0,
+        "head->eye_l": 0.994,
+        "head->mouth": 1.0,
+        "torso->arm_up_l": 0.373,
+        "arm_up_l->arm_lo_l": 0.894,
+        "torso->arm_up_r": 0.443,
+        "arm_up_r->arm_lo_r": 0.63,
+        "root_hip->leg_up_l": 0.884,
+        "leg_up_l->leg_lo_l": 0.573,
+        "leg_lo_l->foot_l": 0.802,
+        "root_hip->leg_up_r": 0.895,
+        "leg_up_r->leg_lo_r": 0.544,
+        "leg_lo_r->foot_r": 0.83
+      },
+      "worst_at_frame": {
+        "head->eye_l": 119,
+        "torso->arm_up_l": 2,
+        "arm_up_l->arm_lo_l": 54,
+        "torso->arm_up_r": 4,
+        "arm_up_r->arm_lo_r": 111,
+        "root_hip->leg_up_l": 52,
+        "leg_up_l->leg_lo_l": 52,
+        "leg_lo_l->foot_l": 56,
+        "root_hip->leg_up_r": 56,
+        "leg_up_r->leg_lo_r": 40,
+        "leg_lo_r->foot_r": 56
+      },
+      "threshold": 0.12,
+      "any_below_threshold": false
+    },
+    "point": {
+      "worst_coverage": {
+        "root_hip->torso": 1.0,
+        "torso->head": 1.0,
+        "head->eye_l": 0.973,
+        "head->mouth": 1.0,
+        "torso->arm_up_l": 0.388,
+        "arm_up_l->arm_lo_l": 0.905,
+        "torso->arm_up_r": 0.439,
+        "arm_up_r->arm_lo_r": 0.608,
+        "root_hip->leg_up_l": 0.862,
         "leg_up_l->leg_lo_l": 0.551,
-        "leg_lo_l->foot_l": 0.737,
-        "root_hip->leg_up_r": 0.947,
-        "leg_up_r->leg_lo_r": 0.571,
-        "leg_lo_r->foot_r": 0.714
+        "leg_lo_l->foot_l": 0.617,
+        "root_hip->leg_up_r": 0.869,
+        "leg_up_r->leg_lo_r": 0.556,
+        "leg_lo_r->foot_r": 0.617
       },
       "worst_at_frame": {
-        "torso->arm_up_l": 102,
-        "arm_up_l->arm_lo_l": 68,
-        "torso->arm_up_r": 63,
-        "arm_up_r->arm_lo_r": 98,
-        "root_hip->leg_up_l": 110,
-        "leg_up_l->leg_lo_l": 55,
-        "leg_lo_l->foot_l": 88,
-        "root_hip->leg_up_r": 101,
-        "leg_up_r->leg_lo_r": 97,
-        "leg_lo_r->foot_r": 45
-      },
-      "threshold": 0.12,
-      "any_below_threshold": false
-    },
-    "sit_talk": {
-      "worst_coverage": {
-        "root_hip->torso": 1.0,
-        "torso->head": 1.0,
-        "head->eye_l": 1.0,
-        "head->mouth": 1.0,
-        "torso->arm_up_l": 0.481,
-        "arm_up_l->arm_lo_l": 0.611,
-        "torso->arm_up_r": 0.401,
-        "arm_up_r->arm_lo_r": 0.529,
-        "root_hip->leg_up_l": 0.969,
-        "leg_up_l->leg_lo_l": 0.52,
-        "leg_lo_l->foot_l": 0.873,
-        "root_hip->leg_up_r": 0.961,
-        "leg_up_r->leg_lo_r": 0.497,
-        "leg_lo_r->foot_r": 0.868
-      },
-      "worst_at_frame": {
-        "torso->arm_up_l": 110,
-        "arm_up_l->arm_lo_l": 1,
-        "torso->arm_up_r": 37,
-        "arm_up_r->arm_lo_r": 67,
-        "root_hip->leg_up_l": 119,
-        "leg_up_l->leg_lo_l": 40,
-        "leg_lo_l->foot_l": 119,
-        "root_hip->leg_up_r": 113,
-        "leg_up_r->leg_lo_r": 69,
-        "leg_lo_r->foot_r": 113
-      },
-      "threshold": 0.12,
-      "any_below_threshold": false
-    },
-    "point_react": {
-      "worst_coverage": {
-        "root_hip->torso": 1.0,
-        "torso->head": 1.0,
-        "head->eye_l": 1.0,
-        "head->mouth": 1.0,
-        "torso->arm_up_l": 0.459,
-        "arm_up_l->arm_lo_l": 0.618,
-        "torso->arm_up_r": 0.409,
-        "arm_up_r->arm_lo_r": 0.591,
-        "root_hip->leg_up_l": 0.943,
-        "leg_up_l->leg_lo_l": 0.572,
-        "leg_lo_l->foot_l": 0.681,
-        "root_hip->leg_up_r": 0.938,
-        "leg_up_r->leg_lo_r": 0.57,
-        "leg_lo_r->foot_r": 0.689
-      },
-      "worst_at_frame": {
-        "torso->arm_up_l": 59,
-        "arm_up_l->arm_lo_l": 0,
-        "torso->arm_up_r": 10,
-        "arm_up_r->arm_lo_r": 14,
-        "root_hip->leg_up_l": 62,
+        "head->eye_l": 51,
+        "torso->arm_up_l": 81,
+        "arm_up_l->arm_lo_l": 119,
+        "torso->arm_up_r": 106,
+        "arm_up_r->arm_lo_r": 36,
+        "root_hip->leg_up_l": 0,
         "leg_up_l->leg_lo_l": 0,
         "leg_lo_l->foot_l": 0,
-        "root_hip->leg_up_r": 62,
-        "leg_up_r->leg_lo_r": 62,
+        "root_hip->leg_up_r": 5,
+        "leg_up_r->leg_lo_r": 7,
         "leg_lo_r->foot_r": 0
       },
       "threshold": 0.12,
@@ -100,55 +136,55 @@
   "palette": {
     "fur": {
       "sprite_rgb": [
-        247.0,
-        243.3,
-        234.2
+        245.1,
+        241.6,
+        230.1
       ],
       "anchor_rgb": [
         245,
         244,
         238
       ],
-      "delta": 4.4
+      "delta": 8.3
     },
     "sweater_navy": {
       "sprite_rgb": [
-        55.7,
-        73.9,
-        116.2
+        51.4,
+        66.0,
+        102.4
       ],
       "anchor_rgb": [
         42,
         58,
         92
       ],
-      "delta": 32.0
+      "delta": 16.1
     },
     "scarf_pink": {
       "sprite_rgb": [
-        234.6,
-        138.4,
-        141.2
+        198.0,
+        110.6,
+        112.3
       ],
       "anchor_rgb": [
         206,
         112,
         122
       ],
-      "delta": 43.4
+      "delta": 12.7
     },
     "star_moon_yellow": {
       "sprite_rgb": [
-        246.0,
-        207.9,
-        112.6
+        219.6,
+        182.7,
+        101.1
       ],
       "anchor_rgb": [
         232,
         190,
         92
       ],
-      "delta": 30.7
+      "delta": 17.0
     }
   }
 }

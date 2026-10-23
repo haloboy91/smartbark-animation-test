@@ -15,3 +15,7 @@ v2/render/inspect-*.png
 v3/parts_raw/
 v3/qc/
 v3/clips/tmp/
+
+# v3 correction backups (rollback to git tag v3-checkpoint)
+v3/parts_png_v1/
+v3/parts_raw_v1/
