@@ -1,0 +1,71 @@
+{
+  "character": "Elly (Smart Bark) — Family Guy-inspired 2D bichon",
+  "canvas": {"width": 960, "height": 540, "fps": 24},
+  "chroma_key": "#00FF00",
+  "palette_anchor": {
+    "fur": [245, 244, 238],
+    "sweater_navy": [42, 58, 92],
+    "star_moon_yellow": [232, 190, 92],
+    "scarf_pink": [206, 112, 122],
+    "nose_outline_black": [20, 20, 22]
+  },
+  "parts": [
+    {"file": "head_base.png", "role": "head/face base with muzzle+nose, blank feature area", "joint": "neck", "status": "generated"},
+    {"file": "eye_open.png", "role": "single open eye (reused L/R, mirror for R)", "joint": "eye", "status": "generated"},
+    {"file": "eyelid.png", "role": "blink lid (slides over eye)", "joint": "eye", "status": "generated"},
+    {"file": "eyebrow.png", "role": "single brow (reused L/R, mirror for R)", "joint": "brow", "status": "generated"},
+    {"file": "mouth_smile.png", "role": "closed smile", "joint": "mouth", "status": "generated"},
+    {"file": "mouth_talk.png", "role": "open talking mouth with tongue", "joint": "mouth", "status": "generated"},
+    {"file": "mouth_happy.png", "role": "happy pant with tongue", "joint": "mouth", "status": "generated"},
+    {"file": "mouth_surprised.png", "role": "small round o mouth", "joint": "mouth", "status": "generated"},
+    {"file": "torso.png", "role": "sweater torso + pink scarf, capped sleeves", "joint": "spine/neck", "status": "generated"},
+    {"file": "arm_upper.png", "role": "upper arm sleeve segment", "joint": "shoulder/elbow", "status": "generated"},
+
+    {"file": "arm_lower_paw.png", "role": "forearm sleeve + white paw hand", "joint": "elbow/wrist", "status": "pending"},
+    {"file": "hand_point.png", "role": "pointing hand/paw gesture", "joint": "wrist", "status": "pending"},
+    {"file": "leg_upper.png", "role": "upper leg (white fur, stubby)", "joint": "hip/knee", "status": "pending"},
+    {"file": "leg_lower.png", "role": "lower leg (white fur)", "joint": "knee/ankle", "status": "pending"},
+    {"file": "foot_paw.png", "role": "fluffy toed foot/paw", "joint": "ankle", "status": "pending"},
+    {"file": "tail.png", "role": "fluffy pom-pom tail, two-bone base+poof", "joint": "tail", "status": "pending"},
+    {"file": "ear.png", "role": "floppy fur-puff ear (reused L/R, mirror for R)", "joint": "head/ear", "status": "pending"},
+    {"file": "head_side.png", "role": "side/profile head for turn views", "joint": "neck", "status": "pending"},
+    {"file": "torso_side.png", "role": "side torso for walk/turn views", "joint": "spine", "status": "pending"},
+    {"file": "mouth_angry.png", "role": "frown / gritted angry mouth", "joint": "mouth", "status": "pending"}
+  ],
+  "rig_hierarchy": [
+    {"node": "root_hip", "parent": null},
+    {"node": "torso", "parent": "root_hip", "ik": "spine lean"},
+    {"node": "neck", "parent": "torso"},
+    {"node": "head", "parent": "neck"},
+    {"node": "ear_l", "parent": "head"}, {"node": "ear_r", "parent": "head"},
+    {"node": "eye_l", "parent": "head"}, {"node": "eye_r", "parent": "head"},
+    {"node": "lid_l", "parent": "head"}, {"node": "lid_r", "parent": "head"},
+    {"node": "brow_l", "parent": "head"}, {"node": "brow_r", "parent": "head"},
+    {"node": "mouth", "parent": "head", "note": "per-pose image swap for expressions/talk"},
+    {"node": "arm_up_l", "parent": "torso"}, {"node": "arm_lo_l", "parent": "arm_up_l", "ik": "two-bone arm"},
+    {"node": "hand_l", "parent": "arm_lo_l"},
+    {"node": "arm_up_r", "parent": "torso"}, {"node": "arm_lo_r", "parent": "arm_up_r", "ik": "two-bone arm"},
+    {"node": "hand_r", "parent": "arm_lo_r"},
+    {"node": "leg_up_l", "parent": "root_hip"}, {"node": "leg_lo_l", "parent": "leg_up_l", "ik": "two-bone leg"},
+    {"node": "foot_l", "parent": "leg_lo_l"},
+    {"node": "leg_up_r", "parent": "root_hip"}, {"node": "leg_lo_r", "parent": "leg_up_r", "ik": "two-bone leg"},
+    {"node": "foot_r", "parent": "leg_lo_r"},
+    {"node": "tail_base", "parent": "root_hip"}, {"node": "tail_poof", "parent": "tail_base"}
+  ],
+  "animation_presets": [
+    "idle_breathing", "walking", "running", "sitting", "talking",
+    "pointing", "surprised", "angry", "happy", "head_turn", "body_turn"
+  ],
+  "test_clips": [
+    {"name": "walk_5s", "preset": "walking", "seconds": 5},
+    {"name": "sit_talk_5s", "preset": "sitting+talking", "seconds": 5},
+    {"name": "point_react_5s", "preset": "pointing+surprised", "seconds": 5}
+  ],
+  "rules": [
+    "all parts generated on #00FF00 then chroma-keyed to transparent PNG",
+    "no moving a whole static character PNG; every articulated node is a separate part",
+    "no primitive-shape anatomy; parts are AI-generated artwork matching the reference",
+    "overlapping artwork at every joint to hide rotation gaps",
+    "reject/regenerate any part failing transparency, proportion, continuity or contact QA"
+  ]
+}
