@@ -20,7 +20,9 @@ bones + filled circles + stroked rings), drawn in the kit's palette and proporti
 - **large round glasses** (v2 identity requirement), black round nose, soft muzzle
 - navy sweater with yellow stars and crescent moons, ribbed hem/cuffs
 - pink scarf with a hanging tail
-- wooden chair in the kit's plain-stool style, given a simple two-post backrest so Elly can face away from it
+- wooden chair in the kit's plain-stool style, given a simple two-post backrest so Elly can face away
+  from it. The rear legs line up directly behind the front legs in side view, so they never show
+  through the gap between Elly's paws when she is seated
 
 Identity is recreated from the official references; no kit pixel is warped. All structural segment
 lengths are constant for the entire shot (QA gate, §5), so nothing ever stretches or collapses.
@@ -36,7 +38,8 @@ lengths are constant for the entire shot (QA gate, §5), so nothing ever stretch
 | `scripts/elly-rig.mjs` | Elly + ground-shadow rigs. Root node 0 = hip. Separately controlled head, torso, two arms, two legs, paws, tail, scarf, face. |
 | `scripts/chair-rig.mjs` | Fixed chair (seat planks, seams, four legs, two back posts, rail, finials, floor contact shadow) and the room/floor rig. |
 | `scripts/build-v2.mjs` | Timeline builder. Bakes per-frame IK and angles, writes the `.styk`, three `.stk` rigs, and `preview/project-data.js`. |
-| `scripts/qa-v2.mjs` | Numeric quality gates (§5). |
+| `scripts/qa-v2.mjs` | Numeric continuity/proportion quality gates (§5). |
+| `scripts/qa-clipping.mjs` | Chair-contact and paw/leg occlusion gates (§5). |
 | `render/render.py` | Pillow forward-kinematics renderer matching the app geometry; honors length overrides and rings; emits MP4, GIF, contact sheet. |
 | `preview/index.html` | In-browser canvas preview with the same FK + length-override + ring rules and a scrubber/beat readout. |
 
@@ -111,6 +114,12 @@ teleport gate dropped from 116 px to ≤18.5 px on non-locomotion joints).
      expected for a moving foot);
    - **all structural segment lengths constant** — no stretch/squash/warp;
    - head-to-hip distance constant (139.9–140.0 px) — proportions preserved.
+2b. **Clipping/contact QA (`scripts/qa-clipping.mjs`) — all green.** The chair's back legs are
+   aligned directly behind its front legs in this side view, so no leg can show through the gap
+   between the paws. The gate tests every chair-leg cross-section inside the paw footprint against
+   the paw circles (occlusion, not a flat centerline distance), verifies the hips meet the seat
+   surface and stay over its footprint, and confirms the approach never enters the seat area. This
+   caught and removed a brown chair-leg sliver that was visible between the paws in an earlier build.
 3. **Full visual review** — every render was inspected, not just sampled: idle, multiple walk
    contacts/swings, stop, each turn beat, backup, the whole sit, the settle, blink close-ups, the
    mouth/tongue reveal, and the 10-beat contact sheet. Defects found this way and fixed include:
@@ -146,7 +155,7 @@ teleport gate dropped from 116 px to ≤18.5 px on non-locomotion joints).
 - `render/contact-sheet.png` — 10 key-pose beats
 - `animation/elly-v2-walk-turn-sit.styk` — full baked scene (186 frames, 4 figures)
 - `animation/elly-v2.stk`, `chair.stk`, `room.stk` — reusable rigs/figures
-- `scripts/*.mjs`, `render/render.py` — reusable rig, IK, timeline and renderer sources
+- `scripts/*.mjs`, `render/render.py` — reusable rig, IK, timeline, renderer and two numeric QA suites
 - `preview/index.html` + `preview/project-data.js` — browser preview (served on port 47841)
 - `scripts/qa-v2.mjs` — repeatable numeric quality gates
 
@@ -154,9 +163,10 @@ teleport gate dropped from 116 px to ≤18.5 px on non-locomotion joints).
 ```bash
 cd v2
 python3 -m venv .venv && .venv/bin/pip install -r render/requirements.txt
-node scripts/build-v2.mjs     # bake the .styk, .stk and preview data
-node scripts/qa-v2.mjs        # numeric quality gates
-.venv/bin/python render/render.py   # MP4 + GIF + contact sheet
+node scripts/build-v2.mjs          # bake the .styk, .stk and preview data
+node scripts/qa-v2.mjs             # continuity / proportion gates
+node scripts/qa-clipping.mjs       # chair-contact / paw-occlusion gates
+.venv/bin/python render/render.py  # MP4 + GIF + contact sheet
 ```
 The StykAnimate schema check additionally needs a local clone of the app
 (`STYK_ANIMATE_HOME=/path/to/StykAnimate-App`); the build, QA and render do not.

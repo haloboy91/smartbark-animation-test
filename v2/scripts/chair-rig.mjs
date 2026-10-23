@@ -32,9 +32,10 @@ export function buildChairRig() {
   // front legs (near viewer) at the seat ends
   rig.bone(N.seatL, {length: 78, angle: PI / 2, thickness: 13, color: WOOD_DARK, layer: 2});
   rig.bone(N.seatR, {length: 78, angle: PI / 2, thickness: 13, color: WOOD_DARK, layer: 2});
-  // back legs, slightly inset
-  const backL = rig.stub(0, {length: 60, angle: PI, layer: 1.6});
-  const backR = rig.stub(0, {length: 60, angle: 0, layer: 1.6});
+  // back legs line up directly behind the front legs in this side view, so they
+  // never show through the gap between Elly's paws when she sits
+  const backL = rig.stub(0, {length: 78, angle: PI, layer: 1.6});
+  const backR = rig.stub(0, {length: 78, angle: 0, layer: 1.6});
   rig.bone(backL, {length: 74, angle: PI / 2, thickness: 10, color: WOOD_DARK, layer: 1.6});
   rig.bone(backR, {length: 74, angle: PI / 2, thickness: 10, color: WOOD_DARK, layer: 1.6});
 
